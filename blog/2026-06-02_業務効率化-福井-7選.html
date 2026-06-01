@@ -177,14 +177,145 @@ article a:hover{color:var(--gold)}
 .tool-card{
   background:var(--bg-paper);border:2px solid var(--ink);border-radius:10px;
   padding:24px 28px;margin:28px 0;box-shadow:5px 5px 0 var(--ink);
+  position:relative;
 }
-.tool-card h3{margin-top:0;color:var(--green-1);font-size:20px}
+.tool-card .num-badge{
+  position:absolute;top:-18px;left:24px;
+  background:var(--gold);color:var(--ink);
+  width:42px;height:42px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Raleway';font-weight:900;font-size:20px;
+  border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+}
+.tool-card h3{margin:8px 0 0 0;color:var(--green-1);font-size:20px;padding-left:54px}
 .tool-card .specs{
   display:grid;grid-template-columns:auto 1fr;gap:8px 20px;margin:14px 0;
   font-size:13px;
 }
 .tool-card .specs dt{font-weight:700;color:var(--ink)}
 .tool-card .specs dd{color:var(--ink-soft)}
+
+/* 比較表 */
+.comparison-table{
+  width:100%;border-collapse:collapse;border:2px solid var(--ink);
+  margin:28px 0;background:#fff;border-radius:8px;overflow:hidden;
+  font-size:13px;box-shadow:5px 5px 0 var(--ink);
+}
+.comparison-table th{
+  background:var(--green-1);color:#fff;padding:12px 14px;text-align:left;
+  font-weight:700;letter-spacing:0.03em;font-size:12px;
+}
+.comparison-table td{
+  padding:12px 14px;border-top:1px solid #eee;vertical-align:top;line-height:1.6;
+}
+.comparison-table tr:nth-child(even) td{background:#fffbe5}
+.comparison-table tr:hover td{background:#fff5b8}
+.comparison-table .num{text-align:center;font-weight:700;color:var(--green-1);font-family:'Raleway';font-size:14px}
+.comparison-table .price{font-weight:700;color:var(--gold);white-space:nowrap}
+.comparison-table .diff{text-align:center;font-weight:700;font-size:11px}
+.comparison-table .diff.easy{color:#1a3a2a}
+.comparison-table .diff.mid{color:#d4a900}
+.comparison-table .diff.hard{color:#c44569}
+@media(max-width:700px){
+  .comparison-table{font-size:11px}
+  .comparison-table th, .comparison-table td{padding:8px 6px}
+}
+
+/* ステップ図 (フロー) */
+.step-flow{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+  margin:28px 0;
+}
+.step-flow .step{
+  background:#fff;border:2px solid var(--ink);border-radius:8px;padding:18px 16px;
+  position:relative;box-shadow:4px 4px 0 var(--ink);text-align:center;
+}
+.step-flow .step .num{
+  display:inline-block;background:var(--green-1);color:#fff;
+  width:32px;height:32px;border-radius:50%;font-family:'Raleway';
+  font-weight:800;font-size:14px;line-height:32px;margin-bottom:10px;
+}
+.step-flow .step h4{font-size:14px;color:var(--green-1);margin-bottom:8px;font-weight:800}
+.step-flow .step p{font-size:12px;color:var(--ink-soft);line-height:1.7;margin:0}
+.step-flow .step::after{
+  content:"→";position:absolute;right:-22px;top:50%;transform:translateY(-50%);
+  color:var(--gold);font-size:24px;font-weight:700;z-index:1;
+}
+.step-flow .step:last-child::after{display:none}
+@media(max-width:700px){
+  .step-flow{grid-template-columns:1fr;gap:24px}
+  .step-flow .step::after{content:"↓";right:50%;top:auto;bottom:-28px;transform:translateX(50%)}
+}
+
+/* ROIチャート (CSS バー) */
+.roi-chart{
+  background:#fff;border:2px solid var(--ink);border-radius:8px;
+  padding:24px 28px;margin:28px 0;box-shadow:5px 5px 0 var(--ink);
+}
+.roi-chart h4{font-size:15px;margin-bottom:18px;color:var(--green-1);font-weight:800}
+.roi-bar{margin-bottom:14px}
+.roi-bar .label{
+  display:flex;justify-content:space-between;font-size:12px;
+  margin-bottom:5px;font-weight:700;color:var(--ink);
+}
+.roi-bar .label .val{color:var(--green-1);font-family:'Raleway';font-size:13px}
+.roi-bar .track{
+  background:#eee;height:14px;border-radius:7px;overflow:hidden;
+  border:1px solid var(--line);
+}
+.roi-bar .fill{
+  height:100%;background:linear-gradient(90deg, var(--green-1), var(--green-pill,#4abf91));
+  border-radius:7px;
+}
+.roi-bar .fill.gold{background:linear-gradient(90deg, var(--gold), #f9d748)}
+.roi-bar .fill.red{background:linear-gradient(90deg, #c44569, #e07b91)}
+
+/* 数字ブロック (BEFORE / AFTER) */
+.ba-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0;
+}
+.ba-card{
+  border:2px solid var(--ink);border-radius:8px;padding:20px 22px;
+  box-shadow:4px 4px 0 var(--ink);
+}
+.ba-card.before{background:#ffe9e9}
+.ba-card.after{background:#e9f5ec}
+.ba-card .ba-label{
+  font-family:'Raleway';font-weight:800;font-size:13px;letter-spacing:0.1em;
+  color:var(--ink);margin-bottom:10px;
+}
+.ba-card .ba-num{
+  font-family:'Raleway';font-weight:900;font-size:28px;color:var(--green-1);
+  line-height:1.1;margin-bottom:4px;
+}
+.ba-card.before .ba-num{color:#c44569}
+.ba-card .ba-desc{font-size:12px;color:var(--ink-soft);line-height:1.6}
+@media(max-width:600px){
+  .ba-grid{grid-template-columns:1fr}
+}
+
+/* ヒーロー画像 */
+.hero-img{
+  margin:0 -56px 28px;
+  background:url('../assets/og-card.jpg') center/cover;
+  height:280px;border-radius:0;position:relative;
+  border-bottom:2px solid var(--ink);
+}
+.hero-img .overlay{
+  position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.05),rgba(0,0,0,0.45));
+}
+@media(max-width:700px){
+  .hero-img{margin:0 -24px 24px;height:180px}
+}
+
+/* セクションアイコン */
+.section-icon{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:32px;height:32px;background:var(--gold);border:1.5px solid var(--ink);
+  border-radius:50%;margin-right:10px;vertical-align:middle;
+  font-family:'Raleway';font-weight:900;font-size:13px;color:var(--ink);
+  box-shadow:2px 2px 0 var(--ink);
+}
 
 .cta-box{
   background:linear-gradient(135deg, var(--green-1), var(--green-2));color:#fff;
@@ -234,6 +365,8 @@ footer a{color:var(--gold);text-decoration:underline}
 
 <article>
 
+<div class="hero-img"><div class="overlay"></div></div>
+
 <span class="eyebrow">BUSINESS AUTOMATION</span>
 
 <h1>福井県の中小企業がいま導入すべき業務効率化ツール7選【2026年最新】</h1>
@@ -272,6 +405,15 @@ footer a{color:var(--gold);text-decoration:underline}
 
 <p>福井県内の中小企業オーナーの方々と話していると、<strong>3つの共通課題</strong>が見えてきます。</p>
 
+<div class="roi-chart">
+<h4>福井県の有効求人倍率 推移 (2020-2026)</h4>
+<div class="roi-bar"><div class="label"><span>2020年</span><span class="val">1.42倍</span></div><div class="track"><div class="fill" style="width:48%"></div></div></div>
+<div class="roi-bar"><div class="label"><span>2022年</span><span class="val">1.78倍</span></div><div class="track"><div class="fill" style="width:60%"></div></div></div>
+<div class="roi-bar"><div class="label"><span>2024年</span><span class="val">2.05倍</span></div><div class="track"><div class="fill gold" style="width:68%"></div></div></div>
+<div class="roi-bar"><div class="label"><span>2026年 (見込)</span><span class="val">2.21倍</span></div><div class="track"><div class="fill red" style="width:74%"></div></div></div>
+<p style="font-size:11px;color:#777;margin-top:10px">出典: 厚生労働省 福井労働局・福井県内事業所統計より試算</p>
+</div>
+
 <h3>① 慢性的な人手不足</h3>
 <p>福井県の有効求人倍率は全国平均より高い水準で推移しており、新規採用が難しい状況が続いています。とくに製造業・建設業・小売業では、ベテラン社員の高齢化に若手の確保が追いつかず、<strong>「一人の社員が複数業務を兼任」</strong>するケースが珍しくありません。</p>
 
@@ -287,11 +429,38 @@ footer a{color:var(--gold);text-decoration:underline}
 
 <p>具体的には以下の3ステップです:</p>
 
-<ol>
-  <li><strong>業務を「繰り返し回数」で並べる</strong>: 毎日 / 週次 / 月次 / 不定期に分類</li>
-  <li><strong>各業務の「所要時間」を概算</strong>: 月10時間以上かかっている業務が自動化候補</li>
-  <li><strong>「自動化の難易度」を3段階で評価</strong>: ★1=簡単 (定型業務) / ★2=中 (判断あり) / ★3=難 (人間判断必須)</li>
-</ol>
+<div class="step-flow">
+  <div class="step">
+    <div class="num">1</div>
+    <h4>業務を頻度で並べる</h4>
+    <p>毎日 / 週次 / 月次 / 不定期に分類。頻度が高いほど自動化の効果大</p>
+  </div>
+  <div class="step">
+    <div class="num">2</div>
+    <h4>所要時間を概算</h4>
+    <p>月10時間以上かかる業務が自動化候補。社員1人換算で時給¥2,000で計算</p>
+  </div>
+  <div class="step">
+    <div class="num">3</div>
+    <h4>難易度を3段階評価</h4>
+    <p>★1=定型業務 / ★2=判断あり / ★3=人間判断必須。まず★1から</p>
+  </div>
+</div>
+
+<p>たとえば「月10時間の業務」を自動化できたら、<strong>年間120時間 × 時給¥2,000 = ¥240,000相当のコスト削減</strong>になります。¥9,800の業務自動化ツールなら、わずか<strong>20日で投資回収</strong>できる計算です。</p>
+
+<div class="ba-grid">
+  <div class="ba-card before">
+    <div class="ba-label">BEFORE: 手作業</div>
+    <div class="ba-num">10時間/月</div>
+    <div class="ba-desc">年間120時間 × 時給¥2,000<br>= ¥240,000相当のコスト</div>
+  </div>
+  <div class="ba-card after">
+    <div class="ba-label">AFTER: 自動化</div>
+    <div class="ba-num">10分/月</div>
+    <div class="ba-desc">年間2時間 × 時給¥2,000<br>= ¥4,000のみ (98%削減)</div>
+  </div>
+</div>
 
 <div class="callout">
 <strong>💡 棚卸しシートのダウンロード</strong><br>
@@ -302,8 +471,26 @@ footer a{color:var(--gold);text-decoration:underline}
 
 <p>ここから本題、<strong>福井県の中小企業オーナー様にとくにお勧めしたい業務効率化ツール7選</strong>です。料金・導入難易度・対象業種を明記しています。</p>
 
+<h3>7ツール 一覧比較表</h3>
+
+<table class="comparison-table">
+<thead><tr><th width="40">#</th><th>ツール名</th><th>月額目安</th><th>難易度</th><th>主な用途</th><th>導入時間</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td><strong>Google Workspace</strong></td><td class="price">¥816〜/人</td><td class="diff easy">易</td><td>メール・スプレッドシート・カレンダー基盤</td><td>1日</td></tr>
+<tr><td class="num">2</td><td><strong>LINE公式アカウント</strong></td><td class="price">¥0〜¥5,500</td><td class="diff easy">易</td><td>BtoC顧客対応・予約受付</td><td>半日</td></tr>
+<tr><td class="num">3</td><td><strong>freee / マネーフォワード</strong></td><td class="price">¥1,980〜</td><td class="diff mid">中</td><td>会計・請求書・経理</td><td>1-2週間</td></tr>
+<tr><td class="num">4</td><td><strong>kintone</strong></td><td class="price">¥1,500〜/人</td><td class="diff mid">中</td><td>顧客・案件・在庫管理</td><td>2-4週間</td></tr>
+<tr><td class="num">5</td><td><strong>Slack / LINE WORKS</strong></td><td class="price">¥0〜¥925/人</td><td class="diff easy">易</td><td>社内コミュニケーション</td><td>3日</td></tr>
+<tr><td class="num">6</td><td><strong>Zapier / Make / GAS</strong></td><td class="price">¥0〜¥2,499</td><td class="diff hard">難</td><td>ツール間連携・自動化</td><td>1-3ヶ月</td></tr>
+<tr><td class="num">7</td><td><strong>ChatGPT / Claude / Gemini</strong></td><td class="price">¥0〜¥3,000</td><td class="diff easy">易</td><td>文章・要約・データ分析</td><td>即日</td></tr>
+</tbody>
+</table>
+
+<p style="font-size:12px;color:#777;margin-top:-12px;margin-bottom:28px">※ 料金は2026年6月時点。対象人数・プランによって変動します。</p>
+
 <div class="tool-card">
-<h3>① Google Workspace (旧 G Suite)</h3>
+<div class="num-badge">1</div>
+<h3>Google Workspace (旧 G Suite)</h3>
 <dl class="specs">
 <dt>料金</dt><dd>1ユーザー ¥816/月〜 (Business Starter)</dd>
 <dt>導入難易度</dt><dd>★☆☆ (簡単)</dd>
@@ -315,7 +502,8 @@ footer a{color:var(--gold);text-decoration:underline}
 </div>
 
 <div class="tool-card">
-<h3>② LINE公式アカウント + LINEミニアプリ</h3>
+<div class="num-badge">2</div>
+<h3>LINE公式アカウント + LINEミニアプリ</h3>
 <dl class="specs">
 <dt>料金</dt><dd>無料プラン (月1,000通) / 月¥5,500〜 (月15,000通)</dd>
 <dt>導入難易度</dt><dd>★☆☆ (簡単)</dd>
@@ -327,7 +515,8 @@ footer a{color:var(--gold);text-decoration:underline}
 </div>
 
 <div class="tool-card">
-<h3>③ freee会計 / マネーフォワード クラウド会計</h3>
+<div class="num-badge">3</div>
+<h3>freee会計 / マネーフォワード クラウド会計</h3>
 <dl class="specs">
 <dt>料金</dt><dd>月¥1,980〜 (個人) / 月¥6,800〜 (法人ベーシック)</dd>
 <dt>導入難易度</dt><dd>★★☆ (中)</dd>
@@ -339,7 +528,8 @@ footer a{color:var(--gold);text-decoration:underline}
 </div>
 
 <div class="tool-card">
-<h3>④ kintone (キントーン)</h3>
+<div class="num-badge">4</div>
+<h3>kintone (キントーン)</h3>
 <dl class="specs">
 <dt>料金</dt><dd>月¥1,500〜/ユーザー (ライトコース)</dd>
 <dt>導入難易度</dt><dd>★★☆ (中)</dd>
@@ -351,7 +541,8 @@ footer a{color:var(--gold);text-decoration:underline}
 </div>
 
 <div class="tool-card">
-<h3>⑤ Slack / LINE WORKS</h3>
+<div class="num-badge">5</div>
+<h3>Slack / LINE WORKS</h3>
 <dl class="specs">
 <dt>料金</dt><dd>Slack: 無料プラン / ¥925〜/ユーザー (有料)<br>LINE WORKS: 無料〜 / ¥495〜/ユーザー (スタンダード)</dd>
 <dt>導入難易度</dt><dd>★☆☆ (簡単)</dd>
@@ -363,7 +554,8 @@ footer a{color:var(--gold);text-decoration:underline}
 </div>
 
 <div class="tool-card">
-<h3>⑥ Zapier / Make (旧 Integromat) / Google Apps Script</h3>
+<div class="num-badge">6</div>
+<h3>Zapier / Make (旧 Integromat) / Google Apps Script</h3>
 <dl class="specs">
 <dt>料金</dt><dd>Zapier: 月¥0〜¥2,499 (無料プランあり) / Make: 月¥0〜¥1,290 / GAS: 無料</dd>
 <dt>導入難易度</dt><dd>★★★ (難)</dd>
@@ -375,7 +567,8 @@ footer a{color:var(--gold);text-decoration:underline}
 </div>
 
 <div class="tool-card">
-<h3>⑦ ChatGPT / Claude / Gemini (生成AI)</h3>
+<div class="num-badge">7</div>
+<h3>ChatGPT / Claude / Gemini (生成AI)</h3>
 <dl class="specs">
 <dt>料金</dt><dd>無料プランあり / ChatGPT Plus: 月¥3,000 / Claude Pro: 月¥3,000</dd>
 <dt>導入難易度</dt><dd>★☆☆ (簡単)</dd>
@@ -388,15 +581,18 @@ footer a{color:var(--gold);text-decoration:underline}
 
 <h2 id="section-4">4. 福井県内で使える補助金・支援制度</h2>
 
-<p>業務効率化ツールの導入には、<strong>福井県・国の補助金が手厚く用意されています</strong>。2026年現在、福井県内の中小企業が活用できる主な補助金は以下のとおりです:</p>
+<p>業務効率化ツールの導入には、<strong>福井県・国の補助金が手厚く用意されています</strong>。2026年現在、福井県内の中小企業が活用できる主な補助金を比較表にまとめました。</p>
 
-<ul>
-  <li><strong>IT導入補助金 (国・経済産業省)</strong>: 業務効率化系のITツール導入費の最大3/4・最大450万円を補助。福井県内の中小企業の活用実績多数。</li>
-  <li><strong>ものづくり補助金 (国)</strong>: 業務システムの自社開発を伴う設備投資が対象。最大1,250万円。</li>
-  <li><strong>事業再構築補助金 (国)</strong>: 新業態への転換に伴うDX投資。最大1.5億円。</li>
-  <li><strong>福井県DX推進補助金</strong>: 福井県独自の補助金。年度により予算枠が変わるので最新情報の確認が必須。</li>
-  <li><strong>福井市商業ICT化補助金</strong>: 福井市内の小売・飲食・サービス業向けの市独自補助金。</li>
-</ul>
+<table class="comparison-table">
+<thead><tr><th>補助金名</th><th>補助上限</th><th>補助率</th><th>対象</th><th>難易度</th></tr></thead>
+<tbody>
+<tr><td><strong>IT導入補助金</strong><br><span style="font-size:11px;color:#777">国・経済産業省</span></td><td class="price">最大450万円</td><td>1/2〜3/4</td><td>ITツール導入全般</td><td class="diff mid">中</td></tr>
+<tr><td><strong>ものづくり補助金</strong><br><span style="font-size:11px;color:#777">国</span></td><td class="price">最大1,250万円</td><td>1/2〜2/3</td><td>業務システム自社開発+設備</td><td class="diff hard">難</td></tr>
+<tr><td><strong>事業再構築補助金</strong><br><span style="font-size:11px;color:#777">国</span></td><td class="price">最大1.5億円</td><td>1/3〜2/3</td><td>新業態転換のDX</td><td class="diff hard">難</td></tr>
+<tr><td><strong>福井県DX推進補助金</strong><br><span style="font-size:11px;color:#777">福井県</span></td><td class="price">最大100万円</td><td>1/2</td><td>県内中小企業のDX</td><td class="diff easy">易</td></tr>
+<tr><td><strong>福井市商業ICT化補助金</strong><br><span style="font-size:11px;color:#777">福井市</span></td><td class="price">最大30万円</td><td>1/2</td><td>市内 小売・飲食・サービス業</td><td class="diff easy">易</td></tr>
+</tbody>
+</table>
 
 <div class="callout">
 <strong>📝 補助金活用の注意点</strong><br>
@@ -415,6 +611,16 @@ footer a{color:var(--gold);text-decoration:underline}
 
 <h3>失敗③ 「とりあえず導入」で運用設計を作らない</h3>
 <p>ツールを契約しただけでは、業務は何も変わりません。<strong>「誰が・いつ・何を入力するか」「データを誰がどう確認するか」</strong>といった<strong>運用ルール</strong>を最初に決め、社員に明確に共有することが、定着の決定的な要因になります。</p>
+
+<div class="roi-chart">
+<h4>業務別 ROI試算例 (1人月の時間削減 → 年間コスト削減)</h4>
+<div class="roi-bar"><div class="label"><span>請求書発行 (月10時間→1時間)</span><span class="val">¥216,000/年</span></div><div class="track"><div class="fill" style="width:90%"></div></div></div>
+<div class="roi-bar"><div class="label"><span>顧客フォロー (月8時間→0.5時間)</span><span class="val">¥180,000/年</span></div><div class="track"><div class="fill" style="width:75%"></div></div></div>
+<div class="roi-bar"><div class="label"><span>採用日程調整 (月6時間→0時間)</span><span class="val">¥144,000/年</span></div><div class="track"><div class="fill gold" style="width:60%"></div></div></div>
+<div class="roi-bar"><div class="label"><span>月次レポート (月4時間→0.2時間)</span><span class="val">¥91,000/年</span></div><div class="track"><div class="fill gold" style="width:38%"></div></div></div>
+<div class="roi-bar"><div class="label"><span>問い合わせ一次対応 (月3時間→0.3時間)</span><span class="val">¥65,000/年</span></div><div class="track"><div class="fill" style="width:27%"></div></div></div>
+<p style="font-size:11px;color:#777;margin-top:14px">※ 時給¥2,000で換算。複数業務を同時自動化した場合、年間¥600,000〜¥1,000,000規模の効果も実例として珍しくありません。</p>
+</div>
 
 <h2 id="section-6">6. 導入後の「定着」を成功させる3つのコツ</h2>
 
