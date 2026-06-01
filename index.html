@@ -107,6 +107,96 @@
 }
 </script>
 
+<!-- 構造化データ: FAQPage (リッチリザルト対応) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "業務効率化って結局なにをやってくれるんですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "毎月手作業でやっている「請求書発行」「在庫管理」「顧客フォロー」「採用日程調整」などの繰り返し業務を、AIや自動化ツールで「ボタンひとつ」で完了する仕組みに置き換えます。Excelのコピペ・確認電話・転記作業がゼロになるイメージです。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ITやパソコンが苦手でも導入できますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、むしろそういう現場こそ向いています。納品物は「ボタンひとつで動く」状態でお渡しし、運用マニュアルとは別に動画解説も付けます。社員の方が新たに何かを覚える必要はありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "料金体系はどうなっていますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "3段階です。①無料の業務お悩み診断(30分Web面談+PDFレポート)、②ピンポイント自動化 ¥9,800/1業務(買い切り+1ヶ月伴走)、③本気の業務自動化パック ¥30万〜+月額保守 ¥3,000〜10,000。まず①の無料診断で「どこから自動化するべきか」をご一緒に決めるのが王道です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "契約の縛りはありますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ありません。ピンポイント自動化(¥9,800)は買い切りで、効果に満足いただけなかった場合は30日以内の全額返金保証付き。本気パック(¥30万〜)の月額保守も最低利用期間なし、いつでも解約可能です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "福井県外でも対応してもらえますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可能です。打合せはZoom等のオンラインで全国対応しています。納品物はWeb経由でお渡し、運用相談もチャットとオンライン面談が中心です。福井県・石川県・富山県は実訪問もご相談可能です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "納品までどのくらい時間がかかりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ピンポイント自動化(¥9,800)は最短1週間、平均2週間で納品します。本気パック(¥30万〜)は業務範囲によりますが、要件確定から1〜2ヶ月が目安です。スピード重視のご相談も歓迎です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "うちの業務、本当に自動化できるか分からないんですが…",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "無料の業務お悩み診断(30分Web面談)を使ってください。「何をどう手作業でやっているか」を伺った上で、自動化できる業務・難易度・想定費用感を整理したPDFレポートをお渡しします。その場で契約を迫ることは一切ありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "納品後にトラブルが起きたらどうなりますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ピンポイント自動化には1ヶ月の伴走サポートが含まれます。本気パックは月額保守(¥3,000〜10,000)で運用中の不具合対応・小さな改修・運用相談を継続サポートします。「動かなくなる前に手を打つ」予防保守も含みます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "個人情報やお客様データの取り扱いは安全ですか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "納品時にNDA(秘密保持契約)を締結します。データの保管・通信は暗号化を前提とし、第三者への開示は一切ありません。クラウドサービス利用時はGoogle Workspace・Microsoft 365等、法人向けに監査対応している環境のみを使います。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "IT補助金やDX関連補助金は使えますか?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ご相談ください。IT導入補助金・福井県のDX支援補助金など、要件に合致する場合は申請書類の作成支援(税理士・社労士との連携含む)もご相談いただけます。"
+      }
+    }
+  ]
+}
+</script>
+
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
@@ -1307,6 +1397,56 @@
   .company-val{font-size:14px;line-height:1.8}
   .company-val small{color:var(--ink-soft);font-size:12px;display:block;margin-top:4px}
 
+  /* ===== FAQ (リッチリザルト対応) ===== */
+  .faq{padding:80px 32px 60px;background:var(--bg-paper)}
+  .faq-inner{max-width:880px;margin:0 auto}
+  .faq h2{
+    font-family:var(--sans);font-size:28px;color:var(--ink);
+    letter-spacing:0.06em;font-weight:700;line-height:1.7;margin:24px auto 28px;
+    text-align:center;
+  }
+  .faq-list{display:flex;flex-direction:column;gap:14px;margin-top:32px}
+  .faq-q{
+    background:#fff;border:2px solid var(--ink);border-radius:12px;
+    box-shadow:5px 5px 0 var(--ink);
+    overflow:hidden;
+    transition:transform 0.15s, box-shadow 0.15s;
+  }
+  .faq-q:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}
+  .faq-q[open]{box-shadow:3px 3px 0 var(--gold)}
+  .faq-q summary{
+    list-style:none;cursor:pointer;
+    padding:20px 56px 20px 28px;
+    font-weight:700;font-size:15px;line-height:1.6;color:var(--ink);
+    position:relative;
+    background:#fff;
+    transition:background 0.2s;
+  }
+  .faq-q summary::-webkit-details-marker{display:none}
+  .faq-q summary::after{
+    content:"+";
+    position:absolute;right:24px;top:50%;transform:translateY(-50%);
+    font-size:24px;font-weight:300;color:var(--gold);
+    transition:transform 0.2s;
+    width:24px;height:24px;line-height:22px;text-align:center;
+    border:1.5px solid var(--gold);border-radius:50%;
+  }
+  .faq-q[open] summary::after{content:"−";transform:translateY(-50%) rotate(180deg)}
+  .faq-q summary:hover{background:#fff9e3}
+  .faq-a{
+    padding:8px 28px 24px;
+    font-size:14px;line-height:1.85;color:var(--ink-soft);
+    border-top:1px dashed var(--line);margin-top:0;
+    background:#fffbe8;
+  }
+  @media (max-width:600px){
+    .faq{padding:60px 20px 40px}
+    .faq h2{font-size:22px}
+    .faq-q summary{padding:18px 48px 18px 20px;font-size:14px}
+    .faq-q summary::after{right:18px}
+    .faq-a{padding:8px 20px 20px;font-size:13px}
+  }
+
   /* ===== Contact (yamakachi式 フォーム画面) ===== */
   .contact{
     text-align:center;padding:80px 32px 100px;
@@ -1530,6 +1670,7 @@
     <li><a href="#works">解決事例</a></li>
     <li><a href="#anything">特殊な業務</a></li>
     <li><a href="#flow">サービスの流れ</a></li>
+    <li><a href="#faq">よくある質問</a></li>
     <li><a href="#news">お知らせ</a></li>
     <li><a href="#contact">お問い合わせ</a></li>
   </ul>
@@ -1584,6 +1725,7 @@
         <li><a href="#mission">MISSION</a></li>
         <li><a href="#service">SERVICE</a></li>
         <li><a href="#works">SOLUTIONS</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">CONTACT</a></li>
       </ul>
     </nav>
@@ -2798,6 +2940,89 @@
 
     <div class="flow-cta fade">
       <a href="#contact" class="btn">無料で相談する<span class="btn-arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider" style="margin:40px auto"></div>
+
+<!-- ========== FAQ (リッチリザルト対応 Q&A) ========== -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <div class="section-label fade">FAQ</div>
+    <h2 class="section-title fade">よくあるご質問 <small>SKELETON FAQ</small></h2>
+    <div class="faq-list">
+
+      <details class="faq-q fade">
+        <summary>業務効率化って結局なにをやってくれるんですか?</summary>
+        <div class="faq-a">
+          毎月手作業でやっている「請求書発行」「在庫管理」「顧客フォロー」「採用日程調整」などの繰り返し業務を、AIや自動化ツールで「ボタンひとつ」で完了する仕組みに置き換えます。Excelのコピペ・確認電話・転記作業がゼロになるイメージです。
+        </div>
+      </details>
+
+      <details class="faq-q fade">
+        <summary>ITやパソコンが苦手でも導入できますか?</summary>
+        <div class="faq-a">
+          はい、むしろそういう現場こそ向いています。納品物は「ボタンひとつで動く」状態でお渡しし、運用マニュアルとは別に動画解説も付けます。社員の方が新たに何かを覚える必要はありません。
+        </div>
+      </details>
+
+      <details class="faq-q fade">
+        <summary>料金体系はどうなっていますか?</summary>
+        <div class="faq-a">
+          3段階です。①無料の業務お悩み診断(30分Web面談+PDFレポート)、②ピンポイント自動化 ¥9,800/1業務(買い切り+1ヶ月伴走)、③本気の業務自動化パック ¥30万〜+月額保守 ¥3,000〜10,000。まず①の無料診断で「どこから自動化するべきか」をご一緒に決めるのが王道です。
+        </div>
+      </details>
+
+      <details class="faq-q fade">
+        <summary>契約の縛りはありますか?</summary>
+        <div class="faq-a">
+          ありません。ピンポイント自動化(¥9,800)は買い切りで、効果に満足いただけなかった場合は30日以内の全額返金保証付き。本気パック(¥30万〜)の月額保守も最低利用期間なし、いつでも解約可能です。
+        </div>
+      </details>
+
+      <details class="faq-q fade">
+        <summary>福井県外でも対応してもらえますか?</summary>
+        <div class="faq-a">
+          可能です。打合せはZoom等のオンラインで全国対応しています。納品物はWeb経由でお渡し、運用相談もチャットとオンライン面談が中心です。福井県・石川県・富山県は実訪問もご相談可能です。
+        </div>
+      </details>
+
+      <details class="faq-q fade">
+        <summary>納品までどのくらい時間がかかりますか?</summary>
+        <div class="faq-a">
+          ピンポイント自動化(¥9,800)は最短1週間、平均2週間で納品します。本気パック(¥30万〜)は業務範囲によりますが、要件確定から1〜2ヶ月が目安です。スピード重視のご相談も歓迎です。
+        </div>
+      </details>
+
+      <details class="faq-q fade">
+        <summary>うちの業務、本当に自動化できるか分からないんですが…</summary>
+        <div class="faq-a">
+          無料の業務お悩み診断(30分Web面談)を使ってください。「何をどう手作業でやっているか」を伺った上で、自動化できる業務・難易度・想定費用感を整理したPDFレポートをお渡しします。その場で契約を迫ることは一切ありません。
+        </div>
+      </details>
+
+      <details class="faq-q fade">
+        <summary>納品後にトラブルが起きたらどうなりますか?</summary>
+        <div class="faq-a">
+          ピンポイント自動化には1ヶ月の伴走サポートが含まれます。本気パックは月額保守(¥3,000〜10,000)で運用中の不具合対応・小さな改修・運用相談を継続サポートします。「動かなくなる前に手を打つ」予防保守も含みます。
+        </div>
+      </details>
+
+      <details class="faq-q fade">
+        <summary>個人情報やお客様データの取り扱いは安全ですか?</summary>
+        <div class="faq-a">
+          納品時にNDA(秘密保持契約)を締結します。データの保管・通信は暗号化を前提とし、第三者への開示は一切ありません。クラウドサービス利用時はGoogle Workspace・Microsoft 365等、法人向けに監査対応している環境のみを使います。
+        </div>
+      </details>
+
+      <details class="faq-q fade">
+        <summary>IT補助金やDX関連補助金は使えますか?</summary>
+        <div class="faq-a">
+          ご相談ください。IT導入補助金・福井県のDX支援補助金など、要件に合致する場合は申請書類の作成支援(税理士・社労士との連携含む)もご相談いただけます。
+        </div>
+      </details>
+
     </div>
   </div>
 </section>
