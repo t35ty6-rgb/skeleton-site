@@ -1,0 +1,14 @@
+{
+  "name": "スケルトン株式会社",
+  "short_name": "SKELETON",
+  "description": "福井の業務効率化・AI自動化パートナー",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#fdf6d8",
+  "theme_color": "#1a3a2a",
+  "lang": "ja",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

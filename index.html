@@ -58,7 +58,59 @@
 }
 </script>
 
+<!-- 構造化データ: WebSite (Sitelinks 検索ボックス対応) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://t35ty6-rgb.github.io/skeleton-site/#website",
+  "url": "https://t35ty6-rgb.github.io/skeleton-site/",
+  "name": "スケルトン株式会社",
+  "publisher": { "@id": "https://t35ty6-rgb.github.io/skeleton-site/#organization" },
+  "inLanguage": "ja-JP"
+}
+</script>
+
+<!-- 構造化データ: Service (3 tier) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "無料 業務お悩み診断",
+      "serviceType": "業務効率化コンサルティング",
+      "provider": { "@id": "https://t35ty6-rgb.github.io/skeleton-site/#organization" },
+      "areaServed": "福井県",
+      "description": "30分のオンライン面談で自動化できそうな業務を洗い出し、優先順位つきPDFレポートを納品。",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" }
+    },
+    {
+      "@type": "Service",
+      "name": "ピンポイント自動化 (TIER 1)",
+      "serviceType": "業務自動化ツール開発",
+      "provider": { "@id": "https://t35ty6-rgb.github.io/skeleton-site/#organization" },
+      "areaServed": "福井県",
+      "description": "1業務を実際に自動化して効果を試せる買い切りプラン。最短1週間納品、運用マニュアル+1ヶ月伴走付。",
+      "offers": { "@type": "Offer", "price": "9800", "priceCurrency": "JPY" }
+    },
+    {
+      "@type": "Service",
+      "name": "本気の業務自動化パック (TIER 2)",
+      "serviceType": "業務自動化フルパッケージ",
+      "provider": { "@id": "https://t35ty6-rgb.github.io/skeleton-site/#organization" },
+      "areaServed": "福井県",
+      "description": "複数業務を一括自動化+毎月の運用保守までセット。月額保守3,000〜10,000円で安定稼働。",
+      "offers": { "@type": "Offer", "price": "300000", "priceCurrency": "JPY", "priceSpecification": { "@type": "PriceSpecification", "minPrice": "300000" } }
+    }
+  ]
+}
+</script>
+
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1a3a2a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&family=Raleway:wght@500;700;800&display=swap">
