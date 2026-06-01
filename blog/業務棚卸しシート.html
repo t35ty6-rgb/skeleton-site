@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>業務棚卸しシート | スケルトン株式会社 福井の業務効率化パートナー</title>
-<meta name="description" content="福井の中小企業向け業務棚卸しシート。業務名・頻度・所要時間・難易度を入力するだけで、自動化候補と年間削減コストを自動計算。スケルトン株式会社が無料提供。">
+<meta name="description" content="福井の中小企業向け業務棚卸しシート。プルダウンで選ぶだけで自動化候補と年間削減コストが見える化。業務効率化の入門から実践まで。スケルトン株式会社が無料提供。">
 <link rel="canonical" href="https://skeleton-inc.jp/blog/業務棚卸しシート.html">
 <meta property="og:title" content="業務棚卸しシート — 福井の中小企業向け">
-<meta property="og:description" content="入力するだけで自動化候補と年間削減コストが分かる無料ツール。">
+<meta property="og:description" content="プルダウンで選ぶだけ。自動化候補と年間削減コストが自動で見える化される無料Webツール。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://skeleton-inc.jp/blog/業務棚卸しシート.html">
 <meta property="og:image" content="https://skeleton-inc.jp/assets/og-card.jpg">
@@ -37,16 +37,94 @@ header nav a{color:var(--ink);text-decoration:none;font-size:12px;margin-left:18
 header nav a:hover{color:var(--gold)}
 @media(max-width:600px){header{padding:10px 18px}header .logo{font-size:16px}header nav a{margin-left:10px;font-size:10px}}
 
-.container{max-width:1240px;margin:24px auto 80px;padding:0 24px}
+.container{max-width:1280px;margin:24px auto 80px;padding:0 24px}
 
+.title-block{margin-bottom:28px}
+.title-block .eyebrow{display:inline-block;background:var(--green-1);color:#fff;padding:4px 10px;font-size:10px;letter-spacing:0.15em;font-weight:700;border-radius:3px;margin-bottom:10px;font-family:'Raleway'}
 h1{font-size:28px;font-weight:900;line-height:1.4;margin-bottom:10px}
-h1 .eyebrow{display:inline-block;background:var(--green-1);color:#fff;padding:4px 10px;font-size:10px;letter-spacing:0.15em;font-weight:700;border-radius:3px;margin-bottom:10px;font-family:'Raleway'}
-.lead{color:var(--ink-soft);font-size:14px;margin-bottom:24px;line-height:1.85}
+.lead{color:var(--ink-soft);font-size:14px;line-height:1.85;max-width:880px}
 @media(max-width:700px){h1{font-size:22px}}
+
+/* セクション見出し */
+section.block{margin-bottom:36px}
+section.block > h2{
+  font-size:18px;font-weight:900;color:var(--green-1);
+  margin-bottom:14px;padding-left:14px;border-left:5px solid var(--gold);
+  letter-spacing:0.02em;line-height:1.5;
+}
+section.block > h2 small{
+  display:block;font-size:11px;font-weight:500;color:var(--ink-soft);
+  margin-top:3px;letter-spacing:0;
+}
+
+/* 教育パネル */
+.edu-card{
+  background:#fff;border:2px solid var(--ink);border-radius:10px;
+  padding:24px 28px;margin-bottom:14px;box-shadow:4px 4px 0 var(--ink);
+}
+.edu-card h3{font-size:15px;font-weight:800;color:var(--green-1);margin-bottom:10px}
+.edu-card p{font-size:14px;line-height:1.95;margin-bottom:10px}
+.edu-card p strong{color:var(--green-1);background:linear-gradient(transparent 60%, #fff5b8 60%)}
+.edu-card ul{padding-left:22px;font-size:14px;line-height:1.9}
+.edu-card ul li{margin-bottom:4px}
+.edu-card ul li::marker{color:var(--gold)}
+
+/* 3ステップ説明 */
+.steps-3{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px;
+}
+.steps-3 .step{
+  background:var(--bg-paper);border:2px solid var(--ink);border-radius:8px;padding:18px 16px;
+  position:relative;box-shadow:3px 3px 0 var(--ink);
+}
+.steps-3 .step .num{
+  display:inline-block;background:var(--green-1);color:#fff;
+  width:30px;height:30px;border-radius:50%;font-family:'Raleway';
+  font-weight:800;font-size:13px;line-height:30px;text-align:center;margin-bottom:8px;
+}
+.steps-3 .step h4{font-size:14px;color:var(--green-1);margin-bottom:6px;font-weight:800;line-height:1.4}
+.steps-3 .step p{font-size:12.5px;color:var(--ink);line-height:1.75;margin:0}
+.steps-3 .step::after{content:"→";position:absolute;right:-22px;top:30px;color:var(--gold);font-size:22px;font-weight:700;z-index:1}
+.steps-3 .step:last-child::after{display:none}
+@media(max-width:700px){
+  .steps-3{grid-template-columns:1fr;gap:24px}
+  .steps-3 .step::after{content:"↓";right:50%;top:auto;bottom:-26px;transform:translateX(50%)}
+}
+
+/* 計算の透明化パネル */
+.formula-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;
+}
+.formula{
+  background:var(--bg-paper);border:2px solid var(--ink);border-radius:8px;
+  padding:16px 20px;font-size:13px;line-height:1.85;box-shadow:3px 3px 0 var(--ink);
+}
+.formula h4{font-size:13px;color:var(--green-1);margin-bottom:8px;font-weight:800;font-family:'Raleway';letter-spacing:0.05em}
+.formula code{
+  background:#fff;border:1px solid var(--ink);padding:3px 7px;border-radius:4px;
+  font-family:'Raleway',monospace;font-size:12px;font-weight:700;color:var(--green-1);
+  display:inline-block;margin:2px 0;
+}
+.formula .arrow{color:var(--gold);font-weight:900;margin:0 4px}
+@media(max-width:700px){.formula-grid{grid-template-columns:1fr}}
+
+/* 設定パネル */
+.settings{
+  background:#fff;border:2px solid var(--ink);border-radius:10px;
+  padding:18px 22px;margin-bottom:14px;box-shadow:4px 4px 0 var(--ink);
+  display:flex;gap:20px;flex-wrap:wrap;align-items:center;
+}
+.settings .item{display:flex;align-items:center;gap:8px;font-size:13px}
+.settings .item label{font-weight:700;color:var(--green-1)}
+.settings .item input{
+  width:90px;border:1.5px solid var(--ink);border-radius:5px;padding:5px 8px;
+  font-size:13px;font-family:'Raleway';font-weight:700;text-align:right;background:#fffbe5;
+}
+.settings .reset-link{font-size:11px;color:var(--ink-soft);text-decoration:underline;cursor:pointer;margin-left:auto}
 
 /* サマリーパネル */
 .summary-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px;
 }
 .sum-card{
   background:#fff;border:2px solid var(--ink);border-radius:10px;padding:18px 20px;
@@ -56,6 +134,7 @@ h1 .eyebrow{display:inline-block;background:var(--green-1);color:#fff;padding:4p
 .sum-card .val{font-family:'Raleway';font-weight:900;font-size:24px;color:var(--ink);line-height:1.1}
 .sum-card .val.gold{color:var(--gold)}
 .sum-card .val.green{color:var(--green-pill)}
+.sum-card .val.red{color:var(--red)}
 .sum-card .sub{font-size:11px;color:var(--ink-soft);margin-top:4px}
 @media(max-width:700px){.summary-grid{grid-template-columns:1fr 1fr}.sum-card .val{font-size:20px}}
 
@@ -63,7 +142,7 @@ h1 .eyebrow{display:inline-block;background:var(--green-1);color:#fff;padding:4p
 .toolbar{
   display:flex;gap:10px;flex-wrap:wrap;align-items:center;
   background:#fff;border:1.5px solid var(--ink);border-radius:8px;
-  padding:12px 14px;margin-bottom:16px;
+  padding:12px 14px;margin-bottom:14px;
 }
 .toolbar button{
   background:var(--green-1);color:#fff;border:1.5px solid var(--ink);
@@ -82,27 +161,36 @@ h1 .eyebrow{display:inline-block;background:var(--green-1);color:#fff;padding:4p
   overflow:auto;box-shadow:5px 5px 0 var(--ink);
 }
 table.sheet{
-  width:100%;border-collapse:collapse;min-width:920px;
+  width:100%;border-collapse:collapse;min-width:1280px;
 }
 table.sheet thead th{
-  background:var(--green-1);color:#fff;padding:11px 10px;
+  background:var(--green-1);color:#fff;padding:11px 9px;
   font-size:11px;letter-spacing:0.05em;font-weight:700;text-align:left;
   border-bottom:2px solid var(--ink);position:sticky;top:0;z-index:5;
+  white-space:nowrap;
 }
+table.sheet thead th.calc{background:var(--green-2);color:var(--yellow)}
 table.sheet thead th .req{color:var(--yellow);font-size:9px;margin-left:4px}
+table.sheet thead th small{display:block;font-weight:400;font-size:10px;opacity:0.85;margin-top:1px;letter-spacing:0}
 table.sheet tbody tr{transition:background 0.1s}
 table.sheet tbody tr:hover{background:#fff5b8}
 table.sheet td{padding:7px 8px;border-bottom:1px solid #eee;vertical-align:middle}
 table.sheet td input[type=text],
 table.sheet td select,
 table.sheet td input[type=number]{
-  width:100%;border:1px solid #ccc;border-radius:5px;padding:6px 8px;font-size:13px;
+  width:100%;border:1px solid #ccc;border-radius:5px;padding:7px 9px;font-size:12.5px;
   font-family:inherit;background:#fff;
 }
 table.sheet td input[type=text]:focus,
 table.sheet td select:focus,
 table.sheet td input[type=number]:focus{border-color:var(--green-1);outline:0;background:#fffbe5}
-table.sheet td.center{text-align:center}
+table.sheet td.calc{
+  background:#f0f5f0;font-family:'Raleway';font-weight:700;text-align:right;font-size:12.5px;
+  color:var(--green-1);white-space:nowrap;
+}
+table.sheet td.calc.dim{color:#999;font-weight:400}
+table.sheet td.calc.big{font-size:14px;font-weight:900;color:var(--green-pill)}
+table.sheet td.calc.big.dim{color:#bbb;font-weight:400}
 table.sheet td.score{
   text-align:center;font-family:'Raleway';font-weight:900;font-size:16px;
 }
@@ -111,17 +199,19 @@ table.sheet td.score.mid{color:var(--gold);background:#fff5b8}
 table.sheet td.score.low{color:var(--green-pill);background:#e9f5ec}
 table.sheet td.score.none{color:#999}
 table.sheet .row-num{
-  width:38px;text-align:center;font-family:'Raleway';font-weight:800;
+  width:32px;text-align:center;font-family:'Raleway';font-weight:800;
   color:var(--ink-soft);background:#fafafa;
 }
-table.sheet .col-action{width:50px;text-align:center}
+table.sheet .col-action{width:42px;text-align:center}
 table.sheet .col-action button{
   background:none;border:1px solid #ccc;color:var(--ink-soft);padding:3px 8px;
   border-radius:4px;font-size:11px;cursor:pointer;
 }
 table.sheet .col-action button:hover{background:var(--red);color:#fff;border-color:var(--red)}
-table.sheet tbody tr.cand-high{background:#fffbe5}
-table.sheet tbody tr.cand-high:hover{background:#fff5b8}
+table.sheet .custom-name-input{
+  display:none;margin-top:4px;
+}
+table.sheet .custom-name-input.show{display:block}
 
 /* スコア凡例 */
 .legend{
@@ -135,16 +225,6 @@ table.sheet tbody tr.cand-high:hover{background:#fff5b8}
 .legend .badge.high{background:#ffe9e9;color:var(--red)}
 .legend .badge.mid{background:#fff5b8;color:var(--gold)}
 .legend .badge.low{background:#e9f5ec;color:var(--green-pill)}
-
-/* ガイダンス */
-.guide{
-  background:var(--bg-paper);border:1.5px dashed var(--ink);
-  border-radius:8px;padding:18px 22px;margin:24px 0;
-  font-size:13px;line-height:1.85;
-}
-.guide h3{font-size:14px;font-weight:800;color:var(--green-1);margin-bottom:8px}
-.guide ol{padding-left:22px}
-.guide ol li{margin-bottom:4px}
 
 /* CTA */
 .cta-box{
@@ -166,7 +246,7 @@ footer a{color:var(--gold);text-decoration:underline}
 
 /* 印刷用 */
 @media print{
-  header,.toolbar,.col-action,.cta-box,footer{display:none!important}
+  header,.toolbar,.col-action,.cta-box,footer,.settings{display:none!important}
   body{background:#fff;font-size:11px}
   .sheet-wrap{box-shadow:none;border:1px solid #000}
   table.sheet thead th{background:#000;color:#fff;position:static}
@@ -187,14 +267,188 @@ footer a{color:var(--gold);text-decoration:underline}
 
 <div class="container">
 
+<div class="title-block">
 <div class="eyebrow">FREE TOOL</div>
 <h1>業務棚卸しシート — 福井の中小企業向け</h1>
 <p class="lead">
-  業務名・頻度・所要時間・難易度を入力するだけで、<strong>自動化候補スコア</strong>と<strong>年間削減コスト見込み</strong>を自動計算します。
-  入力内容はお使いのブラウザに自動保存されるので、続きはいつでも再開できます。スマホ・PCどちらでも入力可。
+  「業務効率化って何から始めればいいの?」── そんな方のために、<strong>プルダウンで選ぶだけ</strong>で自動化候補と年間削減コストが自動計算される無料ツールです。
+  入力内容はブラウザに自動保存されるので、続きはいつでも再開できます。スマホ・PC どちらでも入力可。
 </p>
+</div>
 
-<!-- サマリーパネル -->
+<!-- ============================================================
+     STEP 0: 教育セクション (業務効率化って何?)
+     ============================================================ -->
+<section class="block">
+<h2>STEP 0: そもそも業務効率化って何?<small>5分で分かる入門</small></h2>
+
+<div class="edu-card">
+<h3>業務効率化 = 「いつもやってる仕事」を、もっと早く・もっとラクに終わらせること</h3>
+<p>「業務効率化」というと難しく聞こえますが、要するに <strong>「毎月・毎週・毎日やっているめんどくさい仕事を、コンピュータに任せる」</strong> ことです。</p>
+<p>たとえば:</p>
+<ul>
+  <li><strong>請求書を発行する</strong>: 1件ずつExcelで作っている → ボタンひとつで全件まとめて作る</li>
+  <li><strong>お客様にメールを送る</strong>: 誕生日・契約更新ごとに手作業 → 自動で送信される</li>
+  <li><strong>月の売上を集計する</strong>: 数日かけてExcelでまとめる → 毎日自動で更新される表で見るだけ</li>
+</ul>
+<p>このように、<strong>「人がやらなくていい仕事」を見つけて、機械に任せる</strong> のが業務効率化の正体です。</p>
+</div>
+
+<div class="edu-card">
+<h3>なぜ業務効率化が必要なの?</h3>
+<p>福井県の中小企業オーナー様によく聞かれる質問です。理由は3つあります:</p>
+<ul>
+  <li><strong>① 人が雇えない</strong>: 福井の有効求人倍率は全国平均より高く、新規採用が難しい状況。人を増やす代わりに「機械に任せる」という発想が現実的</li>
+  <li><strong>② 残業を減らしたい</strong>: 1日2時間の手作業を機械化すれば、年間で約500時間 = 社員1人分以上の時間が浮く</li>
+  <li><strong>③ 経営者が本来の仕事に集中したい</strong>: 経理・請求・連絡などの「雑務」を減らすと、新商品開発・営業・人材育成など本当に重要な仕事に時間を使える</li>
+</ul>
+</div>
+</section>
+
+<!-- ============================================================
+     STEP 1: 業務棚卸しって何?
+     ============================================================ -->
+<section class="block">
+<h2>STEP 1: 業務棚卸しって何をやるの?<small>3つのステップで完了します</small></h2>
+
+<div class="edu-card">
+<h3>業務棚卸し = 「自分の会社でやっている仕事の一覧を作る」こと</h3>
+<p>業務効率化を始める前に、まず <strong>「自社にどんな仕事があるのか」をリストアップ</strong> する必要があります。
+理由はシンプルで、<strong>見えていないものは効率化できない</strong> からです。</p>
+<p>業務棚卸しは難しくありません。以下の3ステップでやります:</p>
+
+<div class="steps-3">
+  <div class="step">
+    <div class="num">1</div>
+    <h4>毎月・毎週・毎日やってる仕事を書き出す</h4>
+    <p>「請求書発行」「電話対応」「月次レポート」など、思いつくまま書き出す。完璧じゃなくてOK。</p>
+  </div>
+  <div class="step">
+    <div class="num">2</div>
+    <h4>それぞれにどれくらい時間がかかってるか書く</h4>
+    <p>「月10時間」「週2時間」など、ざっくりでOK。正確じゃなくていいので、感覚で記入。</p>
+  </div>
+  <div class="step">
+    <div class="num">3</div>
+    <h4>難しさを3段階で評価する</h4>
+    <p>★1 = 機械でもできる定型作業 / ★2 = 多少判断がいる / ★3 = 人間じゃないと無理。</p>
+  </div>
+</div>
+<p style="margin-top:14px">あとは このシートが <strong>「どの仕事から自動化すべきか」を自動で計算してくれます</strong>。</p>
+</div>
+</section>
+
+<!-- ============================================================
+     STEP 2: このシートの使い方
+     ============================================================ -->
+<section class="block">
+<h2>STEP 2: このシートの使い方<small>3分で入力完了します</small></h2>
+
+<div class="edu-card">
+<h3>下の表に入力するだけです</h3>
+<p>このページの下のほうにある <strong>表 (シート)</strong> に、自社の業務を入力していきます。やり方は超シンプル:</p>
+
+<div class="steps-3">
+  <div class="step">
+    <div class="num">1</div>
+    <h4>「＋ 業務を追加」を押す</h4>
+    <p>新しい行が増えます。あるいは「サンプル投入」で7業務のサンプルが入るので、それを見ながら自社用に書き換えてもOK。</p>
+  </div>
+  <div class="step">
+    <div class="num">2</div>
+    <h4>プルダウンで選ぶ</h4>
+    <p>業務名・頻度・時間・部署・難易度…ほぼ全部 ▼マークから選べます。リストに無ければ「その他(自分で入力)」で自由に書けます。</p>
+  </div>
+  <div class="step">
+    <div class="num">3</div>
+    <h4>右側の自動計算結果を見る</h4>
+    <p>緑色のセルが自動計算結果です。「★★★」「★★」のついた業務がいま自動化すべき業務です。</p>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================
+     STEP 3: 計算の仕組み (透明化)
+     ============================================================ -->
+<section class="block">
+<h2>STEP 3: シートが計算している数字の中身<small>どうやって自動化候補や削減コストを出しているの?</small></h2>
+
+<div class="edu-card">
+<h3>4つの計算式を全部見せます</h3>
+<p>このシートは、入力された数字から <strong>4つの数字を自動計算</strong> しています。どの数字がどう出ているか、全部公開しているので安心して使ってください:</p>
+
+<div class="formula-grid">
+
+<div class="formula">
+<h4>① 月コスト (月にいくら使ってる?)</h4>
+<code>月コスト = 月間時間 × 時給</code><br>
+例: <code>10時間 × ¥2,000</code> <span class="arrow">→</span> <code>¥20,000 / 月</code>
+<p style="font-size:11px;color:var(--ink-soft);margin-top:6px;line-height:1.7">
+※ 時給は標準¥2,000で計算 (社員の平均給与から逆算した中小企業の標準値)。上の設定パネルで変更可能。
+</p>
+</div>
+
+<div class="formula">
+<h4>② 年コスト (年にいくら使ってる?)</h4>
+<code>年コスト = 月コスト × 12ヶ月</code><br>
+例: <code>¥20,000 × 12</code> <span class="arrow">→</span> <code>¥240,000 / 年</code>
+<p style="font-size:11px;color:var(--ink-soft);margin-top:6px;line-height:1.7">
+※ この業務に年間¥240,000のコストをかけている、と言える。
+</p>
+</div>
+
+<div class="formula">
+<h4>③ 自動化候補度 (★1〜★★★)</h4>
+<code>スコア = 月間時間 × 難易度係数</code><br>
+難易度係数: <code>★1=3</code> <code>★2=2</code> <code>★3=1</code><br>
+スコア <code>30↑</code> = ★★★ / <code>12↑</code> = ★★ / <code>4↑</code> = ★
+<p style="font-size:11px;color:var(--ink-soft);margin-top:6px;line-height:1.7">
+※ 月の時間が多くて、難易度が低い (定型業務) ほど自動化効果が大きい、という経験則を反映。
+</p>
+</div>
+
+<div class="formula">
+<h4>④ 年間削減見込み</h4>
+<code>削減見込み = 年コスト × 削減率</code><br>
+削減率: ★★以上の候補業務のみ <code>90%</code> 削減<br>
+例: <code>¥240,000 × 90%</code> <span class="arrow">→</span> <code>¥216,000 / 年</code>
+<p style="font-size:11px;color:var(--ink-soft);margin-top:6px;line-height:1.7">
+※ 自動化によって候補業務の作業時間が約9割減ると想定 (実例ベース)。設定パネルで削減率は変更可能。
+</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- ============================================================
+     設定パネル
+     ============================================================ -->
+<section class="block">
+<h2>STEP 4: 計算設定<small>自社に合わせて時給などを変えられます</small></h2>
+
+<div class="settings">
+  <div class="item">
+    <label for="cfgHourly">標準時給</label>
+    <input type="number" id="cfgHourly" value="2000" min="500" max="20000" step="100">
+    <span style="font-size:11px;color:var(--ink-soft)">円/時間</span>
+  </div>
+  <div class="item">
+    <label for="cfgReduction">削減率</label>
+    <input type="number" id="cfgReduction" value="90" min="50" max="100" step="5">
+    <span style="font-size:11px;color:var(--ink-soft)">% (候補業務のみ)</span>
+  </div>
+  <span class="reset-link" onclick="resetSettings()">標準値に戻す</span>
+</div>
+</section>
+
+<!-- ============================================================
+     STEP 5: 自動化候補サマリー
+     ============================================================ -->
+<section class="block">
+<h2>STEP 5: 自動化の効果 サマリー<small>下の表を入力すると、ここの数字が自動で動きます</small></h2>
+
 <div class="summary-grid">
   <div class="sum-card">
     <div class="lbl">登録業務数</div>
@@ -202,23 +456,36 @@ footer a{color:var(--gold);text-decoration:underline}
     <div class="sub">行</div>
   </div>
   <div class="sum-card">
-    <div class="lbl">月間 合計時間</div>
+    <div class="lbl">月の合計時間</div>
     <div class="val" id="sumHours">0</div>
     <div class="sub">時間 / 月</div>
   </div>
   <div class="sum-card">
-    <div class="lbl">自動化候補</div>
-    <div class="val gold" id="sumCand">0</div>
-    <div class="sub">件 (スコア★★以上)</div>
+    <div class="lbl">月の合計コスト</div>
+    <div class="val red" id="sumCost">¥0</div>
+    <div class="sub">時給×時間で計算</div>
   </div>
   <div class="sum-card">
     <div class="lbl">年間 削減見込み</div>
     <div class="val green" id="sumSaving">¥0</div>
-    <div class="sub">候補業務90%削減・時給¥2,000換算</div>
+    <div class="sub">★★以上の業務を自動化した場合</div>
   </div>
 </div>
 
-<!-- ツールバー -->
+<div class="legend">
+<span>候補度の見方:</span>
+<span class="badge high">★★★ 最優先で自動化すべき</span>
+<span class="badge mid">★★ 自動化候補</span>
+<span class="badge low">★ 様子見</span>
+</div>
+</section>
+
+<!-- ============================================================
+     STEP 6: 入力シート
+     ============================================================ -->
+<section class="block">
+<h2>STEP 6: 入力シート<small>ここから業務を入力してください</small></h2>
+
 <div class="toolbar">
   <button onclick="addRow()">＋ 業務を追加</button>
   <button class="gold" onclick="addSampleRows()">サンプル投入</button>
@@ -229,50 +496,29 @@ footer a{color:var(--gold);text-decoration:underline}
   <button class="danger" onclick="if(confirm('全行を削除しますか?')){rows=[];save();render()}">全クリア</button>
 </div>
 
-<!-- メインテーブル -->
 <div class="sheet-wrap">
 <table class="sheet">
 <thead>
 <tr>
   <th>#</th>
-  <th>業務名 <span class="req">必須</span></th>
-  <th width="100">頻度</th>
-  <th width="100">月間時間</th>
-  <th width="120">担当部署</th>
-  <th width="100">難易度</th>
-  <th width="110">判断要素</th>
-  <th width="80">候補度</th>
-  <th width="110">年間時間</th>
-  <th width="120">削減見込み</th>
+  <th width="180">業務名 <span class="req">必須</span><small>プルダウン or 自由入力</small></th>
+  <th width="100">頻度<small>どれくらい?</small></th>
+  <th width="110">月間時間<small>合計何時間?</small></th>
+  <th width="100">担当部署<small>誰がやってる?</small></th>
+  <th width="130">難易度<small>★1〜★3</small></th>
+  <th width="110">判断要素<small>ルール化できる?</small></th>
+  <th class="calc" width="80">時給<small>円/時間</small></th>
+  <th class="calc" width="110">月コスト<small>時間×時給</small></th>
+  <th class="calc" width="110">年コスト<small>月×12</small></th>
+  <th class="calc" width="80">候補度<small>★1〜★★★</small></th>
+  <th class="calc" width="120">年間削減見込み<small>候補業務90%減</small></th>
   <th class="col-action">削除</th>
 </tr>
 </thead>
 <tbody id="tbody"></tbody>
 </table>
 </div>
-
-<div class="legend">
-<span>候補度の見方:</span>
-<span class="badge high">★★★ 最優先</span>
-<span class="badge mid">★★ 候補</span>
-<span class="badge low">★ 様子見</span>
-<span style="font-size:10px">※ 月10時間以上 × 定型業務(難易度★1) ほど自動化効果が高い</span>
-</div>
-
-<!-- ガイダンス -->
-<div class="guide">
-<h3>使い方</h3>
-<ol>
-  <li><strong>「＋業務を追加」</strong> で行を追加し、業務名と頻度を入力</li>
-  <li>月間時間を入力 (毎日30分の業務なら 30分×20営業日=600分=10時間)</li>
-  <li>難易度を選ぶ (定型=単純な転記/集計、判断あり=ケースバイケース、人間判断必須=創造的業務)</li>
-  <li>候補度が★★★になった業務から、自動化を検討しましょう</li>
-  <li>入力が終わったら<strong>「CSV出力」</strong>でダウンロード or <strong>「印刷/PDF保存」</strong>で保存</li>
-</ol>
-<p style="margin-top:10px;font-size:11px;color:var(--ink-soft)">
-※ 自動化候補スコアは「月間時間 × 難易度の逆数」で算出。月10時間以上の定型業務が最も効果が大きいという経験則に基づきます。
-</p>
-</div>
+</section>
 
 <!-- CTA -->
 <div class="cta-box">
@@ -292,49 +538,162 @@ footer a{color:var(--gold);text-decoration:underline}
 </footer>
 
 <script>
-const STORAGE_KEY = 'skeleton_tana_oroshi_v1';
-const FREQ_OPTIONS = [
-  ['毎日','毎日'],['週次','週次'],['月次','月次'],['四半期','四半期'],['不定期','不定期']
-];
-const DIFF_OPTIONS = [
-  ['easy','★1 定型 (転記/集計など)'],
-  ['mid','★2 判断あり (ケース別対応)'],
-  ['hard','★3 人間判断必須']
-];
-const JUDGE_OPTIONS = [
-  ['','—'],['nashi','判断不要'],['rule','明確なルール'],['expert','属人化']
+// ============================================================
+//   設定
+// ============================================================
+const STORAGE_KEY = 'skeleton_tana_oroshi_v2';
+const STORAGE_CFG = 'skeleton_tana_oroshi_v2_cfg';
+const DEFAULT_CFG = { hourly: 2000, reduction: 90 };
+
+// プルダウン選択肢 (全フィールド)
+const TASK_OPTIONS = [
+  { group: '経理・財務', items: [
+    '請求書発行・PDF化・メール送付',
+    '入金確認・消込作業',
+    '経費精算・領収書整理',
+    '月次会計仕訳',
+    '年末調整・確定申告準備',
+    '預金通帳との照合',
+    '売掛金・買掛金の管理',
+  ]},
+  { group: '営業・顧客対応', items: [
+    '顧客フォローメール (誕生日・契約更新)',
+    '見積書の作成・送付',
+    '営業日報の作成',
+    '顧客リストの更新・名寄せ',
+    '電話での予約受付',
+    '問い合わせフォーム返信 (一次対応)',
+    'メール返信 (定型)',
+    'お礼状・年賀状の作成',
+  ]},
+  { group: '人事・労務', items: [
+    '採用候補者の日程調整',
+    '勤怠管理・打刻チェック',
+    '給与計算',
+    'シフト作成・管理',
+    '新人オンボーディング資料作成',
+    '社員アンケート集計',
+    '入退社手続き',
+  ]},
+  { group: '在庫・物流', items: [
+    '在庫チェック・棚卸し',
+    '発注書の作成',
+    '出荷指示書の作成・印刷',
+    '配送伝票の作成',
+    '在庫切れアラート',
+    '商品マスタの更新',
+  ]},
+  { group: '経営・レポート', items: [
+    '月次売上レポート集計',
+    'KPI・経営ダッシュボード作成',
+    '会議資料の作成',
+    '議事録の作成',
+    '事業計画の更新',
+  ]},
+  { group: 'その他バックオフィス', items: [
+    'スケジュール調整',
+    'FAX受信・PDF化',
+    '紙書類のスキャン・保存',
+    'ファイル整理・名前付け',
+    '社内連絡 (掲示・周知)',
+    '掃除・備品発注',
+  ]},
 ];
 
+const FREQ_OPTIONS = [
+  ['毎日', '毎日 (営業日全部)'],
+  ['週次', '週次 (週1〜2回)'],
+  ['隔週', '隔週'],
+  ['月次', '月次 (月1〜3回)'],
+  ['四半期', '四半期 (3ヶ月に1回)'],
+  ['半年', '半年に1回'],
+  ['年次', '年1回'],
+  ['不定期', '不定期 (発生したとき)'],
+];
+
+const HOURS_OPTIONS = [
+  ['1', '1時間以下'],
+  ['3', '1〜3時間'],
+  ['5', '3〜5時間'],
+  ['8', '5〜10時間'],
+  ['15', '10〜20時間'],
+  ['30', '20〜40時間'],
+  ['60', '40時間以上'],
+];
+
+const DEPT_OPTIONS = [
+  '経理', '営業', '人事', '受付', '製造', '倉庫', '配送', '総務',
+  '経営企画', 'マーケティング', 'カスタマーサポート', '役員', '社長一人', '社員全員',
+];
+
+const DIFF_OPTIONS = [
+  ['easy', '★1 定型 (機械でできる)'],
+  ['mid', '★2 多少判断あり'],
+  ['hard', '★3 人間判断が必要'],
+];
+
+const JUDGE_OPTIONS = [
+  ['', '— 選択 —'],
+  ['nashi', '判断は不要 (転記/集計だけ)'],
+  ['rule', '判断はあるがルール化できる'],
+  ['case', 'ケースバイケース'],
+  ['expert', '属人化 (その人しか分からない)'],
+];
+
+// ============================================================
+//   データ
+// ============================================================
 let rows = [];
-try { rows = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
-catch { rows = []; }
+let cfg = Object.assign({}, DEFAULT_CFG);
+try { rows = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { rows = []; }
+try { cfg = Object.assign({}, DEFAULT_CFG, JSON.parse(localStorage.getItem(STORAGE_CFG) || '{}')); } catch {}
 
 function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(rows)); }
+function saveCfg() { localStorage.setItem(STORAGE_CFG, JSON.stringify(cfg)); }
 
-function calcScore(row) {
-  const hours = parseFloat(row.hours) || 0;
-  if (!row.name || hours <= 0 || !row.diff) return 0;
-  const diffWeight = { easy:3, mid:2, hard:1 }[row.diff] || 1;
-  // hours per month × diff weight (1-3)
-  const raw = hours * diffWeight;
-  if (raw >= 30) return 3;   // ★★★ 最優先
-  if (raw >= 12) return 2;   // ★★ 候補
-  if (raw >= 4)  return 1;   // ★ 様子見
+// ============================================================
+//   計算
+// ============================================================
+function getHours(r) {
+  if (r.hoursCustom != null && r.hoursCustom !== '') return parseFloat(r.hoursCustom) || 0;
+  return parseFloat(r.hours) || 0;
+}
+function getHourly(r) {
+  if (r.hourlyCustom != null && r.hourlyCustom !== '') return parseFloat(r.hourlyCustom) || cfg.hourly;
+  return cfg.hourly;
+}
+function calcMonthCost(r) { return getHours(r) * getHourly(r); }
+function calcYearCost(r) { return calcMonthCost(r) * 12; }
+function calcScore(r) {
+  const name = r.nameCustom || r.name || '';
+  const hours = getHours(r);
+  if (!name || hours <= 0 || !r.diff) return 0;
+  const w = { easy: 3, mid: 2, hard: 1 }[r.diff] || 1;
+  const raw = hours * w;
+  if (raw >= 30) return 3;
+  if (raw >= 12) return 2;
+  if (raw >= 4) return 1;
   return 0;
 }
-function calcAnnualHours(row) {
-  return (parseFloat(row.hours) || 0) * 12;
+function calcSaving(r) {
+  if (calcScore(r) < 2) return 0;
+  return Math.round(calcYearCost(r) * (cfg.reduction / 100));
 }
-function calcSaving(row) {
-  const score = calcScore(row);
-  if (score < 2) return 0; // 候補のみ算定
-  // 候補業務の90%を削減できると想定、時給¥2,000
-  return Math.round(calcAnnualHours(row) * 0.9 * 2000);
-}
-function fmt(n) { return '¥' + n.toLocaleString('ja-JP'); }
+function fmt(n) { return '¥' + Math.round(n).toLocaleString('ja-JP'); }
 
+// ============================================================
+//   行操作
+// ============================================================
 function addRow(preset) {
-  rows.push(preset || { name:'', freq:'毎日', hours:'', dept:'', diff:'', judge:'' });
+  rows.push(preset || {
+    name: '', nameCustom: '',
+    freq: '',
+    hours: '', hoursCustom: '',
+    dept: '', deptCustom: '',
+    diff: '',
+    judge: '',
+    hourlyCustom: '',
+  });
   save();
   render();
 }
@@ -342,90 +701,143 @@ function addRow(preset) {
 function addSampleRows() {
   if (rows.length > 0 && !confirm('現在の入力をクリアしてサンプルを投入しますか?')) return;
   rows = [
-    { name:'請求書発行・PDF化・メール送付', freq:'月次', hours:10, dept:'経理', diff:'easy', judge:'rule' },
-    { name:'顧客フォローメール (誕生日/契約更新)', freq:'毎日', hours:8, dept:'営業', diff:'easy', judge:'rule' },
-    { name:'採用候補者の日程調整・連絡', freq:'週次', hours:6, dept:'人事', diff:'easy', judge:'rule' },
-    { name:'月次売上レポート集計', freq:'月次', hours:4, dept:'経営企画', diff:'easy', judge:'rule' },
-    { name:'問い合わせフォーム返信 (一次対応)', freq:'毎日', hours:3, dept:'受付', diff:'mid', judge:'rule' },
-    { name:'クレーム対応', freq:'不定期', hours:5, dept:'営業', diff:'hard', judge:'expert' },
-    { name:'経営判断会議', freq:'月次', hours:8, dept:'役員', diff:'hard', judge:'expert' },
+    { name: '請求書発行・PDF化・メール送付', freq: '月次', hours: '15', dept: '経理', diff: 'easy', judge: 'rule' },
+    { name: '顧客フォローメール (誕生日・契約更新)', freq: '毎日', hours: '8', dept: '営業', diff: 'easy', judge: 'rule' },
+    { name: '採用候補者の日程調整', freq: '週次', hours: '8', dept: '人事', diff: 'easy', judge: 'rule' },
+    { name: '月次売上レポート集計', freq: '月次', hours: '5', dept: '経営企画', diff: 'easy', judge: 'rule' },
+    { name: '問い合わせフォーム返信 (一次対応)', freq: '毎日', hours: '3', dept: '受付', diff: 'mid', judge: 'rule' },
+    { name: '会議資料の作成', freq: '週次', hours: '5', dept: '役員', diff: 'hard', judge: 'case' },
   ];
+  // ensure all fields exist
+  rows = rows.map(r => Object.assign({ nameCustom: '', hoursCustom: '', deptCustom: '', hourlyCustom: '' }, r));
   save();
   render();
 }
 
-function delRow(idx) {
-  rows.splice(idx, 1);
-  save();
-  render();
-}
+function delRow(idx) { rows.splice(idx, 1); save(); render(); }
 
 function updateRow(idx, field, value) {
   rows[idx][field] = value;
   save();
   renderSummary();
-  renderRow(idx); // re-render just this row to update score
+  renderRow(idx);
 }
 
+// ============================================================
+//   描画
+// ============================================================
 function render() {
   const tb = document.getElementById('tbody');
   tb.innerHTML = '';
   if (rows.length === 0) {
-    tb.innerHTML = `<tr><td colspan="11" style="text-align:center;padding:40px 20px;color:#888">
+    tb.innerHTML = `<tr><td colspan="13" style="text-align:center;padding:40px 20px;color:#888">
       まだ業務が登録されていません。<br><br>
-      <button onclick="addRow()" style="background:var(--green-1);color:#fff;border:1.5px solid var(--ink);padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:700">＋ 1件目の業務を追加</button>
+      <button onclick="addRow()" style="background:#1a3a2a;color:#fff;border:1.5px solid #1a1a1a;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:700">＋ 1件目の業務を追加</button>
       &nbsp;または&nbsp;
-      <button onclick="addSampleRows()" style="background:var(--gold);color:var(--ink);border:1.5px solid var(--ink);padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:700">サンプルで試す</button>
+      <button onclick="addSampleRows()" style="background:#d4a900;color:#1a1a1a;border:1.5px solid #1a1a1a;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:700">サンプルで試す</button>
     </td></tr>`;
   } else {
     rows.forEach((_, idx) => tb.appendChild(buildRow(idx)));
   }
   renderSummary();
+  attachHandlers();
 }
 
 function buildRow(idx) {
-  const row = rows[idx];
   const tr = document.createElement('tr');
   tr.dataset.idx = idx;
-  tr.innerHTML = makeRowHTML(idx, row);
+  tr.innerHTML = makeRowHTML(idx, rows[idx]);
   return tr;
 }
 
 function renderRow(idx) {
   const tr = document.querySelector(`tr[data-idx="${idx}"]`);
-  if (tr) tr.outerHTML = `<tr data-idx="${idx}">${makeRowHTML(idx, rows[idx])}</tr>`;
-  attachHandlers();
+  if (tr) {
+    tr.innerHTML = makeRowHTML(idx, rows[idx]);
+    attachHandlers();
+  }
 }
 
 function makeRowHTML(idx, row) {
   const score = calcScore(row);
-  const annual = calcAnnualHours(row);
-  const saving = calcSaving(row);
   const scoreCls = score === 3 ? 'high' : score === 2 ? 'mid' : score === 1 ? 'low' : 'none';
   const scoreText = score === 3 ? '★★★' : score === 2 ? '★★' : score === 1 ? '★' : '—';
-  const trCls = score >= 2 ? 'cand-high' : '';
+
+  const hourly = getHourly(row);
+  const monthCost = calcMonthCost(row);
+  const yearCost = calcYearCost(row);
+  const saving = calcSaving(row);
+  const hasData = getHours(row) > 0 && (row.nameCustom || row.name);
 
   return `
     <td class="row-num">${idx + 1}</td>
-    <td><input type="text" placeholder="例: 請求書発行・PDF化・メール送付" value="${esc(row.name)}" data-field="name" data-idx="${idx}"></td>
-    <td>${makeSelect('freq', idx, row.freq, FREQ_OPTIONS)}</td>
-    <td><input type="number" min="0" step="0.5" placeholder="0" value="${row.hours||''}" data-field="hours" data-idx="${idx}"></td>
-    <td><input type="text" placeholder="経理 / 営業 等" value="${esc(row.dept||'')}" data-field="dept" data-idx="${idx}"></td>
-    <td>${makeSelect('diff', idx, row.diff, DIFF_OPTIONS, true)}</td>
-    <td>${makeSelect('judge', idx, row.judge, JUDGE_OPTIONS)}</td>
+    <td>${makeTaskSelect(idx, row)}</td>
+    <td>${makeSimpleSelect('freq', idx, row.freq, FREQ_OPTIONS, true)}</td>
+    <td>${makeHoursSelect(idx, row)}</td>
+    <td>${makeDeptSelect(idx, row)}</td>
+    <td>${makeSimpleSelect('diff', idx, row.diff, DIFF_OPTIONS, true)}</td>
+    <td>${makeSimpleSelect('judge', idx, row.judge, JUDGE_OPTIONS)}</td>
+    <td class="calc ${hasData ? '' : 'dim'}">${fmt(hourly)}</td>
+    <td class="calc ${hasData ? '' : 'dim'}">${hasData ? fmt(monthCost) : '—'}</td>
+    <td class="calc ${hasData ? '' : 'dim'}">${hasData ? fmt(yearCost) : '—'}</td>
     <td class="score ${scoreCls}">${scoreText}</td>
-    <td class="center" style="font-family:Raleway;font-weight:700">${annual}h</td>
-    <td class="center" style="font-family:Raleway;font-weight:700;color:${saving > 0 ? 'var(--green-pill)' : '#999'}">${saving > 0 ? fmt(saving) : '—'}</td>
+    <td class="calc big ${saving > 0 ? '' : 'dim'}">${saving > 0 ? fmt(saving) : '—'}</td>
     <td class="col-action"><button onclick="delRow(${idx})" title="この行を削除">✕</button></td>
   `;
 }
 
-function makeSelect(field, idx, current, opts, includeEmpty) {
-  const items = (includeEmpty ? [['','—']] : []).concat(opts);
-  const options = items.map(([v, label]) =>
-    `<option value="${v}" ${current === v ? 'selected' : ''}>${label}</option>`
+function makeTaskSelect(idx, row) {
+  let opts = '<option value="">— 選択してください —</option>';
+  for (const grp of TASK_OPTIONS) {
+    opts += `<optgroup label="${grp.group}">`;
+    for (const item of grp.items) {
+      const sel = row.name === item ? 'selected' : '';
+      opts += `<option value="${esc(item)}" ${sel}>${esc(item)}</option>`;
+    }
+    opts += '</optgroup>';
+  }
+  opts += `<option value="__custom__" ${row.name === '__custom__' || row.nameCustom ? 'selected' : ''}>その他 (自分で入力)</option>`;
+  const showCustom = row.name === '__custom__' || row.nameCustom;
+  return `
+    <select data-field="name" data-idx="${idx}">${opts}</select>
+    <input type="text" class="custom-name-input ${showCustom ? 'show' : ''}" placeholder="業務名を入力" value="${esc(row.nameCustom || '')}" data-field="nameCustom" data-idx="${idx}">
+  `;
+}
+
+function makeSimpleSelect(field, idx, current, opts, includeEmpty) {
+  let items = includeEmpty ? [['', '— 選択 —']].concat(opts) : opts.slice();
+  let html = items.map(([v, label]) =>
+    `<option value="${esc(v)}" ${current === v ? 'selected' : ''}>${esc(label)}</option>`
   ).join('');
-  return `<select data-field="${field}" data-idx="${idx}">${options}</select>`;
+  return `<select data-field="${field}" data-idx="${idx}">${html}</select>`;
+}
+
+function makeHoursSelect(idx, row) {
+  let opts = '<option value="">— 選択 —</option>';
+  for (const [v, label] of HOURS_OPTIONS) {
+    const sel = row.hours === v ? 'selected' : '';
+    opts += `<option value="${v}" ${sel}>${label}</option>`;
+  }
+  opts += `<option value="__custom__" ${row.hours === '__custom__' || row.hoursCustom ? 'selected' : ''}>その他 (数字入力)</option>`;
+  const showCustom = row.hours === '__custom__' || row.hoursCustom;
+  return `
+    <select data-field="hours" data-idx="${idx}">${opts}</select>
+    <input type="number" min="0" step="0.5" class="custom-name-input ${showCustom ? 'show' : ''}" placeholder="時間" value="${row.hoursCustom || ''}" data-field="hoursCustom" data-idx="${idx}">
+  `;
+}
+
+function makeDeptSelect(idx, row) {
+  let opts = '<option value="">— 選択 —</option>';
+  for (const d of DEPT_OPTIONS) {
+    const sel = row.dept === d ? 'selected' : '';
+    opts += `<option value="${esc(d)}" ${sel}>${esc(d)}</option>`;
+  }
+  opts += `<option value="__custom__" ${row.dept === '__custom__' || row.deptCustom ? 'selected' : ''}>その他 (自分で入力)</option>`;
+  const showCustom = row.dept === '__custom__' || row.deptCustom;
+  return `
+    <select data-field="dept" data-idx="${idx}">${opts}</select>
+    <input type="text" class="custom-name-input ${showCustom ? 'show' : ''}" placeholder="部署名を入力" value="${esc(row.deptCustom || '')}" data-field="deptCustom" data-idx="${idx}">
+  `;
 }
 
 function attachHandlers() {
@@ -437,58 +849,77 @@ function attachHandlers() {
   });
 }
 
-function esc(s) { return String(s||'').replace(/"/g, '&quot;').replace(/</g, '&lt;') }
+function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;') }
 
 function renderSummary() {
   const count = rows.length;
-  const hours = rows.reduce((s, r) => s + (parseFloat(r.hours) || 0), 0);
-  const cand = rows.filter(r => calcScore(r) >= 2).length;
+  const hours = rows.reduce((s, r) => s + getHours(r), 0);
+  const monthCost = rows.reduce((s, r) => s + calcMonthCost(r), 0);
   const saving = rows.reduce((s, r) => s + calcSaving(r), 0);
   document.getElementById('sumCount').textContent = count;
   document.getElementById('sumHours').textContent = hours.toFixed(1).replace(/\.0$/, '');
-  document.getElementById('sumCand').textContent = cand;
+  document.getElementById('sumCost').textContent = fmt(monthCost);
   document.getElementById('sumSaving').textContent = fmt(saving);
 }
 
+// ============================================================
+//   設定
+// ============================================================
+function initSettings() {
+  document.getElementById('cfgHourly').value = cfg.hourly;
+  document.getElementById('cfgReduction').value = cfg.reduction;
+  document.getElementById('cfgHourly').oninput = (e) => { cfg.hourly = parseFloat(e.target.value) || DEFAULT_CFG.hourly; saveCfg(); render(); };
+  document.getElementById('cfgReduction').oninput = (e) => { cfg.reduction = parseFloat(e.target.value) || DEFAULT_CFG.reduction; saveCfg(); render(); };
+}
+function resetSettings() {
+  cfg = Object.assign({}, DEFAULT_CFG);
+  saveCfg();
+  initSettings();
+  render();
+}
+
+// ============================================================
+//   CSV出力
+// ============================================================
 function exportCSV() {
   if (rows.length === 0) { alert('行を追加してから出力してください'); return; }
-  const headers = ['#','業務名','頻度','月間時間','担当部署','難易度','判断要素','候補度','年間時間','削減見込み(年)'];
+  const headers = ['#','業務名','頻度','月間時間','担当部署','難易度','判断要素','時給','月コスト','年コスト','候補度','年間削減見込み'];
   const lines = [headers.join(',')];
   rows.forEach((r, i) => {
     const score = calcScore(r);
     const scoreText = ['—','★','★★','★★★'][score];
     const diffLabel = (DIFF_OPTIONS.find(o => o[0] === r.diff) || ['','—'])[1];
     const judgeLabel = (JUDGE_OPTIONS.find(o => o[0] === r.judge) || ['','—'])[1];
+    const taskName = r.nameCustom || r.name || '';
+    const deptName = r.deptCustom || r.dept || '';
     const row = [
-      i + 1,
-      r.name || '',
-      r.freq || '',
-      r.hours || 0,
-      r.dept || '',
-      diffLabel,
-      judgeLabel,
-      scoreText,
-      calcAnnualHours(r) + 'h',
-      calcSaving(r) > 0 ? '¥' + calcSaving(r) : '—'
+      i + 1, taskName, r.freq || '', getHours(r) + 'h', deptName, diffLabel, judgeLabel,
+      fmt(getHourly(r)), fmt(calcMonthCost(r)), fmt(calcYearCost(r)),
+      scoreText, calcSaving(r) > 0 ? fmt(calcSaving(r)) : '—'
     ];
     lines.push(row.map(c => `"${String(c).replace(/"/g, '""')}"`).join(','));
   });
-  // Summary
-  const totalHours = rows.reduce((s, r) => s + (parseFloat(r.hours) || 0), 0);
-  const totalSaving = rows.reduce((s, r) => s + calcSaving(r), 0);
+  // 合計行
   lines.push('');
-  lines.push(`合計,業務数,${rows.length},月間時間,${totalHours}時間,,候補業務,${rows.filter(r => calcScore(r) >= 2).length}件,年間削減見込み,¥${totalSaving}`);
+  const totalHours = rows.reduce((s, r) => s + getHours(r), 0);
+  const totalMonth = rows.reduce((s, r) => s + calcMonthCost(r), 0);
+  const totalYear = rows.reduce((s, r) => s + calcYearCost(r), 0);
+  const totalSaving = rows.reduce((s, r) => s + calcSaving(r), 0);
+  lines.push(`合計,業務数,${rows.length},月間時間,${totalHours}h,,月コスト,${fmt(totalMonth)},年コスト,${fmt(totalYear)},,${fmt(totalSaving)}`);
 
   const csv = '﻿' + lines.join('\n');
-  const blob = new Blob([csv], { type:'text/csv;charset=utf-8' });
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = `業務棚卸しシート_${new Date().toISOString().slice(0,10)}.csv`;
   a.click();
 }
 
+// ============================================================
+//   初期化
+// ============================================================
+initSettings();
 render();
-attachHandlers();
 </script>
 
 </body>
