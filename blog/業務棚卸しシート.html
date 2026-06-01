@@ -325,8 +325,8 @@ footer a{color:var(--gold);text-decoration:underline}
   </div>
   <div class="step">
     <div class="num">2</div>
-    <h4>それぞれにどれくらい時間がかかってるか書く</h4>
-    <p>「月10時間」「週2時間」など、ざっくりでOK。正確じゃなくていいので、感覚で記入。</p>
+    <h4>頻度と1回あたりの時間を選ぶ</h4>
+    <p>「毎日30分」「週1回2時間」など、1回どれくらいか感覚で選ぶだけ。月の合計時間はシートが自動計算します。</p>
   </div>
   <div class="step">
     <div class="num">3</div>
@@ -375,22 +375,31 @@ footer a{color:var(--gold);text-decoration:underline}
 <h2>STEP 3: シートが計算している数字の中身<small>どうやって自動化候補や削減コストを出しているの?</small></h2>
 
 <div class="edu-card">
-<h3>4つの計算式を全部見せます</h3>
-<p>このシートは、入力された数字から <strong>4つの数字を自動計算</strong> しています。どの数字がどう出ているか、全部公開しているので安心して使ってください:</p>
+<h3>5つの計算式を全部見せます</h3>
+<p>このシートは、入力された数字から <strong>5つの数字を自動計算</strong> しています。どの数字がどう出ているか、全部公開しているので安心して使ってください:</p>
 
 <div class="formula-grid">
 
 <div class="formula">
-<h4>① 月コスト (月にいくら使ってる?)</h4>
-<code>月コスト = 月間時間 × 時給</code><br>
-例: <code>10時間 × ¥2,000</code> <span class="arrow">→</span> <code>¥20,000 / 月</code>
+<h4>① 月間時間 (月の合計時間)</h4>
+<code>月間時間 = 1回あたり時間 × 頻度</code><br>
+例: <code>毎日30分 × 月20営業日</code> <span class="arrow">→</span> <code>10時間 / 月</code>
 <p style="font-size:11px;color:var(--ink-soft);margin-top:6px;line-height:1.7">
-※ 時給は標準¥2,000で計算 (社員の平均給与から逆算した中小企業の標準値)。上の設定パネルで変更可能。
+※ 頻度別の月の回数: 毎日=20回 / 週次=4.3回 / 隔週=2.2回 / 月次=1.5回 / 四半期=0.33回。
 </p>
 </div>
 
 <div class="formula">
-<h4>② 年コスト (年にいくら使ってる?)</h4>
+<h4>② 月コスト (月にいくら使ってる?)</h4>
+<code>月コスト = 月間時間 × 時給</code><br>
+例: <code>10時間 × ¥2,000</code> <span class="arrow">→</span> <code>¥20,000 / 月</code>
+<p style="font-size:11px;color:var(--ink-soft);margin-top:6px;line-height:1.7">
+※ 時給は標準¥2,000で計算 (中小企業の社員平均から逆算)。設定パネルで変更可能。
+</p>
+</div>
+
+<div class="formula">
+<h4>③ 年コスト (年にいくら使ってる?)</h4>
 <code>年コスト = 月コスト × 12ヶ月</code><br>
 例: <code>¥20,000 × 12</code> <span class="arrow">→</span> <code>¥240,000 / 年</code>
 <p style="font-size:11px;color:var(--ink-soft);margin-top:6px;line-height:1.7">
@@ -399,7 +408,7 @@ footer a{color:var(--gold);text-decoration:underline}
 </div>
 
 <div class="formula">
-<h4>③ 自動化候補度 (★1〜★★★)</h4>
+<h4>④ 自動化候補度 (★1〜★★★)</h4>
 <code>スコア = 月間時間 × 難易度係数</code><br>
 難易度係数: <code>★1=3</code> <code>★2=2</code> <code>★3=1</code><br>
 スコア <code>30↑</code> = ★★★ / <code>12↑</code> = ★★ / <code>4↑</code> = ★
@@ -409,7 +418,7 @@ footer a{color:var(--gold);text-decoration:underline}
 </div>
 
 <div class="formula">
-<h4>④ 年間削減見込み</h4>
+<h4>⑤ 年間削減見込み</h4>
 <code>削減見込み = 年コスト × 削減率</code><br>
 削減率: ★★以上の候補業務のみ <code>90%</code> 削減<br>
 例: <code>¥240,000 × 90%</code> <span class="arrow">→</span> <code>¥216,000 / 年</code>
@@ -503,7 +512,8 @@ footer a{color:var(--gold);text-decoration:underline}
   <th>#</th>
   <th width="180">業務名 <span class="req">必須</span><small>プルダウン or 自由入力</small></th>
   <th width="100">頻度<small>どれくらい?</small></th>
-  <th width="110">月間時間<small>合計何時間?</small></th>
+  <th width="120">1回あたり時間<small>1回でかかる時間</small></th>
+  <th class="calc" width="90">月間時間<small>頻度×1回で自動計算</small></th>
   <th width="100">担当部署<small>誰がやってる?</small></th>
   <th width="130">難易度<small>★1〜★3</small></th>
   <th width="110">判断要素<small>ルール化できる?</small></th>
@@ -600,25 +610,33 @@ const TASK_OPTIONS = [
   ]},
 ];
 
+// 頻度の選択肢: ラベル + 月の回数 (営業日20日/月、週4.3週/月で換算)
 const FREQ_OPTIONS = [
   ['毎日', '毎日 (営業日全部)'],
-  ['週次', '週次 (週1〜2回)'],
-  ['隔週', '隔週'],
-  ['月次', '月次 (月1〜3回)'],
-  ['四半期', '四半期 (3ヶ月に1回)'],
+  ['週次', '週1〜2回'],
+  ['隔週', '隔週 (2週に1回)'],
+  ['月次', '月1〜3回'],
+  ['四半期', '3ヶ月に1回'],
   ['半年', '半年に1回'],
   ['年次', '年1回'],
-  ['不定期', '不定期 (発生したとき)'],
+  ['不定期', '不定期 (月1回想定)'],
 ];
+const FREQ_PER_MONTH = {
+  '毎日': 20, '週次': 4.3, '隔週': 2.2, '月次': 1.5,
+  '四半期': 0.33, '半年': 0.17, '年次': 0.083, '不定期': 1,
+};
 
+// 1回あたり時間の選択肢: ラベル + 時間 (時間単位)
 const HOURS_OPTIONS = [
-  ['1', '1時間以下'],
-  ['3', '1〜3時間'],
-  ['5', '3〜5時間'],
-  ['8', '5〜10時間'],
-  ['15', '10〜20時間'],
-  ['30', '20〜40時間'],
-  ['60', '40時間以上'],
+  ['0.083', '5分以下'],
+  ['0.25', '5〜15分'],
+  ['0.5', '15〜30分'],
+  ['1', '30分〜1時間'],
+  ['1.5', '1〜2時間'],
+  ['3', '2〜4時間'],
+  ['6', '4〜8時間 (半日)'],
+  ['8', '丸1日'],
+  ['16', '2日以上'],
 ];
 
 const DEPT_OPTIONS = [
@@ -654,9 +672,19 @@ function saveCfg() { localStorage.setItem(STORAGE_CFG, JSON.stringify(cfg)); }
 // ============================================================
 //   計算
 // ============================================================
-function getHours(r) {
+// 1回あたり時間 (hours フィールドは1回あたりの意味に変更)
+function getHoursPerOccurrence(r) {
   if (r.hoursCustom != null && r.hoursCustom !== '') return parseFloat(r.hoursCustom) || 0;
+  if (r.hours === '__custom__') return parseFloat(r.hoursCustom) || 0;
   return parseFloat(r.hours) || 0;
+}
+// 月の回数 (頻度から)
+function getOccurrencesPerMonth(r) {
+  return FREQ_PER_MONTH[r.freq] || 0;
+}
+// 月間時間 = 1回 × 月の回数
+function getHours(r) {
+  return getHoursPerOccurrence(r) * getOccurrencesPerMonth(r);
 }
 function getHourly(r) {
   if (r.hourlyCustom != null && r.hourlyCustom !== '') return parseFloat(r.hourlyCustom) || cfg.hourly;
@@ -700,13 +728,20 @@ function addRow(preset) {
 
 function addSampleRows() {
   if (rows.length > 0 && !confirm('現在の入力をクリアしてサンプルを投入しますか?')) return;
+  // hours = 1回あたり時間 に変更したので調整
   rows = [
-    { name: '請求書発行・PDF化・メール送付', freq: '月次', hours: '15', dept: '経理', diff: 'easy', judge: 'rule' },
-    { name: '顧客フォローメール (誕生日・契約更新)', freq: '毎日', hours: '8', dept: '営業', diff: 'easy', judge: 'rule' },
-    { name: '採用候補者の日程調整', freq: '週次', hours: '8', dept: '人事', diff: 'easy', judge: 'rule' },
-    { name: '月次売上レポート集計', freq: '月次', hours: '5', dept: '経営企画', diff: 'easy', judge: 'rule' },
-    { name: '問い合わせフォーム返信 (一次対応)', freq: '毎日', hours: '3', dept: '受付', diff: 'mid', judge: 'rule' },
-    { name: '会議資料の作成', freq: '週次', hours: '5', dept: '役員', diff: 'hard', judge: 'case' },
+    // 請求書発行: 月1回・半日 (4-8h) → 月6h
+    { name: '請求書発行・PDF化・メール送付', freq: '月次', hours: '6', dept: '経理', diff: 'easy', judge: 'rule' },
+    // 顧客フォロー: 毎日30分 → 月10h
+    { name: '顧客フォローメール (誕生日・契約更新)', freq: '毎日', hours: '0.5', dept: '営業', diff: 'easy', judge: 'rule' },
+    // 採用日程調整: 週1回・1〜2時間 → 月6.5h
+    { name: '採用候補者の日程調整', freq: '週次', hours: '1.5', dept: '人事', diff: 'easy', judge: 'rule' },
+    // 月次レポート: 月1回・半日 → 月6h
+    { name: '月次売上レポート集計', freq: '月次', hours: '6', dept: '経営企画', diff: 'easy', judge: 'rule' },
+    // 問い合わせ対応: 毎日15分 → 月5h
+    { name: '問い合わせフォーム返信 (一次対応)', freq: '毎日', hours: '0.25', dept: '受付', diff: 'mid', judge: 'rule' },
+    // 会議資料: 週1回・2-4時間 → 月13h
+    { name: '会議資料の作成', freq: '週次', hours: '3', dept: '役員', diff: 'hard', judge: 'case' },
   ];
   // ensure all fields exist
   rows = rows.map(r => Object.assign({ nameCustom: '', hoursCustom: '', deptCustom: '', hourlyCustom: '' }, r));
@@ -730,7 +765,7 @@ function render() {
   const tb = document.getElementById('tbody');
   tb.innerHTML = '';
   if (rows.length === 0) {
-    tb.innerHTML = `<tr><td colspan="13" style="text-align:center;padding:40px 20px;color:#888">
+    tb.innerHTML = `<tr><td colspan="14" style="text-align:center;padding:40px 20px;color:#888">
       まだ業務が登録されていません。<br><br>
       <button onclick="addRow()" style="background:#1a3a2a;color:#fff;border:1.5px solid #1a1a1a;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:700">＋ 1件目の業務を追加</button>
       &nbsp;または&nbsp;
@@ -764,16 +799,21 @@ function makeRowHTML(idx, row) {
   const scoreText = score === 3 ? '★★★' : score === 2 ? '★★' : score === 1 ? '★' : '—';
 
   const hourly = getHourly(row);
+  const monthlyHours = getHours(row);
   const monthCost = calcMonthCost(row);
   const yearCost = calcYearCost(row);
   const saving = calcSaving(row);
-  const hasData = getHours(row) > 0 && (row.nameCustom || row.name);
+  const hasData = monthlyHours > 0 && (row.nameCustom || row.name);
+  const hoursPerOcc = getHoursPerOccurrence(row);
+  const occPerMonth = getOccurrencesPerMonth(row);
+  const hasHoursAndFreq = hoursPerOcc > 0 && occPerMonth > 0;
 
   return `
     <td class="row-num">${idx + 1}</td>
     <td>${makeTaskSelect(idx, row)}</td>
     <td>${makeSimpleSelect('freq', idx, row.freq, FREQ_OPTIONS, true)}</td>
     <td>${makeHoursSelect(idx, row)}</td>
+    <td class="calc ${hasHoursAndFreq ? '' : 'dim'}" title="${hasHoursAndFreq ? `${hoursPerOcc}時間 × 月${occPerMonth}回 = ${monthlyHours.toFixed(1)}時間` : '頻度と1回あたり時間を選んでください'}">${hasHoursAndFreq ? monthlyHours.toFixed(1).replace(/\.0$/, '') + 'h' : '—'}</td>
     <td>${makeDeptSelect(idx, row)}</td>
     <td>${makeSimpleSelect('diff', idx, row.diff, DIFF_OPTIONS, true)}</td>
     <td>${makeSimpleSelect('judge', idx, row.judge, JUDGE_OPTIONS)}</td>
@@ -818,11 +858,11 @@ function makeHoursSelect(idx, row) {
     const sel = row.hours === v ? 'selected' : '';
     opts += `<option value="${v}" ${sel}>${label}</option>`;
   }
-  opts += `<option value="__custom__" ${row.hours === '__custom__' || row.hoursCustom ? 'selected' : ''}>その他 (数字入力)</option>`;
+  opts += `<option value="__custom__" ${row.hours === '__custom__' || row.hoursCustom ? 'selected' : ''}>その他 (時間で入力)</option>`;
   const showCustom = row.hours === '__custom__' || row.hoursCustom;
   return `
     <select data-field="hours" data-idx="${idx}">${opts}</select>
-    <input type="number" min="0" step="0.5" class="custom-name-input ${showCustom ? 'show' : ''}" placeholder="時間" value="${row.hoursCustom || ''}" data-field="hoursCustom" data-idx="${idx}">
+    <input type="number" min="0" step="0.25" class="custom-name-input ${showCustom ? 'show' : ''}" placeholder="例: 0.5 (30分)" value="${row.hoursCustom || ''}" data-field="hoursCustom" data-idx="${idx}">
   `;
 }
 
