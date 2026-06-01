@@ -1,0 +1,2979 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スケルトン株式会社 ｜ 業務効率化のパートナー</title>
+<meta name="description" content="ITが苦手な現場でも、ボタンひとつで業務が回る。福井から、中小事業者の手作業をAIで自動化するスケルトン株式会社。">
+<meta property="og:title" content="スケルトン株式会社">
+<meta property="og:description" content="ITが苦手な現場でも、ボタンひとつで業務が回る。">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&family=Raleway:wght@500;700;800&display=swap">
+<script>document.documentElement.classList.add('has-js')</script>
+<style>
+  :root{
+    --green-1:#1a3a2a;
+    --green-2:#2a4d3a;
+    --green-3:#3d6650;
+    --green-pill:#4abf91;
+    --yellow-pill:#f9d748;
+    --gold:#d4a900;
+    /* ヤマカチ準拠 クリーム背景 */
+    --bg:#fdf6d8;
+    --bg-soft:#f0f5f0;
+    --bg-paper:#fffbe5;
+    --ink:#1a1a1a;
+    --ink-soft:#555;
+    --line:#1a1a1a;
+    --line-soft:#dcd9cf;
+    /* ヤマカチ準拠: Japanese=Zen Kaku Gothic New / English=Raleway。Mincho依存は撤廃 */
+    --serif:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+    --sans:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+    --en:"Raleway","Zen Kaku Gothic New",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.9;
+    font-size:15px;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  img,svg{display:block;max-width:100%}
+
+  /* ===== ヘッダー ===== */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(253,252,248,0.92);
+    backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    max-width:1200px;margin:0 auto;
+    padding:18px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{
+    font-family:var(--sans);
+    font-weight:300;
+    letter-spacing:0.42em;
+    font-size:18px;
+    color:var(--green-1);
+  }
+  .logo small{
+    display:block;
+    font-size:9px;
+    letter-spacing:0.3em;
+    color:var(--ink-soft);
+    margin-top:2px;
+    font-weight:400;
+  }
+  nav ul{list-style:none;display:flex;gap:32px}
+  nav a{
+    font-size:13px;
+    letter-spacing:0.15em;
+    color:var(--ink);
+    padding:6px 0;
+    position:relative;
+    transition:color .2s;
+  }
+  nav a:hover{color:var(--green-1)}
+  nav a::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;
+    height:1px;background:var(--gold);
+    transform:scaleX(0);transform-origin:left;transition:transform .25s;
+  }
+  nav a:hover::after{transform:scaleX(1)}
+  .menu-btn{
+    display:none;background:none;border:0;cursor:pointer;
+    width:36px;height:36px;position:relative;
+  }
+  .menu-btn span{
+    position:absolute;left:6px;right:6px;height:1.5px;background:var(--green-1);
+    transition:transform .3s, opacity .2s, top .3s;
+  }
+  .menu-btn span:nth-child(1){top:12px}
+  .menu-btn span:nth-child(2){top:18px}
+  .menu-btn span:nth-child(3){top:24px}
+  .menu-btn.open span:nth-child(1){top:18px;transform:rotate(45deg)}
+  .menu-btn.open span:nth-child(2){opacity:0}
+  .menu-btn.open span:nth-child(3){top:18px;transform:rotate(-45deg)}
+
+  /* ===== セクション共通 ===== */
+  section{padding:120px 32px;position:relative}
+  .container{max-width:1100px;margin:0 auto}
+  /* ヤマカチ式 セクション見出し:
+     既存markup .section-label(英字) + .section-title(和) を再解釈。
+     .section-label = BIG英字 / .section-title = 小さい和タイトル + 波線 */
+  .section-label{
+    font-family:var(--en);
+    font-size:56px;
+    line-height:1;
+    letter-spacing:0.04em;
+    color:var(--ink);
+    font-weight:800;
+    text-align:center;
+    text-transform:uppercase;
+    margin-bottom:0;
+    position:relative;
+  }
+  .section-title{
+    font-family:var(--sans);
+    font-size:22px;
+    line-height:1.5;
+    color:var(--ink);
+    letter-spacing:0.28em;
+    font-weight:700;
+    text-align:center;
+    margin-top:20px;margin-bottom:0;
+    position:relative;padding-bottom:30px;
+  }
+  /* 波線アンダーライン (ヤマカチ) */
+  .section-title::after{
+    content:"";display:block;width:60%;max-width:480px;
+    height:14px;margin:24px auto 0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M 0 5 Q 5 0 10 5 T 20 5 T 30 5 T 40 5 T 50 5 T 60 5 T 70 5 T 80 5 T 90 5 T 100 5' fill='none' stroke='%231a1a1a' stroke-width='1.8'/%3E%3C/svg%3E");
+    background-repeat:repeat-x;background-size:60px 14px;
+  }
+  .section-title small{
+    display:block;
+    font-family:var(--sans);
+    font-size:14px;
+    letter-spacing:0.1em;
+    color:var(--ink-soft);
+    margin-top:14px;
+    font-weight:500;
+  }
+  .section-after-title{margin-top:64px}
+  @media (max-width:768px){
+    .section-label{font-size:36px}
+    .section-title{font-size:17px;letter-spacing:0.2em}
+  }
+  /* 古いornamentは非表示 (ヤマカチに金ひし形なし) */
+  .ornament{display:none !important}
+  /* セクション間 波線ディバイダー (ヤマカチ式) */
+  .wave-divider{
+    height:24px;width:60%;max-width:520px;margin:0 auto;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M 0 5 Q 5 0 10 5 T 20 5 T 30 5 T 40 5 T 50 5 T 60 5 T 70 5 T 80 5 T 90 5 T 100 5' fill='none' stroke='%231a1a1a' stroke-width='2.2'/%3E%3C/svg%3E");
+    background-repeat:repeat-x;background-size:60px 24px;
+  }
+  .wave-divider.sm{height:14px;background-size:60px 14px}
+  /* 全 btn をピル型ヤマカチ式に */
+  .btn{
+    display:inline-flex;align-items:center;gap:12px;
+    font-family:var(--en);font-weight:800;font-size:14px;letter-spacing:0.22em;
+    padding:14px 36px;border:2px solid var(--ink);border-radius:999px;
+    background:var(--yellow-pill);color:var(--ink);
+    cursor:pointer;text-decoration:none;
+    transition:transform .2s, box-shadow .2s;
+    text-transform:uppercase;
+  }
+  .btn:hover{transform:translateY(-3px);box-shadow:0 6px 0 var(--ink)}
+  .btn.ghost{background:transparent}
+  .btn .btn-arrow{font-size:16px;font-weight:800}
+  .btn:hover .btn-arrow{transform:none}
+  /* 住人ラベルもhoverで強調 */
+  .villager .villager-label{transition:font-size .2s}
+  .villager:hover .villager-label{font-size:16px}
+  /* 村ステージ自体の枠線 (ヤマカチ枠) */
+  .village{
+    border:3px solid var(--ink);border-radius:24px;
+    overflow:hidden;background:var(--bg-paper);
+  }
+  @media (max-width:768px){.village{border-radius:16px;border-width:2px}}
+  /* ピル型 CTA (ヤマカチ CLICK MORE +) */
+  .pill-btn{
+    display:inline-flex;align-items:center;gap:14px;
+    font-family:var(--en);font-weight:800;font-size:14px;letter-spacing:0.25em;
+    padding:14px 36px;border:2px solid var(--ink);border-radius:999px;
+    background:var(--yellow-pill);color:var(--ink);
+    cursor:pointer;text-decoration:none;
+    transition:transform .2s, box-shadow .2s;
+  }
+  .pill-btn:hover{transform:translateY(-3px);box-shadow:0 6px 0 var(--ink)}
+  .pill-btn.green{background:var(--green-pill);color:#fff}
+  .pill-btn .plus{font-size:18px;font-weight:800}
+  /* ピル型 セクションラベル (ヤマカチ Jクレジットとはなに? 風) */
+  .pill-label{
+    display:inline-block;font-family:var(--sans);font-weight:700;font-size:18px;
+    padding:14px 38px;border:2px solid var(--ink);border-radius:999px;
+    background:var(--yellow-pill);color:var(--ink);
+    position:relative;letter-spacing:0.05em;
+  }
+  .pill-label.green{background:var(--green-pill);color:#fff}
+  .pill-label::after{
+    content:"";position:absolute;left:50%;bottom:-13px;
+    width:0;height:0;border:7px solid transparent;
+    border-top-color:var(--ink);transform:translateX(-50%);
+  }
+  .pill-label.green::after{border-top-color:var(--ink)}
+  /* ヤマカチ式 セクションフレーム (太い角丸ボーダーボックス) */
+  .yk-frame{
+    background:#f1f1ed;border:3px solid var(--ink);border-radius:24px;
+    padding:80px 60px 60px;position:relative;max-width:880px;margin:80px auto 0;
+  }
+  .yk-frame .pill-label{
+    position:absolute;top:-28px;left:50%;transform:translateX(-50%);
+  }
+  @media (max-width:768px){
+    .yk-frame{padding:60px 24px 40px;margin:60px 16px 0;border-radius:18px}
+    .pill-label{font-size:14px;padding:10px 24px}
+  }
+
+  /* ===== サービスの流れ STEP (yamakachi 完コピ) ===== */
+  .flow{padding:100px 32px;position:relative}
+  .flow-inner{max-width:880px;margin:0 auto}
+  .flow-pill-wrap{text-align:center;margin-bottom:60px}
+  .flow-steps{
+    display:flex;flex-direction:column;gap:24px;
+    position:relative;
+  }
+  .flow-step{
+    background:#fffbe5;border:2.5px solid var(--ink);border-radius:22px;
+    padding:28px 32px 28px 130px;
+    position:relative;
+    box-shadow:0 5px 0 var(--ink);
+    transition:transform .25s, box-shadow .25s;
+  }
+  .flow-step:hover{transform:translateY(-3px);box-shadow:0 8px 0 var(--ink)}
+  .flow-step-num{
+    position:absolute;left:24px;top:24px;
+    width:80px;height:80px;border:2.5px solid var(--ink);
+    background:var(--yellow-pill);border-radius:50%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-family:var(--en);box-shadow:0 4px 0 var(--ink);
+  }
+  .flow-step:nth-child(even) .flow-step-num{background:var(--green-pill);color:#fff}
+  .flow-step-num .lbl{font-size:9px;font-weight:800;letter-spacing:0.2em;line-height:1}
+  .flow-step-num .n{font-size:28px;font-weight:800;line-height:1;margin-top:4px}
+  .flow-step-title{
+    font-family:var(--sans);font-size:22px;font-weight:700;
+    letter-spacing:0.06em;color:var(--ink);margin-bottom:10px;
+  }
+  .flow-step-desc{
+    font-family:var(--sans);font-size:14px;line-height:1.95;
+    color:var(--ink);
+  }
+  /* 矢印 (各stepの間に下向き三角) */
+  .flow-step + .flow-step::before{
+    content:"";position:absolute;left:64px;top:-22px;
+    width:0;height:0;border:11px solid transparent;
+    border-top-color:var(--ink);
+  }
+  @media (max-width:768px){
+    .flow-step{padding:90px 22px 24px;text-align:center}
+    .flow-step-num{position:absolute;left:50%;top:-30px;transform:translateX(-50%);
+      width:64px;height:64px}
+    .flow-step-num .n{font-size:22px}
+    .flow-step + .flow-step::before{display:none}
+  }
+  .flow-cta{text-align:center;margin-top:56px}
+  /* 装飾ハイライト用 */
+  .hl-gold{
+    background:linear-gradient(180deg, transparent 62%, rgba(212,169,0,0.22) 62%, rgba(212,169,0,0.22) 92%, transparent 92%);
+    padding:0 4px;color:var(--green-1);font-weight:600;
+  }
+  /* 金の装飾セパレーター（左右hairline+中央ひし形） */
+  .ornament{
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    margin:0 0 32px;
+  }
+  .ornament::before,.ornament::after{
+    content:"";flex:0 0 60px;height:1px;background:var(--gold);
+  }
+  .ornament span{
+    display:inline-block;width:8px;height:8px;
+    background:var(--gold);transform:rotate(45deg);
+  }
+  /* 強調ワード（高品質） */
+  .key{
+    position:relative;font-family:var(--serif);
+    color:var(--green-1);font-weight:600;font-size:1.08em;
+    padding:0 2px;letter-spacing:0.04em;
+  }
+  .key::before{
+    content:"";position:absolute;left:-2px;right:-2px;bottom:-3px;
+    height:7px;background:var(--gold);opacity:0.28;z-index:-1;
+    border-radius:2px;
+  }
+  .key.solid{color:var(--green-1)}
+  .key.solid::before{opacity:0.55;height:9px;}
+  /* 数字のジャイアントスタイル（金グロウ） */
+  .gnum{
+    font-family:var(--serif);
+    color:var(--gold);
+    font-weight:600;
+    font-size:1.25em;
+    letter-spacing:0;
+    line-height:1;
+    text-shadow:0 0 12px rgba(212,169,0,0.4);
+  }
+
+  /* ===== Hero（村ビュー — yamakachi式 フルブリード） ===== */
+  .hero{
+    padding:70px 0 0;
+    background:var(--bg);
+    position:relative;overflow:hidden;
+  }
+  /* ヤマカチ準拠: 全セクションをクリーム背景に統一 */
+  body{background:var(--bg)}
+  section{background:transparent !important}
+  .hero-head{
+    max-width:1200px;margin:0 auto 32px;padding:0 32px;text-align:center;
+  }
+  .hero-eyebrow{
+    font-family:var(--en);
+    font-size:12px;letter-spacing:0.35em;color:var(--gold);
+    margin-bottom:18px;font-weight:700;
+  }
+  .hero h1{
+    font-family:var(--sans);
+    font-size:46px;
+    line-height:1.55;
+    color:var(--green-1);
+    letter-spacing:0.06em;
+    font-weight:700;
+    margin-bottom:28px;
+  }
+  .hero h1 span.accent{
+    color:var(--gold);
+    font-weight:600;
+    background:linear-gradient(180deg, transparent 60%, rgba(212,169,0,0.18) 60%, rgba(212,169,0,0.18) 90%, transparent 90%);
+    padding:0 4px;
+  }
+  .hero p.lead{
+    font-size:15.5px;
+    line-height:2.1;
+    color:var(--ink);
+    max-width:660px;margin:0 auto 16px;
+  }
+  .hero p.lead strong{
+    font-family:var(--serif);
+    color:var(--green-1);
+    font-weight:600;
+    font-size:17px;
+    border-bottom:1.5px solid var(--gold);
+    padding:0 2px 2px;
+    letter-spacing:0.04em;
+  }
+  .hero .hero-hint{
+    font-size:12px;letter-spacing:0.25em;color:var(--green-2);
+    margin-top:20px;
+    display:inline-block;
+    padding:8px 20px;
+    border:1px solid rgba(212,169,0,0.4);
+    border-radius:30px;
+    background:rgba(212,169,0,0.06);
+  }
+  .hero .hero-hint::before{content:"▼ ";color:var(--gold);font-weight:bold}
+
+  /* 村ステージ (yamakachi式: フルブリード+タイトルオーバーレイ) */
+  .village{
+    width:100%;max-width:1600px;margin:0 auto;
+    position:relative;
+  }
+  .village svg{width:100%;height:auto;display:block}
+  .village-title{
+    position:absolute;top:5%;right:5%;z-index:3;
+    max-width:440px;text-align:left;pointer-events:none;
+    background:#fffbe5;border:3px solid var(--ink);border-radius:22px;
+    padding:22px 30px 24px;
+    box-shadow:6px 6px 0 var(--ink);
+  }
+  .village-title::before{
+    content:"";position:absolute;top:-14px;left:30px;
+    background:var(--yellow-pill);border:2.5px solid var(--ink);
+    padding:6px 14px;border-radius:999px;
+    font-family:var(--en);font-size:10px;font-weight:800;letter-spacing:0.3em;
+    color:var(--ink);
+    width:auto;height:auto;display:inline-block;
+    content:"CATCHPHRASE";line-height:1;box-shadow:0 3px 0 var(--ink);
+  }
+  .village-title .vt-eyebrow{
+    font-family:var(--en);
+    font-size:11px;letter-spacing:0.4em;color:#1a1a1a;
+    font-weight:800;margin-bottom:10px;margin-top:6px;
+  }
+  .village-title h1{
+    font-family:var(--sans);
+    font-size:32px;line-height:1.5;
+    color:#1a1a1a;font-weight:700;
+    letter-spacing:0.04em;margin-bottom:10px;
+  }
+  .village-title h1 .yes-mark{
+    display:inline-block;font-family:var(--en);font-weight:800;
+    color:#1a1a1a;background:var(--yellow-pill);
+    padding:0 8px;margin-left:4px;border-radius:6px;
+    border:1.5px solid var(--ink);font-size:0.7em;letter-spacing:0.08em;
+  }
+  .village-title .vt-sub{
+    font-family:var(--sans);
+    font-size:14px;color:#1a1a1a;font-weight:500;
+    letter-spacing:0.04em;
+    padding-top:10px;border-top:1.5px dashed rgba(0,0,0,0.25);
+  }
+  .village-title .vt-sub strong{
+    font-family:var(--en);font-weight:800;
+    color:var(--ink);background:var(--green-pill);
+    padding:2px 8px;border-radius:999px;border:1.5px solid var(--ink);
+    font-size:14px;letter-spacing:0.06em;color:#fff;
+  }
+  @media (max-width:768px){
+    .village-title{position:relative;top:auto;right:auto;
+      padding:24px 24px 16px;max-width:none;text-align:center;}
+    .village-title h1{font-size:26px;letter-spacing:0.02em}
+  }
+  /* ヤマカチ式 右端 sticky キャッチコピー (困り顔キャラ+縦書き+CTA) */
+  .stickside{
+    position:fixed;top:90px;right:16px;z-index:60;
+    background:#fffbe5;border:2.5px solid var(--ink);border-radius:18px;
+    box-shadow:4px 4px 0 var(--ink);
+    padding:12px 12px 14px;
+    pointer-events:none;
+    max-height:calc(100vh - 120px);
+    transition:opacity .3s;
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+  }
+  .stickside-char{
+    display:block;width:64px;height:74px;
+    flex-shrink:0;
+  }
+  .stickside-char svg{width:100%;height:100%}
+  .stickside-text{
+    writing-mode:vertical-rl;text-orientation:upright;
+    font-family:var(--sans);font-weight:700;font-size:18px;
+    letter-spacing:0.35em;line-height:1.9;color:var(--ink);
+    padding:4px 2px;
+  }
+  .stickside-text strong{color:var(--ink);font-weight:800}
+  .stickside-text .accent{
+    background:linear-gradient(180deg,transparent 65%,rgba(249,215,72,0.55) 65%,rgba(249,215,72,0.55) 92%,transparent 92%);
+    padding:0 3px;
+  }
+  .stickside-label{
+    font-family:var(--en);font-size:8px;font-weight:800;letter-spacing:0.3em;
+    color:var(--ink-soft);text-align:center;margin-top:2px;
+  }
+  .stickside-cta{
+    display:flex;align-items:center;gap:6px;
+    background:var(--ink);color:#fff;
+    padding:8px 14px;border:2px solid var(--ink);border-radius:999px;
+    font-family:var(--sans);font-size:11px;font-weight:800;
+    letter-spacing:0.18em;text-decoration:none;
+    margin-top:6px;pointer-events:auto;
+    transition:transform .2s, background .2s, color .2s;
+    box-shadow:0 3px 0 var(--ink);
+  }
+  .stickside-cta:hover{
+    transform:translateY(-2px);
+    background:var(--yellow-pill);color:var(--ink);
+  }
+  .stickside-cta .arr{font-size:13px;font-weight:800}
+  @media (max-width:1100px){.stickside{display:none}}
+  /* スクロール時にだけ見せる挙動はJSで .stickside.show を toggle */
+  .stickside{opacity:0}
+  .stickside.show{opacity:1}
+
+  /* ヤマカチ式 左側 sticky 目次ナビ (sections のテーブル) */
+  .sticknav{
+    position:fixed;top:90px;left:18px;z-index:60;
+    background:rgba(253,246,216,0.92);backdrop-filter:blur(8px);
+    border:2px solid var(--ink);border-radius:14px;
+    padding:14px 18px;
+    font-family:var(--sans);font-size:13px;
+    font-weight:700;line-height:2.1;
+    box-shadow:0 4px 0 var(--ink);
+    transition:opacity .3s;
+    opacity:0;pointer-events:none;
+  }
+  .sticknav.show{opacity:1;pointer-events:auto}
+  .sticknav-brand{
+    font-family:var(--en);font-weight:800;font-size:14px;
+    letter-spacing:0.32em;color:var(--ink);
+    margin-bottom:10px;padding-bottom:8px;
+    border-bottom:2px solid var(--ink);
+  }
+  .sticknav ul{list-style:none;padding:0;margin:0}
+  .sticknav a{
+    display:block;color:var(--ink);text-decoration:none;
+    padding:2px 0;letter-spacing:0.06em;
+    border-left:3px solid transparent;padding-left:10px;
+    transition:border-color .2s, color .2s;
+  }
+  .sticknav a:hover,
+  .sticknav a.active{
+    border-left-color:var(--gold);color:var(--green-1);
+  }
+  @media (max-width:1100px){.sticknav{display:none}}
+
+  /* あるある悩みセクション (yamakachi下段カード形式) */
+  .problems{background:#fff;padding:100px 32px 80px;border-bottom:1px solid var(--line)}
+  .problems-inner{max-width:1100px;margin:0 auto}
+  .problems h2{
+    font-family:var(--sans);font-size:30px;line-height:1.5;
+    color:var(--ink);font-weight:700;letter-spacing:0.06em;
+    text-align:center;margin-bottom:14px;
+  }
+  .problems h2 small{
+    display:block;font-family:var(--en);font-size:12px;
+    letter-spacing:0.4em;color:var(--gold);font-weight:800;
+    margin-bottom:18px;
+  }
+  .problems .lead{
+    text-align:center;font-size:15px;line-height:2;
+    color:var(--ink-soft);max-width:680px;margin:0 auto 48px;
+  }
+  .problem-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+  }
+  @media (max-width:900px){.problem-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.problem-grid{grid-template-columns:1fr}}
+  .problem-card{
+    display:block;background:#fdfcf8;
+    border:2px solid #1a1a1a;border-radius:14px;
+    padding:22px 22px 24px;text-decoration:none;color:inherit;
+    cursor:pointer;transition:transform .2s, background .2s, box-shadow .2s;
+  }
+  .problem-card:hover{transform:translateY(-4px);background:#fff8e0;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08)}
+  .problem-card .pc-role{
+    display:inline-block;font-family:var(--en);font-size:10px;
+    letter-spacing:0.32em;color:#fff;background:#1a1a1a;
+    padding:4px 10px;border-radius:20px;font-weight:800;
+    margin-bottom:14px;
+  }
+  .problem-card .pc-text{
+    font-family:var(--sans);font-size:15px;line-height:1.75;
+    color:var(--ink);font-weight:500;letter-spacing:0.02em;
+  }
+  .problem-card .pc-arrow{
+    margin-top:14px;font-family:var(--en);font-size:11px;
+    letter-spacing:0.3em;color:var(--gold);font-weight:800;
+  }
+
+  /* モバイル用 住人リスト（村の補助UI） */
+  .villager-list{display:none;margin:32px 16px 0;gap:10px;flex-direction:column}
+  .villager-list-card{
+    display:flex;gap:14px;align-items:center;
+    background:#fff;border:1px solid var(--line);
+    padding:14px 16px;cursor:pointer;
+    transition:transform .2s, border-color .2s;
+  }
+  .villager-list-card:hover,.villager-list-card:active{border-color:var(--green-1);transform:translateY(-2px)}
+  .villager-list-card .vl-dot{
+    width:10px;height:10px;border-radius:50%;background:var(--gold);flex-shrink:0;
+  }
+  .villager-list-card .vl-text{
+    font-size:13px;line-height:1.6;color:var(--ink);flex:1;
+  }
+  .villager-list-card .vl-text strong{color:var(--green-1);display:block;font-size:11.5px;letter-spacing:0.1em;margin-bottom:2px;font-weight:600}
+  .villager-list-card .vl-arrow{color:var(--gold);font-size:18px}
+  .villager{cursor:pointer;transition:filter .25s, opacity .2s}
+  .villager:hover{filter:brightness(1.15) drop-shadow(0 4px 8px rgba(0,0,0,0.25))}
+  .villager:active{opacity:0.85}
+  .villager .pulse{
+    animation:pulse 2.4s ease-in-out infinite;transform-origin:center;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:0.4;transform:scale(1)}
+    50%{opacity:0.9;transform:scale(1.15)}
+  }
+  .hero .cta-row{
+    display:flex;gap:16px;flex-wrap:wrap;justify-content:center;
+    margin-top:40px;padding:0 32px;
+  }
+  /* 解決カードのハイライト演出 */
+  .work-item.flash{
+    animation:flashHi 1.8s ease;
+  }
+  @keyframes flashHi{
+    0%{background:#fff4cc}
+    100%{background:transparent}
+  }
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 32px;
+    font-size:13px;letter-spacing:0.2em;
+    border-radius:0;
+    border:1px solid var(--green-1);
+    background:var(--green-1);
+    color:#fff;
+    transition:all .25s;
+    cursor:pointer;
+  }
+  .btn:hover{background:var(--green-2);border-color:var(--green-2)}
+  .btn.ghost{background:transparent;color:var(--green-1)}
+  .btn.ghost:hover{background:var(--green-1);color:#fff}
+  .btn-arrow{font-size:14px;transition:transform .2s}
+  .btn:hover .btn-arrow{transform:translateX(4px)}
+
+
+  /* ===== About ===== */
+  .about{background:#fff}
+  .about-grid{
+    display:grid;grid-template-columns:1fr 1.3fr;gap:80px;align-items:center;
+  }
+  .about-visual{
+    aspect-ratio:1/1;
+    background:var(--bg-paper);
+    position:relative;
+    border:1px solid var(--line);
+  }
+  .about-visual svg{width:100%;height:100%}
+  .about-text p{margin-bottom:24px;font-size:15px;line-height:2.1}
+  .about-text p strong{color:var(--green-1);font-weight:600}
+
+  /* ===== Mission (yamakachi式: cream bg + 太枠カード) ===== */
+  .mission{
+    color:var(--ink);
+    padding:120px 32px;
+    text-align:center;
+    position:relative;overflow:hidden;
+  }
+  .mission .section-label{color:var(--ink)}
+  .mission h2{
+    font-family:var(--sans);
+    font-size:30px;
+    line-height:1.75;
+    letter-spacing:0.06em;
+    font-weight:700;
+    margin:24px 0 72px;
+    color:var(--ink);
+    text-align:center;
+  }
+  .mission h2 .accent{
+    color:var(--ink);
+    font-weight:700;
+    background:linear-gradient(180deg, transparent 65%, rgba(249,215,72,0.5) 65%, rgba(249,215,72,0.5) 92%, transparent 92%);
+    padding:0 6px;
+  }
+  .mission-values{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+    max-width:960px;margin:0 auto;
+  }
+  @media (max-width:768px){.mission-values{grid-template-columns:1fr}}
+  .value-card{
+    padding:36px 28px;
+    border:2px solid var(--ink);
+    background:#fffbe5;border-radius:18px;
+    text-align:left;
+  }
+  .value-num{
+    font-family:var(--en);
+    font-size:12px;letter-spacing:0.4em;
+    color:var(--ink);font-weight:800;
+    margin-bottom:14px;
+  }
+  .value-title{
+    font-family:var(--sans);
+    font-size:20px;
+    letter-spacing:0.08em;font-weight:700;
+    margin-bottom:14px;
+    color:var(--ink);
+  }
+  .value-card p{font-size:14px;line-height:1.9;color:var(--ink-soft)}
+  .mission-decor{display:none}
+
+  /* ===== Service ===== */
+  .service{background:var(--bg-paper)}
+  .service-intro{
+    max-width:680px;margin:0 auto 64px;text-align:center;
+  }
+  .service-intro h3{
+    font-family:var(--serif);font-size:24px;color:var(--green-1);
+    letter-spacing:0.1em;font-weight:500;margin-bottom:18px;line-height:1.7;
+  }
+  .service-intro p{font-size:14px;color:var(--ink-soft);line-height:2}
+  .service-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  }
+  .service-card{
+    background:#fff;
+    padding:40px 32px;
+    border:1px solid var(--line);
+    display:flex;flex-direction:column;
+    transition:transform .25s, box-shadow .25s, border-color .25s;
+  }
+  .service-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 16px 40px rgba(26,58,42,0.08);
+    border-color:var(--green-1);
+  }
+  .service-tier{
+    font-size:11px;letter-spacing:0.4em;color:var(--gold);
+    margin-bottom:14px;font-weight:600;
+  }
+  .service-name{
+    font-family:var(--serif);font-size:20px;color:var(--green-1);
+    letter-spacing:0.08em;line-height:1.6;margin-bottom:12px;font-weight:500;
+  }
+  .service-price{
+    font-family:var(--serif);font-size:36px;color:var(--green-1);
+    margin-bottom:22px;font-weight:600;letter-spacing:0.02em;
+    position:relative;display:inline-block;
+  }
+  .service-price::after{
+    content:"";position:absolute;left:0;right:0;bottom:-2px;
+    height:2px;background:var(--gold);
+  }
+  .service-price small{font-size:13px;color:var(--ink-soft);margin-left:8px;letter-spacing:0.12em;font-weight:400}
+  .service-card p{font-size:13.5px;color:var(--ink);line-height:1.95;margin-bottom:20px;flex-grow:1}
+  .service-card ul{list-style:none;font-size:12.5px;color:var(--ink-soft)}
+  .service-card ul li{
+    padding-left:18px;position:relative;margin-bottom:8px;line-height:1.7;
+  }
+  .service-card ul li::before{
+    content:"";position:absolute;left:0;top:11px;
+    width:8px;height:1px;background:var(--gold);
+  }
+
+  /* ===== Works / Solutions（深い共感型カード） ===== */
+  .works{background:#fff}
+  .works-grid{
+    display:flex;flex-direction:column;gap:48px;
+    max-width:880px;margin:0 auto;
+  }
+  /* yamakachi式 太枠カード */
+  .work-item{
+    background:#fffbe5;
+    border:3px solid var(--ink);
+    border-radius:24px;
+    padding:0;
+    transition:box-shadow .35s, transform .35s;
+    scroll-margin-top:120px;
+    position:relative;overflow:hidden;
+  }
+  .work-item:hover{box-shadow:0 14px 0 var(--ink);transform:translateY(-3px)}
+  .work-item.flash{
+    animation:flashHi 2s ease;
+    box-shadow:0 0 0 4px var(--yellow-pill), 0 24px 0 var(--ink)!important;
+  }
+  /* === スクリーンショット プレビュー === */
+  .work-preview{
+    background:#0e2a1f;
+    padding:0;border-bottom:3px solid var(--ink);
+    position:relative;overflow:hidden;
+  }
+  .work-preview-foot{
+    position:absolute;left:50%;transform:translateX(-50%);
+    bottom:14px;z-index:2;
+    background:var(--yellow-pill);border:2px solid var(--ink);
+    padding:5px 14px;border-radius:999px;
+    font-family:var(--sans);font-size:11px;font-weight:700;
+    letter-spacing:0.1em;color:var(--ink);
+    box-shadow:0 3px 0 var(--ink);
+  }
+  .work-preview-bar{
+    background:linear-gradient(180deg,#1a3a2a,#0e2a1f);
+    padding:10px 16px;display:flex;align-items:center;gap:8px;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .work-preview-bar .dots{display:flex;gap:6px}
+  .work-preview-bar .dots span{
+    width:11px;height:11px;border-radius:50%;background:#d4a900;opacity:0.9;
+  }
+  .work-preview-bar .dots span:nth-child(1){background:#e8746a}
+  .work-preview-bar .dots span:nth-child(2){background:#f4c04a}
+  .work-preview-bar .dots span:nth-child(3){background:#4abf91}
+  .work-preview-bar .url{
+    font-family:var(--en);font-size:11px;letter-spacing:0.15em;
+    color:rgba(255,255,255,0.6);font-weight:700;margin-left:14px;
+  }
+  .work-preview img{
+    width:100%;height:auto;display:block;
+    transition:transform .5s;
+  }
+  .work-item:hover .work-preview img{transform:scale(1.02)}
+  .work-preview-badge{
+    position:absolute;top:54px;right:18px;
+    background:var(--yellow-pill);border:2px solid var(--ink);
+    padding:6px 14px;border-radius:999px;font-family:var(--en);
+    font-size:11px;font-weight:800;letter-spacing:0.2em;
+    box-shadow:0 4px 0 var(--ink);z-index:2;
+  }
+  .work-preview-badge.green{background:var(--green-pill);color:#fff}
+  /* === Body部分 === */
+  .work-body{padding:48px 52px}
+  @media (max-width:768px){
+    .work-body{padding:32px 24px}
+  }
+  .work-head{display:flex;gap:22px;align-items:center;margin-bottom:28px}
+  .work-icon{
+    flex-shrink:0;width:56px;height:56px;
+    background:var(--yellow-pill);
+    display:flex;align-items:center;justify-content:center;
+    border:2px solid var(--ink);border-radius:14px;
+  }
+  .work-icon svg{width:28px;height:28px;color:var(--ink);stroke-width:2}
+  .work-head-body{flex:1}
+  .work-cat{
+    font-family:var(--en);font-size:11px;letter-spacing:0.35em;
+    color:var(--ink);margin-bottom:8px;font-weight:800;text-transform:uppercase;
+  }
+  .work-title{
+    font-family:var(--sans);font-size:26px;color:var(--ink);
+    letter-spacing:0.06em;line-height:1.5;font-weight:700;
+  }
+  /* 吹き出し風の引用 — ピル型 yamakachi */
+  .work-quote{
+    background:var(--yellow-pill);
+    padding:18px 28px;
+    border:2px solid var(--ink);border-radius:999px;
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.6;
+    color:var(--ink);
+    margin:0 auto 36px;
+    letter-spacing:0.04em;
+    font-style:normal;
+    position:relative;
+    font-weight:700;
+    display:block;width:fit-content;max-width:100%;
+    text-align:center;
+    box-shadow:0 4px 0 var(--ink);
+  }
+  .work-quote::before{
+    content:"💬 ";
+    font-style:normal;
+  }
+  .work-quote-wrap{text-align:center;margin-bottom:36px}
+  /* あるあるチェックリスト */
+  .work-aruru{margin-bottom:32px}
+  .work-aruru h4{
+    font-family:var(--sans);font-size:17px;color:var(--ink);
+    letter-spacing:0.08em;margin-bottom:18px;font-weight:700;
+    padding-bottom:10px;border-bottom:2px solid var(--ink);
+    display:inline-block;
+  }
+  .work-aruru h4::after{
+    content:" ──";color:var(--ink);font-weight:400;
+  }
+  .work-aruru ul{list-style:none}
+  .work-aruru li{
+    padding:12px 0 12px 36px;position:relative;font-size:14.5px;line-height:1.85;
+    color:var(--ink);border-bottom:1px dashed rgba(0,0,0,0.18);
+    transition:background .2s, padding-left .2s;
+    cursor:default;
+  }
+  .work-aruru li:last-child{border-bottom:0}
+  .work-aruru li::before{
+    content:"";position:absolute;left:6px;top:16px;
+    width:16px;height:16px;border:2px solid var(--ink);
+    border-radius:4px;background:#fff;
+    transition:background .2s;
+  }
+  .work-aruru li::after{
+    content:"✓";position:absolute;left:8px;top:11px;
+    color:var(--ink);font-size:14px;font-weight:800;
+    opacity:0;transition:opacity .2s, transform .2s;
+    transform:scale(0.6);
+  }
+  .work-aruru li:hover{background:rgba(249,215,72,0.25);padding-left:42px;color:var(--ink);font-weight:600}
+  .work-aruru li:hover::after{opacity:1;transform:scale(1)}
+  .work-aruru li:hover::before{background:var(--yellow-pill)}
+  /* 解決 */
+  .work-solve{
+    background:#fff;border:2px solid var(--ink);border-radius:14px;
+    padding:24px 28px;
+    margin-bottom:28px;
+  }
+  .work-solve h4{
+    font-family:var(--sans);font-size:17px;color:var(--ink);
+    letter-spacing:0.06em;margin-bottom:12px;font-weight:700;
+    display:flex;align-items:center;gap:10px;
+  }
+  .work-solve h4::before{
+    content:"→";color:var(--ink);font-size:20px;font-weight:800;
+    line-height:1;display:inline-block;
+  }
+  .work-solve p{
+    font-size:14.5px;line-height:2.05;color:var(--ink);
+  }
+  /* Before/After 結果 — もっとドラマチックに */
+  .work-result{
+    background:linear-gradient(135deg, #1a3a2a 0%, #2a4d3a 100%);
+    color:#fff;
+    padding:32px 36px;
+    display:grid;grid-template-columns:1fr 60px 1fr;gap:24px;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .work-result::before{
+    content:"";position:absolute;left:0;top:0;width:4px;height:100%;
+    background:var(--gold);
+  }
+  .work-result-side{font-size:13px;letter-spacing:0.04em;line-height:1.7}
+  .work-result-side .lbl{
+    font-size:10px;letter-spacing:0.35em;color:var(--gold);
+    display:block;margin-bottom:10px;font-weight:700;
+  }
+  .work-result-side .val{
+    font-family:var(--serif);font-size:22px;color:#fff;
+    line-height:1.5;font-weight:500;
+    letter-spacing:0.04em;
+  }
+  .work-result-side .val strong{
+    color:var(--gold);font-size:30px;font-weight:600;letter-spacing:0;
+    display:inline-block;line-height:1;
+  }
+  .work-result-arrow{
+    font-size:38px;color:var(--gold);font-weight:300;text-align:center;
+    line-height:1;
+  }
+  /* ===== Anything (yamakachi式 クリーム+太枠) ===== */
+  .anything{
+    color:var(--ink);
+    position:relative;overflow:hidden;
+    padding:120px 32px;
+  }
+  .anything::before{display:none}
+  .anything-inner{
+    max-width:1000px;margin:0 auto;
+    display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:center;
+    position:relative;z-index:2;
+  }
+  @media (max-width:768px){.anything-inner{grid-template-columns:1fr;gap:32px}}
+  .anything .section-label{color:var(--ink)}
+  .anything h2{
+    font-family:var(--sans);
+    font-size:28px;line-height:1.7;
+    color:var(--ink);letter-spacing:0.06em;
+    font-weight:700;margin-bottom:24px;
+  }
+  .anything h2 .accent{
+    color:var(--ink);font-weight:700;
+    background:linear-gradient(180deg, transparent 65%, rgba(249,215,72,0.55) 65%, rgba(249,215,72,0.55) 92%, transparent 92%);
+    padding:0 6px;
+  }
+  .anything .lead{
+    font-size:15px;line-height:2.1;color:var(--ink-soft);
+    margin-bottom:32px;
+  }
+  .anything .lead strong{color:var(--ink);font-weight:700;border-bottom:2px solid var(--ink);padding-bottom:1px}
+  .anything-examples{
+    background:#fffbe5;
+    border:2px solid var(--ink);border-radius:14px;
+    padding:24px 28px;
+    margin-bottom:32px;
+  }
+  .anything-examples h4{
+    font-family:var(--serif);font-size:13px;letter-spacing:0.25em;
+    color:var(--gold);margin-bottom:16px;font-weight:500;
+  }
+  .anything-examples ul{list-style:none}
+  .anything-examples li{
+    padding:9px 0 9px 24px;position:relative;font-size:13.5px;line-height:1.8;
+    color:var(--ink);
+    border-bottom:1px dashed rgba(0,0,0,0.15);
+  }
+  .anything-examples li:last-child{border-bottom:0}
+  .anything-examples li::before{
+    content:"";position:absolute;left:0;top:18px;
+    width:10px;height:1px;background:var(--ink);
+  }
+  .anything-outro{
+    font-family:var(--sans);font-size:15px;line-height:2.0;
+    color:var(--ink);margin-bottom:32px;letter-spacing:0.04em;
+  }
+  .anything-cta a{
+    display:inline-flex;align-items:center;gap:12px;
+    padding:14px 36px;font-size:14px;letter-spacing:0.22em;
+    background:var(--yellow-pill);color:var(--ink);
+    border:2px solid var(--ink);border-radius:999px;
+    font-weight:800;font-family:var(--en);
+    transition:transform .2s, box-shadow .2s;
+  }
+  .anything-cta a:hover{transform:translateY(-3px);box-shadow:0 6px 0 var(--ink)}
+  .anything-cta .arr{font-size:16px;transition:transform .2s}
+  .anything-cta a:hover .arr{transform:translateX(4px)}
+
+  /* 扉のビジュアル */
+  .anything-door{
+    position:relative;width:100%;max-width:340px;justify-self:center;
+    aspect-ratio:3/4;
+  }
+  .anything-door svg{width:100%;height:100%}
+
+  /* ===== Track Record / 実績一覧 ===== */
+  .track{background:var(--bg-paper);padding:120px 32px}
+  .track-intro{
+    max-width:780px;margin:0 auto 56px;text-align:center;
+  }
+  .track-stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+    max-width:920px;margin:0 auto 64px;
+  }
+  .stat-card{
+    background:#fffbe5;border:2.5px solid var(--ink);border-radius:18px;
+    padding:18px 14px 16px;text-align:center;
+    position:relative;
+    box-shadow:0 4px 0 var(--ink);
+  }
+  .stat-person{
+    width:54px;height:64px;margin:0 auto 6px;display:block;
+  }
+  .stat-num{
+    font-family:var(--en);font-size:38px;font-weight:800;
+    color:var(--ink);line-height:1;margin-bottom:6px;
+    letter-spacing:0;
+  }
+  .stat-num small{font-size:13px;color:var(--ink);margin-left:3px;font-weight:700;font-family:var(--sans)}
+  .stat-label{
+    font-family:var(--sans);
+    font-size:13px;letter-spacing:0.06em;color:var(--ink);
+    font-weight:700;line-height:1.3;
+  }
+  .stat-label small{
+    display:block;font-family:var(--en);font-size:9px;letter-spacing:0.25em;
+    color:var(--ink-soft);font-weight:800;margin-top:4px;text-transform:uppercase;
+  }
+
+  /* メイン: 実績カードグリッド（画像入り） */
+  .track-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:32px;
+    max-width:1100px;margin:0 auto 56px;
+  }
+  .track-card{
+    background:#fff;border:1px solid var(--line);
+    overflow:hidden;
+    transition:transform .35s, box-shadow .35s, border-color .35s;
+    position:relative;
+  }
+  .track-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 24px 60px rgba(26,58,42,0.12);
+    border-color:var(--green-1);
+  }
+  /* スクショ表示エリアをブラウザウィンドウ風に */
+  .track-card .ss{
+    position:relative;width:100%;
+    background:#1a3a2a;
+    overflow:hidden;
+    border-bottom:3px solid var(--gold);
+  }
+  /* ブラウザバー */
+  .track-card .ss::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:28px;
+    background:linear-gradient(180deg,#2a3a30 0%,#1f3025 100%);
+    border-bottom:1px solid rgba(212,169,0,0.25);
+    z-index:2;
+  }
+  .track-card .ss::after{
+    content:"● ● ●";position:absolute;top:7px;left:14px;
+    font-size:10px;color:rgba(212,169,0,0.6);letter-spacing:4px;
+    z-index:3;line-height:1;
+  }
+  .track-card .ss img{
+    display:block;width:100%;aspect-ratio:16/10;
+    object-fit:cover;object-position:top center;
+    background:#fff;
+    margin-top:28px;
+    transition:transform .8s ease;
+  }
+  .track-card:hover .ss img{transform:scale(1.05) translateY(-4px)}
+  .track-card .ss-overlay{
+    position:absolute;top:14px;left:14px;
+    background:var(--green-1);color:#fff;
+    padding:5px 12px;font-size:10.5px;letter-spacing:0.25em;
+    font-weight:600;
+  }
+  .track-card .ss-status{
+    position:absolute;top:14px;right:14px;
+    background:var(--gold);color:var(--green-1);
+    padding:5px 12px;font-size:10.5px;letter-spacing:0.18em;
+    font-weight:700;display:flex;align-items:center;gap:6px;
+  }
+  .track-card .ss-status .dot{
+    width:7px;height:7px;background:var(--green-1);border-radius:50%;
+    animation:livePulse 1.6s ease-in-out infinite;
+  }
+  @keyframes livePulse{
+    0%,100%{opacity:1}50%{opacity:0.4}
+  }
+  .track-card .body{padding:24px 26px 28px}
+  .track-card h3{
+    font-family:var(--serif);font-size:18px;color:var(--green-1);
+    letter-spacing:0.06em;line-height:1.5;font-weight:600;margin-bottom:8px;
+  }
+  .track-card .desc{font-size:13px;color:var(--ink);line-height:1.85;margin-bottom:14px}
+  .track-card .meta{
+    display:flex;gap:14px;flex-wrap:wrap;
+    padding-top:12px;border-top:1px dashed var(--line);
+    font-size:11px;color:var(--ink-soft);letter-spacing:0.05em;
+  }
+  .track-card .meta span{display:flex;align-items:center;gap:5px}
+  .track-card .meta span::before{
+    content:"";width:6px;height:6px;background:var(--gold);transform:rotate(45deg);
+    display:inline-block;
+  }
+
+  /* その他のツール（小さめテキストリスト） */
+  .track-more{
+    max-width:1100px;margin:0 auto;
+    background:#fff;border:1px solid var(--line);
+    padding:36px 40px;
+  }
+  .track-more h4{
+    font-family:var(--serif);font-size:16px;color:var(--green-1);
+    letter-spacing:0.1em;margin-bottom:20px;font-weight:600;
+    display:flex;align-items:center;gap:12px;
+  }
+  .track-more h4::after{
+    content:"";flex:1;height:1px;background:var(--line);
+  }
+  .track-more h4::before{
+    content:"";width:10px;height:10px;background:var(--gold);
+    transform:rotate(45deg);display:inline-block;
+  }
+  .track-more-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:14px 28px;
+  }
+  .track-more-item{
+    display:flex;gap:14px;align-items:flex-start;
+    padding:10px 0;border-bottom:1px dashed var(--line);
+  }
+  .track-more-item:last-child,.track-more-item:nth-last-child(2),.track-more-item:nth-last-child(3){border-bottom:0}
+  .track-more-item .ico{
+    flex-shrink:0;width:30px;height:30px;
+    background:var(--bg-soft);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .track-more-item .ico svg{width:16px;height:16px;color:var(--green-1)}
+  .track-more-item .txt{flex:1;font-size:12.5px;line-height:1.55;color:var(--ink)}
+  .track-more-item .txt strong{
+    display:block;font-family:var(--serif);font-size:13px;color:var(--green-1);
+    letter-spacing:0.06em;margin-bottom:2px;font-weight:600;
+  }
+
+  /* カード末尾の CTA */
+  .work-cta{
+    text-align:center;margin-top:24px;
+  }
+  .work-cta a{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:0.15em;
+    padding:12px 28px;
+    border:1px solid var(--green-1);
+    color:var(--green-1);
+    transition:all .25s;
+  }
+  .work-cta a:hover{background:var(--green-1);color:#fff}
+  .work-cta a .arr{font-size:14px;transition:transform .2s}
+  .work-cta a:hover .arr{transform:translateX(4px)}
+
+  /* ===== News ===== */
+  .news{background:var(--bg-soft)}
+  .news-list{max-width:820px;margin:0 auto}
+  .news-item{
+    display:grid;grid-template-columns:140px 1fr;gap:32px;
+    padding:24px 0;
+    border-top:1px solid var(--line);
+    align-items:baseline;
+  }
+  .news-item:last-child{border-bottom:1px solid var(--line)}
+  .news-date{
+    font-family:var(--serif);font-size:13px;color:var(--green-1);
+    letter-spacing:0.15em;
+  }
+  .news-body{font-size:14px;line-height:1.9}
+  .news-tag{
+    display:inline-block;font-size:10px;letter-spacing:0.25em;
+    background:var(--green-1);color:#fff;
+    padding:3px 10px;margin-right:12px;
+  }
+
+  /* ===== Company ===== */
+  .company{background:#fff}
+  .company-table{
+    max-width:780px;margin:0 auto;
+    border-top:1px solid var(--green-1);
+  }
+  .company-row{
+    display:grid;grid-template-columns:200px 1fr;gap:24px;
+    padding:22px 8px;
+    border-bottom:1px solid var(--line);
+  }
+  .company-key{
+    font-family:var(--serif);font-size:13px;letter-spacing:0.2em;
+    color:var(--green-1);font-weight:500;
+  }
+  .company-val{font-size:14px;line-height:1.8}
+  .company-val small{color:var(--ink-soft);font-size:12px;display:block;margin-top:4px}
+
+  /* ===== Contact (yamakachi式 フォーム画面) ===== */
+  .contact{
+    text-align:center;padding:80px 32px 100px;
+  }
+  .contact-inner{max-width:780px;margin:0 auto}
+  .contact h2{
+    font-family:var(--sans);font-size:28px;color:var(--ink);
+    letter-spacing:0.06em;font-weight:700;line-height:1.7;margin:24px auto 18px;
+    text-align:center;
+  }
+  .contact > .contact-inner > p{
+    font-size:14.5px;color:var(--ink);line-height:2;margin-bottom:48px;
+    text-align:center;
+  }
+  .contact-form{
+    background:#fffbe5;border:3px solid var(--ink);border-radius:24px;
+    padding:40px 48px 36px;text-align:left;
+    box-shadow:0 6px 0 var(--ink);
+    position:relative;margin-top:32px;
+  }
+  .contact-form::before{
+    content:"📝 お問い合わせフォーム";display:inline-block;
+    position:absolute;top:-22px;left:50%;transform:translateX(-50%);
+    background:var(--yellow-pill);border:2.5px solid var(--ink);
+    padding:8px 22px;border-radius:999px;
+    font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:0.06em;
+    color:var(--ink);box-shadow:0 3px 0 var(--ink);white-space:nowrap;
+  }
+  .cf-row{margin-bottom:22px}
+  .cf-row.split{
+    display:grid;grid-template-columns:1fr 1fr;gap:18px;
+  }
+  @media (max-width:600px){.cf-row.split{grid-template-columns:1fr}}
+  .cf-label{
+    display:block;font-family:var(--sans);font-size:13px;
+    font-weight:700;color:var(--ink);letter-spacing:0.06em;
+    margin-bottom:8px;
+  }
+  .cf-label .req{
+    display:inline-block;background:#e8746a;color:#fff;
+    font-family:var(--en);font-size:9px;font-weight:800;letter-spacing:0.15em;
+    padding:2px 7px;border-radius:4px;margin-left:8px;vertical-align:middle;
+  }
+  .cf-label .opt{
+    display:inline-block;background:rgba(0,0,0,0.1);color:var(--ink-soft);
+    font-family:var(--en);font-size:9px;font-weight:700;letter-spacing:0.15em;
+    padding:2px 7px;border-radius:4px;margin-left:8px;vertical-align:middle;
+  }
+  .cf-row input[type=text],
+  .cf-row input[type=email],
+  .cf-row input[type=tel],
+  .cf-row select,
+  .cf-row textarea{
+    width:100%;font-family:var(--sans);font-size:15px;color:var(--ink);
+    background:#fff;border:2px solid var(--ink);border-radius:10px;
+    padding:12px 14px;line-height:1.6;
+    transition:box-shadow .15s;
+  }
+  .cf-row input:focus,
+  .cf-row select:focus,
+  .cf-row textarea:focus{
+    outline:none;box-shadow:0 0 0 3px rgba(249,215,72,0.6);
+  }
+  .cf-row textarea{min-height:140px;resize:vertical}
+  .cf-row select{appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231a1a1a' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center;
+    background-size:12px;padding-right:36px;
+  }
+  .cf-checkbox-row{
+    display:flex;align-items:flex-start;gap:10px;
+    background:#fff;border:2px solid var(--ink);border-radius:10px;
+    padding:14px 16px;margin-bottom:22px;
+  }
+  .cf-checkbox-row input{
+    width:20px;height:20px;border:2px solid var(--ink);border-radius:4px;
+    accent-color:#1a1a1a;flex-shrink:0;margin-top:1px;cursor:pointer;
+  }
+  .cf-checkbox-row label{
+    font-size:13px;line-height:1.6;color:var(--ink);cursor:pointer;
+  }
+  .cf-checkbox-row a{color:var(--ink);text-decoration:underline;font-weight:700}
+  .cf-submit{
+    display:flex;justify-content:center;gap:14px;margin-top:8px;
+  }
+  .cf-submit button{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--en);font-weight:800;font-size:14px;letter-spacing:0.22em;
+    padding:16px 44px;border:2.5px solid var(--ink);border-radius:999px;
+    background:var(--yellow-pill);color:var(--ink);
+    cursor:pointer;text-transform:uppercase;
+    box-shadow:0 5px 0 var(--ink);
+    transition:transform .2s, box-shadow .2s;
+  }
+  .cf-submit button:hover{transform:translateY(-3px);box-shadow:0 8px 0 var(--ink)}
+  .cf-submit button .arr{font-size:18px;font-weight:800}
+  .cf-altnote{
+    margin-top:28px;text-align:center;font-size:13px;
+    color:var(--ink-soft);letter-spacing:0.04em;line-height:1.8;
+  }
+  .cf-altnote a{color:var(--ink);text-decoration:underline;font-weight:700}
+  .contact-note{
+    margin-top:32px;font-size:12px;color:var(--ink-soft);letter-spacing:0.1em;
+    text-align:center;
+  }
+
+  /* ===== Footer ===== */
+  footer{
+    background:var(--green-1);color:rgba(255,255,255,0.85);
+    padding:64px 32px 32px;
+  }
+  .footer-inner{
+    max-width:1100px;margin:0 auto;
+    display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;
+    padding-bottom:40px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+  }
+  .footer-brand .logo{color:#fff;font-size:20px;margin-bottom:16px}
+  .footer-brand .logo small{color:rgba(255,255,255,0.6)}
+  .footer-brand p{font-size:12px;line-height:1.9;color:rgba(255,255,255,0.7);margin-top:16px}
+  .footer-col h4{
+    font-family:var(--serif);font-size:12px;letter-spacing:0.3em;
+    color:var(--gold);margin-bottom:18px;font-weight:500;
+  }
+  .footer-col ul{list-style:none}
+  .footer-col li{margin-bottom:10px;font-size:13px}
+  .footer-col a{color:rgba(255,255,255,0.78);transition:color .2s}
+  .footer-col a:hover{color:var(--gold)}
+  .footer-bottom{
+    max-width:1100px;margin:0 auto;
+    padding-top:24px;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:11px;letter-spacing:0.15em;color:rgba(255,255,255,0.55);
+  }
+
+  /* ===== フェードイン（JS有効時のみ初期hidden、JS無効・クローラ・スクショに優しい） ===== */
+  /* ヤマカチ WOW.js fadeIn 風 — 下から出現を強めに */
+  html.has-js .fade{opacity:0;transform:translateY(48px);transition:opacity 1s cubic-bezier(.22,.61,.36,1), transform 1s cubic-bezier(.22,.61,.36,1)}
+  html.has-js .fade.show{opacity:1;transform:translateY(0)}
+  @media (prefers-reduced-motion: reduce){
+    html.has-js .fade{opacity:1;transform:none;transition:none}
+  }
+
+  /* ===== レスポンシブ ===== */
+  @media (max-width:900px){
+    section{padding:88px 24px}
+    .hero{padding:120px 0 60px}
+    .hero-head{padding:0 24px;margin-bottom:20px}
+    .hero h1{font-size:30px;letter-spacing:0.06em}
+    .hero p.lead{font-size:13.5px}
+    .village{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .village svg{min-width:1280px}
+    .villager-list{display:flex}
+    .section-title{font-size:26px}
+    .mission h2{font-size:28px}
+    .about-grid{grid-template-columns:1fr;gap:40px}
+    .mission-values{grid-template-columns:1fr;gap:16px}
+    .service-grid{grid-template-columns:1fr;gap:16px}
+    .work-item{padding:28px 22px}
+    .work-title{font-size:17px}
+    .work-quote{font-size:14px;padding:14px 18px}
+    .work-result{grid-template-columns:1fr;gap:14px;text-align:center}
+    .work-result-arrow{transform:rotate(90deg)}
+    .anything{padding:88px 24px}
+    .anything-inner{grid-template-columns:1fr;gap:48px;text-align:left}
+    .anything-door{order:-1;max-width:200px}
+    .anything h2{font-size:24px;line-height:1.7}
+    .anything-outro{font-size:14px}
+    .track{padding:88px 22px}
+    .track-stats{grid-template-columns:repeat(2,1fr);gap:14px}
+    .stat-num{font-size:30px}
+    .track-grid{grid-template-columns:1fr;gap:24px}
+    .track-more{padding:24px 20px}
+    .track-more-grid{grid-template-columns:1fr;gap:0}
+    .track-more-item{border-bottom:1px dashed var(--line)!important}
+    .track-more-item:last-child{border-bottom:0!important}
+    .footer-inner{grid-template-columns:1fr;gap:32px}
+    .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+    nav ul{
+      display:none;
+      position:absolute;top:100%;left:0;right:0;
+      background:#fdfcf8;border-bottom:1px solid var(--line);
+      flex-direction:column;gap:0;padding:8px 0;
+    }
+    nav ul.open{display:flex}
+    nav li{border-bottom:1px solid var(--line);padding:0 32px}
+    nav li:last-child{border-bottom:0}
+    nav a{display:block;padding:16px 0;font-size:14px}
+    .menu-btn{display:block}
+  }
+  @media (max-width:480px){
+    .hero h1{font-size:22px;letter-spacing:0.04em;line-height:1.7}
+    .hero p.lead{font-size:13px;line-height:1.9}
+    .section-title{font-size:22px}
+    .mission h2{font-size:22px;letter-spacing:0.05em}
+    .header-inner{padding:14px 20px}
+    .logo{font-size:15px;letter-spacing:0.35em}
+    .btn{padding:13px 22px;font-size:12px}
+    .news-item{grid-template-columns:1fr;gap:6px}
+    .news-date{font-size:12px}
+    .company-row{grid-template-columns:1fr;gap:4px;padding:18px 4px}
+    .company-key{font-size:11px;letter-spacing:0.25em}
+    .contact h2{font-size:22px}
+    .work-item{padding:24px 18px}
+    .work-head{flex-direction:column;align-items:flex-start;gap:12px}
+    .work-title{font-size:16px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ヤマカチ式 左側 sticky 目次ナビ -->
+<aside class="sticknav">
+  <div class="sticknav-brand">SKELETON</div>
+  <ul>
+    <li><a href="#problems">あるある悩み</a></li>
+    <li><a href="#track">実績紹介</a></li>
+    <li><a href="#about">会社案内</a></li>
+    <li><a href="#mission">ミッション</a></li>
+    <li><a href="#service">サービス</a></li>
+    <li><a href="#works">解決事例</a></li>
+    <li><a href="#anything">特殊な業務</a></li>
+    <li><a href="#flow">サービスの流れ</a></li>
+    <li><a href="#news">お知らせ</a></li>
+    <li><a href="#contact">お問い合わせ</a></li>
+  </ul>
+</aside>
+
+<!-- ヤマカチ式 右端 sticky 困り顔キャラ + 縦書きキャッチ + CTA -->
+<aside class="stickside">
+  <div class="stickside-char" aria-hidden="true">
+    <svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
+      <!-- ハテナマーク -->
+      <circle cx="60" cy="14" r="11" fill="#f9d748" stroke="#1a1a1a" stroke-width="2"/>
+      <text x="60" y="18" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif" font-size="14" font-weight="800" fill="#1a1a1a">?</text>
+      <!-- 体: コーラルブラウス -->
+      <path d="M 14 90 L 8 72 Q 14 60 28 60 L 52 60 Q 66 60 72 72 L 66 90 Z" fill="#e8a098" stroke="#1a1a1a" stroke-width="2"/>
+      <!-- 手 (顎に手当てた困り顔) -->
+      <path d="M 50 60 L 50 50 Q 50 44 56 44" fill="#e8a098" stroke="#1a1a1a" stroke-width="2"/>
+      <circle cx="56" cy="44" r="5" fill="#f4d3a8" stroke="#1a1a1a" stroke-width="2"/>
+      <!-- 顔 -->
+      <circle cx="40" cy="36" r="16" fill="#f4d3a8" stroke="#1a1a1a" stroke-width="2"/>
+      <!-- 髪 -->
+      <path d="M 24 30 Q 24 18 40 17 Q 56 18 56 30 L 56 36 Q 50 30 40 32 Q 30 30 24 36 Z" fill="#4a3520" stroke="#1a1a1a" stroke-width="1.5"/>
+      <!-- 困り眉 -->
+      <path d="M 28 33 L 35 35" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M 52 33 L 45 35" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round"/>
+      <!-- 目 -->
+      <circle cx="34" cy="39" r="1.8" fill="#1a1a1a"/>
+      <circle cx="46" cy="39" r="1.8" fill="#1a1a1a"/>
+      <!-- 口 (困り顔 やや下向き) -->
+      <path d="M 34 47 Q 40 45 46 47" fill="none" stroke="#1a1a1a" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="stickside-text">
+    うちのこんな業務、<br>
+    <span class="accent">できますか？</span>
+  </div>
+  <div class="stickside-label">CATCHPHRASE</div>
+  <a href="#contact" class="stickside-cta">無料相談<span class="arr">→</span></a>
+</aside>
+
+<!-- ========== ヘッダー ========== -->
+<header>
+  <div class="header-inner">
+    <a href="#top" class="logo">
+      SKELETON
+      <small>SKELETON INC.</small>
+    </a>
+    <nav>
+      <button class="menu-btn" id="menuBtn" aria-label="メニュー"><span></span><span></span><span></span></button>
+      <ul id="navList">
+        <li><a href="#track">WORKS</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#mission">MISSION</a></li>
+        <li><a href="#service">SERVICE</a></li>
+        <li><a href="#works">SOLUTIONS</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ========== Hero / 村ビュー (yamakachi式 完コピ) ========== -->
+<section class="hero" id="top">
+  <div class="village">
+    <!-- タイトル: 画像右上スカイにオーバーレイ (yamakachi方式) -->
+    <div class="village-title">
+      <div class="vt-eyebrow">SKELETON INC.</div>
+      <h1>うちのこんな業務、<br>できますか？</h1>
+      <p class="vt-sub">ほぼ全部、答えは <strong>"YES"</strong>。</p>
+    </div>
+
+    <svg viewBox="0 0 1792 1000" xmlns="http://www.w3.org/2000/svg" aria-label="スケルトン村">
+      <!-- 採用イラスト (yamakachi v2 手描きインク線画) — 16:9 フルブリード -->
+      <image href="assets/hero-village.jpeg" x="0" y="0" width="1792" height="1000" preserveAspectRatio="xMidYMid meet"/>
+
+      <!-- ====================================================== -->
+      <!--                  ★ 住人（クリック可能） ★               -->
+      <!--   背景イラストの各家の前に配置                            -->
+      <!-- ====================================================== -->
+
+      <!-- 住人1: 社長 (社長室 ~x=290 前) — scale 2x -->
+      <g class="villager" data-solution="solution-1" transform="translate(300,790) ">
+        <text class="villager-label" x="0" y="58" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif" font-size="14" font-weight="700" fill="#1a1a1a">社長</text>
+        <g transform="translate(-100,-185)">
+          <rect x="0" y="0" width="200" height="38" rx="19" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+          <path d="M 90 38 L 100 50 L 110 38 Z" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+          <path d="M 92 38 L 108 38" stroke="#fff" stroke-width="3"/>
+          <text x="100" y="25" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif" font-size="14" font-weight="500" fill="#1a1a1a">今月の売上が見えない…</text>
+        </g>
+        <g transform="scale(2)">
+        <path d="M -18 -25 L -22 18 L -10 18 L -7 -3 L 7 -3 L 10 18 L 22 18 L 18 -25 Q 9 -32 0 -32 Q -9 -32 -18 -25 Z" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+        <path d="M -12 -27 L -3 -10 L 0 -8 L 3 -10 L 12 -27 L 10 -28 L 0 -16 L -10 -28 Z" fill="#2a4d3a" stroke="#1a1a1a" stroke-width="1.5"/>
+        <path d="M -2.5 -10 L 2.5 -10 L 3.5 9 L 0 11 L -3.5 9 Z" fill="#a64242" stroke="#1a1a1a" stroke-width="1.3"/>
+        <circle cx="0" cy="-44" r="15" fill="#f4d3a8" stroke="#1a1a1a" stroke-width="2"/>
+        <path d="M -12 -52 Q -10 -58 -3 -58 Q 6 -59 11 -55 L 12 -52 Q 6 -50 0 -50 Q -7 -50 -12 -52 Z" fill="#6a6660" stroke="#1a1a1a" stroke-width="1.5"/>
+        <circle cx="-5" cy="-46" r="1.8" fill="#1a1a1a"/>
+        <circle cx="5" cy="-46" r="1.8" fill="#1a1a1a"/>
+        <path d="M -4 -38 Q 0 -40 4 -38" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+      </g></g>
+
+      <!-- 住人2: 営業 (営業部 ~x=700 前) -->
+      <g class="villager" data-solution="solution-2" transform="translate(720,670) ">
+        <text class="villager-label" x="0" y="58" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif" font-size="14" font-weight="700" fill="#1a1a1a">営業</text>
+        <g transform="translate(-100,-185)">
+          <rect x="0" y="0" width="200" height="38" rx="19" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+          <path d="M 90 38 L 100 50 L 110 38 Z" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+          <path d="M 92 38 L 108 38" stroke="#fff" stroke-width="3"/>
+          <text x="100" y="25" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif" font-size="14" font-weight="500" fill="#1a1a1a">フォロー忘れた…</text>
+        </g>
+        <g transform="scale(2)">
+        <path d="M -18 -25 L -22 18 L -10 18 L -7 -3 L 7 -3 L 10 18 L 22 18 L 18 -25 Q 9 -32 0 -32 Q -9 -32 -18 -25 Z" fill="#5fa8d3" stroke="#1a1a1a" stroke-width="2"/>
+        <path d="M -7 -27 L -3 -18 L 3 -18 L 7 -27" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+        <path d="M 0 -18 L 0 -4" stroke="#1a1a1a" stroke-width="1.2"/>
+        <circle cx="0" cy="-44" r="15" fill="#f4d3a8" stroke="#1a1a1a" stroke-width="2"/>
+        <path d="M -13 -52 Q -10 -60 0 -60 Q 12 -60 13 -52 L 13 -45 Q 8 -52 -2 -50 Q -9 -54 -13 -45 Z" fill="#1a1a1a" stroke="#1a1a1a" stroke-width="1.5"/>
+        <circle cx="-5" cy="-46" r="1.8" fill="#1a1a1a"/>
+        <circle cx="5" cy="-46" r="1.8" fill="#1a1a1a"/>
+        <path d="M -4 -38 Q 0 -36 4 -38" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+        <rect x="-26" y="-10" width="6" height="11" rx="1" fill="#1a1a1a" stroke="#1a1a1a" stroke-width="1"/>
+      </g></g>
+
+      <!-- 住人3: 経理 (経理室 ~x=1020 前) -->
+      <g class="villager" data-solution="solution-3" transform="translate(1050,610) ">
+        <text class="villager-label" x="0" y="58" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif" font-size="14" font-weight="700" fill="#1a1a1a">経理</text>
+        <g transform="translate(-100,-185)">
+          <rect x="0" y="0" width="200" height="38" rx="19" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+          <path d="M 90 38 L 100 50 L 110 38 Z" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+          <path d="M 92 38 L 108 38" stroke="#fff" stroke-width="3"/>
+          <text x="100" y="25" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif" font-size="14" font-weight="500" fill="#1a1a1a">月初は請求書地獄…</text>
+        </g>
+        <g transform="scale(2)">
+        <path d="M -18 -25 L -22 18 L -10 18 L -7 -3 L 7 -3 L 10 18 L 22 18 L 18 -25 Q 9 -32 0 -32 Q -9 -32 -18 -25 Z" fill="#f4d04a" stroke="#1a1a1a" stroke-width="2"/>
+        <circle cx="0" cy="-44" r="15" fill="#f4d3a8" stroke="#1a1a1a" stroke-width="2"/>
+        <path d="M -14 -50 Q -16 -60 -8 -62 Q 0 -64 8 -62 Q 16 -60 14 -50 L 14 -36 L 11 -36 L 11 -42 L -11 -42 L -11 -36 L -14 -36 Z" fill="#3d2818" stroke="#1a1a1a" stroke-width="1.5"/>
+        <rect x="-9" y="-49" width="6" height="5" rx="1.5" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+        <rect x="3" y="-49" width="6" height="5" rx="1.5" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+        <path d="M -3 -47 L 3 -47" stroke="#1a1a1a" stroke-width="1.3"/>
+        <path d="M -4 -38 Q 0 -36 4 -38" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+        <rect x="-30" y="-6" width="10" height="13" fill="#fff" stroke="#1a1a1a" stroke-width="1.3"/>
+        <path d="M -28 -3 L -22 -3 M -28 0 L -22 0 M -28 3 L -22 3" stroke="#1a1a1a" stroke-width="0.8"/>
+      </g></g>
+
+      <!-- 住人4: 倉庫担当 (倉庫 ~x=1720 前) -->
+      <g class="villager" data-solution="solution-4" transform="translate(1700,650) ">
+        <text class="villager-label" x="0" y="58" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif" font-size="14" font-weight="700" fill="#1a1a1a">倉庫</text>
+        <g transform="translate(-100,-185)">
+          <rect x="0" y="0" width="200" height="38" rx="19" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+          <path d="M 90 38 L 100 50 L 110 38 Z" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+          <path d="M 92 38 L 108 38" stroke="#fff" stroke-width="3"/>
+          <text x="100" y="25" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif" font-size="14" font-weight="500" fill="#1a1a1a">棚卸しが合わない…</text>
+        </g>
+        <g transform="scale(2)">
+        <path d="M -18 -25 L -22 18 L -10 18 L -7 -3 L 7 -3 L 10 18 L 22 18 L 18 -25 Q 9 -32 0 -32 Q -9 -32 -18 -25 Z" fill="#d96a4a" stroke="#1a1a1a" stroke-width="2"/>
+        <circle cx="0" cy="-44" r="15" fill="#f4d3a8" stroke="#1a1a1a" stroke-width="2"/>
+        <path d="M -16 -48 Q -12 -60 0 -60 Q 12 -60 16 -48 L -16 -48 Z" fill="#5fa8d3" stroke="#1a1a1a" stroke-width="1.5"/>
+        <path d="M -16 -48 L 19 -45 L 16 -48" fill="#5fa8d3" stroke="#1a1a1a" stroke-width="1.5"/>
+        <circle cx="-5" cy="-43" r="1.8" fill="#1a1a1a"/>
+        <circle cx="5" cy="-43" r="1.8" fill="#1a1a1a"/>
+        <path d="M -4 -36 Q 0 -38 4 -36" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+        <rect x="20" y="-6" width="9" height="14" fill="#fff" stroke="#1a1a1a" stroke-width="1.3"/>
+        <rect x="23" y="-7" width="3" height="2" fill="#1a1a1a"/>
+      </g></g>
+
+      <!-- 住人5: 受付・事務 (受付 ~x=1490 前) -->
+      <g class="villager" data-solution="solution-5" transform="translate(1450,810) ">
+        <text class="villager-label" x="0" y="58" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif" font-size="14" font-weight="700" fill="#1a1a1a">受付</text>
+        <g transform="translate(-100,-185)">
+          <rect x="0" y="0" width="200" height="38" rx="19" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+          <path d="M 90 38 L 100 50 L 110 38 Z" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+          <path d="M 92 38 L 108 38" stroke="#fff" stroke-width="3"/>
+          <text x="100" y="25" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif" font-size="14" font-weight="500" fill="#1a1a1a">同じ問合せ毎回手返信…</text>
+        </g>
+        <g transform="scale(2)">
+        <path d="M -18 -25 L -22 18 L -10 18 L -7 -3 L 7 -3 L 10 18 L 22 18 L 18 -25 Q 9 -32 0 -32 Q -9 -32 -18 -25 Z" fill="#e8a098" stroke="#1a1a1a" stroke-width="2"/>
+        <circle cx="0" cy="-44" r="15" fill="#f4d3a8" stroke="#1a1a1a" stroke-width="2"/>
+        <path d="M -14 -50 Q -16 -60 -7 -62 Q 0 -64 7 -62 Q 16 -60 14 -50 L 14 -32 L 11 -32 L 11 -42 L -11 -42 L -11 -32 L -14 -32 Z" fill="#3d2818" stroke="#1a1a1a" stroke-width="1.5"/>
+        <path d="M -12 -38 Q -22 -28 -20 -10" fill="#3d2818" stroke="#1a1a1a" stroke-width="1.5"/>
+        <path d="M -19 -10 Q -22 -6 -18 -2" fill="none" stroke="#1a1a1a" stroke-width="1.3"/>
+        <circle cx="-5" cy="-46" r="1.8" fill="#1a1a1a"/>
+        <circle cx="5" cy="-46" r="1.8" fill="#1a1a1a"/>
+        <path d="M -4 -38 Q 0 -36 4 -38" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+      </g></g>
+
+      <!-- 住人6: 人事・採用 (人事部 ~x=1720 前) -->
+      <g class="villager" data-solution="solution-6" transform="translate(1690,920) ">
+        <text class="villager-label" x="0" y="58" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif" font-size="14" font-weight="700" fill="#1a1a1a">人事</text>
+        <g transform="translate(-100,-185)">
+          <rect x="0" y="0" width="200" height="38" rx="19" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+          <path d="M 90 38 L 100 50 L 110 38 Z" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+          <path d="M 92 38 L 108 38" stroke="#fff" stroke-width="3"/>
+          <text x="100" y="25" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif" font-size="14" font-weight="500" fill="#1a1a1a">日程調整5往復目…</text>
+        </g>
+        <g transform="scale(2)">
+        <path d="M -18 -25 L -22 18 L -10 18 L -7 -3 L 7 -3 L 10 18 L 22 18 L 18 -25 Q 9 -32 0 -32 Q -9 -32 -18 -25 Z" fill="#2a4d3a" stroke="#1a1a1a" stroke-width="2"/>
+        <circle cx="0" cy="-44" r="15" fill="#f4d3a8" stroke="#1a1a1a" stroke-width="2"/>
+        <path d="M -13 -52 Q -10 -60 0 -60 Q 12 -60 13 -52 L 13 -45 Q 7 -50 0 -48 Q -7 -52 -13 -45 Z" fill="#4a3520" stroke="#1a1a1a" stroke-width="1.5"/>
+        <rect x="-9" y="-49" width="6" height="5" rx="1.5" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+        <rect x="3" y="-49" width="6" height="5" rx="1.5" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+        <path d="M -3 -47 L 3 -47" stroke="#1a1a1a" stroke-width="1.3"/>
+        <path d="M -4 -38 Q 0 -40 4 -38" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+        <circle cx="-13" cy="-50" r="3.5" fill="#f4d3a8" stroke="#1a1a1a" stroke-width="1.4"/>
+      </g></g>
+
+    </svg>
+  </div>
+
+  </div>
+</section>
+
+<!-- ========== あるある悩み (hero直下) ========== -->
+<section class="problems" id="problems">
+  <div class="problems-inner">
+    <h2>
+      <small>EVERYDAY FRUSTRATIONS</small>
+      こんな悩み、ありませんか？
+    </h2>
+    <p class="lead">
+      請求書、在庫、月次の数字、問い合わせ対応、採用、お客様フォロー…<br>
+      <strong style="color:var(--ink)">業種フリー・規模フリー・特殊な業務こそ歓迎</strong>。<br>
+      ほぼ全部、答えは <strong style="color:var(--gold);font-family:var(--en);font-size:17px;font-weight:800">"YES"</strong> です。
+    </p>
+    <div class="problem-grid">
+      <a href="#solution-1" class="problem-card" data-solution="solution-1">
+        <span class="pc-role">CEO</span>
+        <p class="pc-text">今月の売上、まだ数字が出てこない…</p>
+        <div class="pc-arrow">SEE SOLUTION →</div>
+      </a>
+      <a href="#solution-2" class="problem-card" data-solution="solution-2">
+        <span class="pc-role">SALES</span>
+        <p class="pc-text">あのお客様、フォロー忘れてた…</p>
+        <div class="pc-arrow">SEE SOLUTION →</div>
+      </a>
+      <a href="#solution-3" class="problem-card" data-solution="solution-3">
+        <span class="pc-role">FINANCE</span>
+        <p class="pc-text">月末の請求書発行、毎月1日仕事になる…</p>
+        <div class="pc-arrow">SEE SOLUTION →</div>
+      </a>
+      <a href="#solution-4" class="problem-card" data-solution="solution-4">
+        <span class="pc-role">WAREHOUSE</span>
+        <p class="pc-text">棚卸し、また数字が帳簿と合わない…</p>
+        <div class="pc-arrow">SEE SOLUTION →</div>
+      </a>
+      <a href="#solution-5" class="problem-card" data-solution="solution-5">
+        <span class="pc-role">RECEPTION</span>
+        <p class="pc-text">同じ問い合わせに、毎回手で返してる…</p>
+        <div class="pc-arrow">SEE SOLUTION →</div>
+      </a>
+      <a href="#solution-6" class="problem-card" data-solution="solution-6">
+        <span class="pc-role">HR</span>
+        <p class="pc-text">候補者との日程調整、もう5往復目…</p>
+        <div class="pc-arrow">SEE SOLUTION →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Track Record / 実績一覧（上部に移動） ========== -->
+<div class="wave-divider" style="margin:40px auto"></div>
+<section class="track" id="track">
+  <div class="track-intro fade">
+    <div class="section-label">TRACK RECORD</div>
+    <div class="ornament"><span></span></div>
+    <h2 class="section-title" style="margin-bottom:24px">
+      すでに、これだけ動いています。
+      <small>Real tools, running 24/7, every day.</small>
+    </h2>
+    <p style="font-size:14.5px;color:var(--ink-soft);line-height:2.1;max-width:680px;margin:0 auto">
+      自社で <span class="key">15以上のツール</span>を内製・運用し、毎日 <span class="key solid">無人で稼働</span>させています。<br>
+      下記はそのうち、画面を公開できるものの一部です。<br>
+      <strong style="color:var(--green-1)">「自社で使えないものは、お客様にも売らない。」</strong>これが私たちの原則です。
+    </p>
+  </div>
+
+  <!-- 4つの大きな数字（実績サマリ）— 各人物アイコン付き -->
+  <div class="track-stats fade">
+    <div class="stat-card">
+      <svg class="stat-person" viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="30" cy="22" r="13" fill="#f4d3a8" stroke="#1a1a1a" stroke-width="2"/>
+        <path d="M 18 14 Q 18 6 30 6 Q 42 6 42 14 L 42 18 Q 36 14 30 15 Q 24 14 18 18 Z" fill="#1a1a1a"/>
+        <path d="M 12 70 L 8 50 Q 14 38 30 38 Q 46 38 52 50 L 48 70 Z" fill="#f9d748" stroke="#1a1a1a" stroke-width="2"/>
+        <rect x="26" y="38" width="8" height="6" fill="#1a1a1a"/>
+        <circle cx="26" cy="22" r="1.5" fill="#1a1a1a"/>
+        <circle cx="34" cy="22" r="1.5" fill="#1a1a1a"/>
+        <path d="M 27 28 Q 30 30 33 28" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+      </svg>
+      <div class="stat-num">15<small>以上</small></div>
+      <div class="stat-label">稼働中ツール<small>RUNNING TOOLS</small></div>
+    </div>
+    <div class="stat-card">
+      <svg class="stat-person" viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="30" cy="22" r="13" fill="#f4d3a8" stroke="#1a1a1a" stroke-width="2"/>
+        <path d="M 17 18 Q 17 5 30 5 Q 43 5 43 18 L 41 18 L 35 16 L 25 17 L 19 18 Z" fill="#4a3520"/>
+        <path d="M 12 70 L 8 50 Q 14 38 30 38 Q 46 38 52 50 L 48 70 Z" fill="#4abf91" stroke="#1a1a1a" stroke-width="2"/>
+        <rect x="22" y="38" width="16" height="2" fill="#1a1a1a"/>
+        <circle cx="26" cy="22" r="1.5" fill="#1a1a1a"/>
+        <circle cx="34" cy="22" r="1.5" fill="#1a1a1a"/>
+        <path d="M 27 28 Q 30 30 33 28" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+      </svg>
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">無人で稼働中<small>UNATTENDED</small></div>
+    </div>
+    <div class="stat-card">
+      <svg class="stat-person" viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="30" cy="22" r="13" fill="#f4d3a8" stroke="#1a1a1a" stroke-width="2"/>
+        <path d="M 16 20 Q 14 5 30 5 Q 46 5 44 20 L 41 18 L 19 18 Z" fill="#6a6660"/>
+        <path d="M 12 70 L 8 50 Q 14 38 30 38 Q 46 38 52 50 L 48 70 Z" fill="#e8a098" stroke="#1a1a1a" stroke-width="2"/>
+        <path d="M 22 38 L 30 50 L 38 38" stroke="#1a1a1a" stroke-width="1.5" fill="none"/>
+        <circle cx="26" cy="22" r="1.5" fill="#1a1a1a"/>
+        <circle cx="34" cy="22" r="1.5" fill="#1a1a1a"/>
+        <path d="M 27 28 Q 30 30 33 28" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+      </svg>
+      <div class="stat-num">3<small>年</small></div>
+      <div class="stat-label">本番運用歴<small>PRODUCTION HISTORY</small></div>
+    </div>
+    <div class="stat-card">
+      <svg class="stat-person" viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="30" cy="22" r="13" fill="#f4d3a8" stroke="#1a1a1a" stroke-width="2"/>
+        <path d="M 17 14 Q 17 4 30 4 Q 43 4 43 14 L 43 19 L 38 16 L 22 16 L 17 19 Z" fill="#1a1a1a"/>
+        <path d="M 12 70 L 8 50 Q 14 38 30 38 Q 46 38 52 50 L 48 70 Z" fill="#5fa8d3" stroke="#1a1a1a" stroke-width="2"/>
+        <circle cx="30" cy="44" r="3" fill="#1a1a1a"/>
+        <circle cx="26" cy="22" r="1.5" fill="#1a1a1a"/>
+        <circle cx="34" cy="22" r="1.5" fill="#1a1a1a"/>
+        <path d="M 26 28 Q 30 31 34 28" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+      </svg>
+      <div class="stat-num">0<small>件</small></div>
+      <div class="stat-label">重大障害<small>CRITICAL DOWN</small></div>
+    </div>
+  </div>
+
+  <!-- 画像入り実績カード -->
+  <div class="track-grid">
+
+    <div class="track-card fade">
+      <div class="ss">
+        <img src="assets/portfolio/oem-portal.png" alt="OEM参入カテゴリ管理ポータル" loading="lazy"/>
+        <div class="ss-overlay">SELF-DEV / 自社運用</div>
+        <div class="ss-status"><span class="dot"></span>LIVE</div>
+      </div>
+      <div class="body">
+        <h3>OEM参入カテゴリ管理ポータル</h3>
+        <p class="desc">Amazon全カテゴリのBSR上位商品を自動収集し、3,118カテゴリを優先度付きでレビュー＆深掘り。次の参入商品が一目で分かるダッシュボード。</p>
+        <div class="meta">
+          <span>Web Dashboard</span>
+          <span>Daily Auto-Fetch</span>
+          <span>3,118 Categories</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="track-card fade">
+      <div class="ss">
+        <img src="assets/portfolio/pricer-browser.png" alt="Amazon滞留商品 自動値下げ" loading="lazy"/>
+        <div class="ss-overlay">PROD / 本番稼働中</div>
+        <div class="ss-status"><span class="dot"></span>LIVE</div>
+      </div>
+      <div class="body">
+        <h3>Amazon 滞留商品 自動値下げシステム</h3>
+        <p class="desc">プライスター画面をPlaywrightで自動操作。滞留判定→競合価格分析→値下げ実行→LINE通知まで、毎朝7時に無人で動き続けています。</p>
+        <div class="meta">
+          <span>LaunchAgent</span>
+          <span>毎朝07:00</span>
+          <span>watchdog付き</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="track-card fade">
+      <div class="ss">
+        <img src="assets/portfolio/hotpepper-demo.png" alt="ホットペッパー予約LINE通知" loading="lazy"/>
+        <div class="ss-overlay">PROD / 販売中</div>
+        <div class="ss-status"><span class="dot"></span>LIVE</div>
+      </div>
+      <div class="body">
+        <h3>予約自動LINE通知＆カレンダー連携</h3>
+        <p class="desc">受信メール→AI解析→LINE通知＆Googleカレンダー登録までを2秒で完了。サロン業界向けに販売中の主力プロダクト。</p>
+        <div class="meta">
+          <span>美容・サロン</span>
+          <span>導入実績あり</span>
+          <span>パッケージ提供</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="track-card fade">
+      <div class="ss">
+        <img src="assets/portfolio/fp-compass-demo.png" alt="AI議事録 自動化" loading="lazy"/>
+        <div class="ss-overlay">PROD / 顧客運用</div>
+        <div class="ss-status"><span class="dot"></span>LIVE</div>
+      </div>
+      <div class="body">
+        <h3>FP Compass AI議事録システム</h3>
+        <p class="desc">Zoom録画→自動文字起こし→AI要約→顧客台帳に自動保存。FP事務所向けに導入済み、顧客対応の議事録作成が3ステップ・1分で完了。</p>
+        <div class="meta">
+          <span>FP業界向け</span>
+          <span>GAS+LINE+CRM</span>
+          <span>本番運用中</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="track-card fade">
+      <div class="ss">
+        <img src="assets/portfolio/pricer-spapi.png" alt="Skeleton FBA 統合ダッシュボード" loading="lazy"/>
+        <div class="ss-overlay">PROD / 自社運用</div>
+        <div class="ss-status"><span class="dot"></span>LIVE</div>
+      </div>
+      <div class="body">
+        <h3>Amazon FBA 統合ダッシュボード</h3>
+        <p class="desc">出品・在庫・注文・分析の全機能を1画面に統合。本日の売上・FBA注文数・売れ筋ランキングを即把握、Amazon SP-API直結で月¥5,500プライスター代替を実現。</p>
+        <div class="meta">
+          <span>SP-API直結</span>
+          <span>クイックメニュー</span>
+          <span>月額ツール代替</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="track-card fade">
+      <div class="ss">
+        <img src="assets/portfolio/fp-dashboard.png" alt="FP Compass 顧客台帳CRM" loading="lazy"/>
+        <div class="ss-overlay">CLIENT / 受託案件</div>
+        <div class="ss-status"><span class="dot"></span>LIVE</div>
+      </div>
+      <div class="body">
+        <h3>顧客台帳CRM ─ 優先度自動判定</h3>
+        <p class="desc">「ライフイベントの近さ × 重要度 × 最終接触からの経過」を自動採点して、今日連絡すべき顧客を優先度順に表示。FP事務所向けに本番運用中（30名 / 管理資産6.83億）。</p>
+        <div class="meta">
+          <span>FP業界</span>
+          <span>優先度AI判定</span>
+          <span>顧客一覧画面</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="track-card fade">
+      <div class="ss">
+        <img src="assets/portfolio/fp-line.png" alt="LINE配信ダッシュボード" loading="lazy"/>
+        <div class="ss-overlay">CLIENT / 受託案件</div>
+        <div class="ss-status"><span class="dot"></span>LIVE</div>
+      </div>
+      <div class="body">
+        <h3>LINE自動配信＆誕生日リマインド</h3>
+        <p class="desc">LINE公式アカウントの友だち管理、シナリオ別自動配信スケジュール、誕生日リスト、送信ログを1画面に集約。月次レポート・教育資金プラン提案などのシナリオを自動配信。</p>
+        <div class="meta">
+          <span>LINE公式連携</span>
+          <span>自動シナリオ</span>
+          <span>誕生日通知</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="track-card fade">
+      <div class="ss">
+        <img src="assets/portfolio/makuake-list.png" alt="マクアケ支援者管理＋発送リスト" loading="lazy"/>
+        <div class="ss-overlay">PROD / 自社運用</div>
+        <div class="ss-status"><span class="dot"></span>LIVE</div>
+      </div>
+      <div class="body">
+        <h3>クラファン 支援者管理＋発送リスト</h3>
+        <p class="desc">マクアケ等のクラファン支援者一覧、色サイズ別在庫、Gmail応援購入通知の自動取り込みまでを統合。支援14名・発送18本・売上¥367,200を一画面でリアルタイム集計。</p>
+        <div class="meta">
+          <span>Gmail連携</span>
+          <span>色・サイズ別</span>
+          <span>売上集計</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="track-card fade">
+      <div class="ss">
+        <img src="assets/portfolio/lune-line.png" alt="EC商品 一括登録パッケージ" loading="lazy"/>
+        <div class="ss-overlay">CLIENT / 受託案件</div>
+        <div class="ss-status"><span class="dot"></span>LIVE</div>
+      </div>
+      <div class="body">
+        <h3>化粧品EC 商品一括登録パッケージ</h3>
+        <p class="desc">化粧品ブランド「フェムーン」向けに、Lea EC管理画面への商品登録をワンクリックでコピペできるUI。商品名・料金・カテゴリ・説明文の登録手順を効率化、登録ミスをゼロに。</p>
+        <div class="meta">
+          <span>EC商品登録</span>
+          <span>ワンクリックコピー</span>
+          <span>カテゴリ自動振分</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="track-card fade">
+      <div class="ss" style="background:#5a1818">
+        <img src="assets/portfolio/sedolist-mobile.png" alt="スマホ仕入れスキャナー" loading="lazy" style="object-fit:contain;background:#fff"/>
+        <div class="ss-overlay">PROD / 自社運用</div>
+        <div class="ss-status"><span class="dot"></span>LIVE</div>
+      </div>
+      <div class="body">
+        <h3>スマホ仕入れスキャナー (sedolist mobile)</h3>
+        <p class="desc">店舗仕入れ現場で、スマホのバーコードリーダー or 978コードでスキャン→在庫Hubへ自動送信。仕入れ判断の利益率・ROIをスマホ片手で即確認。Android/iOS対応。</p>
+        <div class="meta">
+          <span>スマホアプリ</span>
+          <span>バーコードスキャン</span>
+          <span>Hub自動送信</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- その他のツール（画像なし、リストでまとめて見せる） -->
+  <div class="track-more fade">
+    <h4>他にも、これだけのツールが毎日稼働しています</h4>
+    <div class="track-more-grid">
+      <div class="track-more-item">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h6M9 17h4"/></svg></div>
+        <div class="txt"><strong>経理証憑 月次自動DL</strong>毎月1日9時、SaaS各社の請求書PDFを自動収集→Drive保存。LaunchAgent稼働中。</div>
+      </div>
+      <div class="track-more-item">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+        <div class="txt"><strong>Google Payments Chrome拡張</strong>chrome.debugger APIを使った請求書自動DL。社内SaaS全社の月次収集が無人化。</div>
+      </div>
+      <div class="track-more-item">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <div class="txt"><strong>せどりすと→プライスター連携</strong>毎朝6時、仕入れCSVメールから自動変換→Amazon出品まで一気通貫。</div>
+      </div>
+      <div class="track-more-item">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <div class="txt"><strong>PEGAT 巡回監視デーモン</strong>LINE48アカウントを巡回し、★5レビュー報告を自動検出→アマギフ自動送信。</div>
+      </div>
+      <div class="track-more-item">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div>
+        <div class="txt"><strong>Instagram 自動取得＆週次分析</strong>毎日4時にデータ取得、金曜22時に週次レポートPDF自動生成。</div>
+      </div>
+      <div class="track-more-item">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
+        <div class="txt"><strong>Amazonクッション 月次集計</strong>販売実績→コンサル用スプシ自動更新。毎月2日10時実行、完了通知付き。</div>
+      </div>
+      <div class="track-more-item">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="9" r="1"/></svg></div>
+        <div class="txt"><strong>メルカリ古着 自動発送通知</strong>取引メッセージ→発送通知→評価依頼まで自動化。複数アカウント横断管理。</div>
+      </div>
+      <div class="track-more-item">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-6"/></svg></div>
+        <div class="txt"><strong>客先LINEクォータ巡回監視</strong>顧客の各GASのLINEメッセージ消費を75%/100%で検知→メール通知→提案。</div>
+      </div>
+      <div class="track-more-item">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.5 7L23 10l-5.5 5L19 22l-7-4-7 4 1.5-7L1 10l7.5-1z"/></svg></div>
+        <div class="txt"><strong>下書きストック SNS投稿管理</strong>投稿ネタを下書きで蓄積、コピー＆フィルタ＆localStorage状態保存。Hikaru運用に採用。</div>
+      </div>
+      <div class="track-more-item">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 2l-2 18-9 4-9-4L0 2z"/><path d="M16 8l-5 7-3-3"/></svg></div>
+        <div class="txt"><strong>daily-audit 自動異常検知</strong>全LaunchAgent/cronを毎朝7時に健康診断、異常があれば即LINE通知＆引き継ぎ。</div>
+      </div>
+      <div class="track-more-item">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></div>
+        <div class="txt"><strong>越境クラファン候補スカウト</strong>海外クラファンを自動巡回→輸入候補リスト化＆事業者向けアウトリーチ自動化。</div>
+      </div>
+      <div class="track-more-item">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 8h18"/><circle cx="7" cy="6" r="0.5"/></svg></div>
+        <div class="txt"><strong>OEM-Portal 24/7常駐</strong>Cloudflare quick tunnel経由でMac miniから公開、Bearer認証で全機能セキュア化。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== About ========== -->
+<div class="wave-divider" style="margin:40px auto"></div>
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual fade">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <!-- 福井の山並み -->
+          <rect width="400" height="400" fill="#f8f7f2"/>
+          <path d="M 0 280 L 60 220 L 110 250 L 170 180 L 230 240 L 290 200 L 360 240 L 400 220 L 400 400 L 0 400 Z" fill="#1a3a2a" opacity="0.85"/>
+          <path d="M 0 320 L 80 280 L 150 310 L 220 270 L 300 300 L 400 280 L 400 400 L 0 400 Z" fill="#2a4d3a"/>
+
+          <!-- 太陽（金） -->
+          <circle cx="310" cy="100" r="36" fill="#d4a900" opacity="0.9"/>
+          <circle cx="310" cy="100" r="36" fill="none" stroke="#d4a900" stroke-width="0.8" opacity="0.4"/>
+
+          <!-- 鳥のシルエット -->
+          <path d="M 80 130 q 6 -6 12 0 q 6 -6 12 0" fill="none" stroke="#1a3a2a" stroke-width="1.2"/>
+          <path d="M 130 110 q 5 -5 10 0 q 5 -5 10 0" fill="none" stroke="#1a3a2a" stroke-width="1.2"/>
+
+          <!-- 雲 -->
+          <ellipse cx="80" cy="80" rx="36" ry="10" fill="#fff" opacity="0.85"/>
+          <ellipse cx="190" cy="60" rx="44" ry="11" fill="#fff" opacity="0.7"/>
+
+          <!-- 中央のロゴ風 -->
+          <g transform="translate(200,360)" text-anchor="middle" font-family="Hiragino Mincho ProN, serif">
+            <text fill="#fdfcf8" font-size="11" letter-spacing="4">FROM FUKUI</text>
+          </g>
+        </svg>
+      </div>
+      <div class="about-text fade">
+        <div class="section-label">ABOUT US</div>
+        <h2 class="section-title">
+          IT人材ゼロの現場でも、<br>回る仕組みを。
+          <small>About Skeleton Inc.</small>
+        </h2>
+        <p>
+          スケルトン株式会社は、<strong>中小事業者の業務自動化</strong>を専門とする会社です。
+          サロン、物販事業者、小規模法人。<br>
+          「ITに詳しいスタッフがいなくても、毎朝ボタンひとつで業務が回る」状態をつくることが、私たちの仕事です。
+        </p>
+        <p>
+          2026年4月、福井で設立。<br>
+          代表自身が物販・サロン経営の現場で <strong>「面倒な手作業を自動化する仕組み」</strong> を10以上自社運用してきました。<br>
+          そこで培った自動化ノウハウを、地域の事業者向けに提供しています。
+        </p>
+        <p>
+          大手SIerが来ない。地元IT業者にAI自動化できる会社はそもそも無い。<br>
+          だからこそ、<strong>福井から始める意味</strong>がある。私たちはそう考えています。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Mission ========== -->
+<div class="wave-divider" style="margin:40px auto"></div>
+<section class="mission" id="mission">
+  <svg class="mission-decor" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="98" fill="none" stroke="#d4a900" stroke-width="1"/>
+    <circle cx="100" cy="100" r="70" fill="none" stroke="#d4a900" stroke-width="1"/>
+    <circle cx="100" cy="100" r="40" fill="none" stroke="#d4a900" stroke-width="1"/>
+  </svg>
+  <div class="container fade">
+    <div class="section-label">OUR MISSION</div>
+    <div class="ornament" style="margin:18px auto 28px"><span style="background:var(--gold)"></span></div>
+    <h2>
+      ITが苦手な現場でも、<br>
+      <span class="accent">ボタンひとつで業務が回る。</span>
+    </h2>
+    <div class="mission-values">
+      <div class="value-card">
+        <div class="value-num">01 / VALUE</div>
+        <div class="value-title">現場ファースト</div>
+        <p>経営者・スタッフが「触れる」設計でなければ意味がない。技術的な美しさより、現場で使われる仕組みを最優先します。</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">02 / VALUE</div>
+        <div class="value-title">販売直結</div>
+        <p>売れるか／使われるか、で判断する。お預かりした費用がきちんと事業の利益として返ってくる自動化だけをご提案します。</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">03 / VALUE</div>
+        <div class="value-title">小さく、検証から</div>
+        <p>仮説で大物を作らない。まず最小単位で動かし、現場の手応えを確認しながら段階的に広げていく方法を採ります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Service ========== -->
+<div class="wave-divider" style="margin:40px auto"></div>
+<section class="service" id="service">
+  <div class="container">
+    <div class="section-intro fade" style="text-align:center;margin-bottom:64px">
+      <div class="section-label">OUR SERVICE</div>
+      <div class="ornament" style="margin:14px auto 24px"><span></span></div>
+      <h2 class="section-title" style="margin-bottom:24px">
+        Skeleton 自動化ラボ
+        <small>3段階で、無理なく自動化を始められます</small>
+      </h2>
+      <p style="max-width:620px;margin:0 auto;font-size:14.5px;color:var(--ink-soft);line-height:2">
+        いきなり大きな投資はしません。<br>
+        「現場の困りごとを聞く」→「ひとつ自動化してみる」→「成果が出た領域を広げる」の3ステップでお付き合いします。
+      </p>
+    </div>
+    <div class="service-grid fade">
+
+      <div class="service-card">
+        <div class="service-tier">TIER 0 / DIAGNOSIS</div>
+        <div class="service-name">無料 業務お悩み診断</div>
+        <div class="service-price">¥0</div>
+        <p>30分のオンライン面談で、御社の「自動化できそうな業務」を洗い出し、優先順位つきPDFレポートをお渡しします。</p>
+        <ul>
+          <li>30分Web面談（Zoom等）</li>
+          <li>業務棚卸しヒアリング</li>
+          <li>診断レポート（PDF）</li>
+          <li>その場での契約は一切なし</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-tier">TIER 1 / TRIAL</div>
+        <div class="service-name">ピンポイント自動化</div>
+        <div class="service-price">¥9,800<small>／1業務</small></div>
+        <p>診断で見つかった業務のうち、ひとつだけを実際に自動化してお試しいただけるプランです。効果を実感してから次へ。</p>
+        <ul>
+          <li>業務 1点 を自動化</li>
+          <li>納品まで最短1週間</li>
+          <li>運用マニュアル付き</li>
+          <li>1ヶ月の伴走サポート</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-tier">TIER 2 / FULL</div>
+        <div class="service-name">本気の業務自動化パック</div>
+        <div class="service-price">¥30万〜</div>
+        <p>複数業務をまとめて自動化し、毎月の運用までセットで請け負います。月額の保守でずっと安定して動かし続けます。</p>
+        <ul>
+          <li>複数業務の一括自動化</li>
+          <li>運用設計＋実装＋検証</li>
+          <li>月額保守 ¥3,000〜10,000</li>
+          <li>専任Jobs（AI CEO）伴走</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== Works / お悩み別 解決ツール ========== -->
+<div class="wave-divider" style="margin:40px auto"></div>
+<section class="works" id="works">
+  <div class="container">
+    <div class="section-label fade">SOLUTIONS</div>
+    <div class="ornament fade" style="margin:14px 0 24px;justify-content:flex-start"><span></span></div>
+    <h2 class="section-title fade">
+      その「あるある」、自動化できます。
+      <small>あなたの "本当はやりたくない仕事" は、ここにありますか？</small>
+    </h2>
+    <p style="max-width:720px;margin-bottom:64px;color:var(--ink-soft);font-size:14px;line-height:2.1" class="fade">
+      業種を問わず、中小企業ならどこにでもある6つの "あるある" をご用意しました。<br>
+      下のチェックリストを読みながら、「あ、これ うちだ」と思った瞬間が、自動化を始めるサインです。<br>
+      ぜんぶ、現場で本当に動いている設計です。
+    </p>
+    <div class="works-grid">
+
+      <!-- ========== 解決1: 社長 — 月次の数字 ========== -->
+      <div class="work-item fade" id="solution-1">
+        <div class="work-preview">
+          <div class="work-preview-bar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div class="url">monthly-dashboard / 自社運用</div>
+          </div>
+          <span class="work-preview-badge green">LIVE / 自社運用</span>
+          <img src="assets/portfolio/fp-dashboard.png" alt="月次ダッシュボード実画面" loading="lazy"/>
+          <div class="work-preview-foot">▼ 詳しくは下記をご覧ください</div>
+        </div>
+        <div class="work-body">
+        <div class="work-head">
+          <div class="work-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-6"/></svg>
+          </div>
+          <div class="work-head-body">
+            <div class="work-cat">▶ 社長・経営者のお悩み</div>
+            <div class="work-title">月次ダッシュボード 自動生成</div>
+          </div>
+        </div>
+        <div class="work-quote">
+          「今月の数字、まだ出てこない…」
+        </div>
+        <div class="work-aruru">
+          <h4>こんな瞬間、ありませんか？</h4>
+          <ul>
+            <li>月次の売上・粗利が出るのは、いつも翌月の中旬</li>
+            <li>経営会議の数字を経理に催促し、間に合わせで揃える</li>
+            <li>予算と実績の比較が、毎月手作りのExcel</li>
+            <li>「先週はどうだった?」と聞かれても、即答できない</li>
+            <li>気づいた時には、月末まであと3日しかなかった</li>
+          </ul>
+        </div>
+        <div class="work-solve">
+          <h4>そのモヤモヤ、全部終わりにできます</h4>
+          <p>会計ソフト・販売管理・銀行口座のデータを毎朝自動集計して、Googleスプレッドシートのダッシュボードに反映。売上・粗利・予算進捗・前年比、ぜんぶ翌朝には見えます。経営会議の準備は不要、いつでも最新です。</p>
+        </div>
+        <div class="work-result">
+          <div class="work-result-side">
+            <span class="lbl">これまで</span>
+            <span class="val"><strong>15日</strong>遅れ<br><small style="font-size:12px;opacity:0.78;letter-spacing:0.1em">会議直前まで揃わない</small></span>
+          </div>
+          <div class="work-result-arrow">→</div>
+          <div class="work-result-side">
+            <span class="lbl">これから</span>
+            <span class="val"><strong>毎朝</strong>最新<br><small style="font-size:12px;opacity:0.78;letter-spacing:0.1em">判断スピード3倍</small></span>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- ========== 解決2: 営業 — 顧客フォロー ========== -->
+      <div class="work-item fade" id="solution-2">
+        <div class="work-preview">
+          <div class="work-preview-bar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div class="url">crm-follow / 受託案件</div>
+          </div>
+          <span class="work-preview-badge">LIVE / 受託案件</span>
+          <img src="assets/portfolio/fp-line.png" alt="LINE自動フォロー実画面" loading="lazy"/>
+          <div class="work-preview-foot">▼ 詳しくは下記をご覧ください</div>
+        </div>
+        <div class="work-body">
+        <div class="work-head">
+          <div class="work-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 12V8a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h7"/><path d="M22 16l-3 3-2-2"/><circle cx="9" cy="11" r="2"/></svg>
+          </div>
+          <div class="work-head-body">
+            <div class="work-cat">▶ 営業担当のお悩み</div>
+            <div class="work-title">顧客フォロー 自動リマインド</div>
+          </div>
+        </div>
+        <div class="work-quote">
+          「あのお客様、フォロー忘れてた…」
+        </div>
+        <div class="work-aruru">
+          <h4>こんな瞬間、ありませんか？</h4>
+          <ul>
+            <li>商談後の「3日後にお礼メール」が、抜けることがある</li>
+            <li>見積書を送ったまま、追いかけタイミングを逃した</li>
+            <li>「最後にいつ会いましたっけ?」がパッと出てこない</li>
+            <li>誕生日・記念日のお祝い連絡を、後から気づく</li>
+            <li>名刺ホルダーが膨らんでいるのに、活用できていない</li>
+          </ul>
+        </div>
+        <div class="work-solve">
+          <h4>そのモヤモヤ、全部終わりにできます</h4>
+          <p>顧客台帳に「最終接触日」「次回フォロー日」を自動記録。リマインドが必要なお客様だけ、毎朝LINEに「今日フォローする顧客リスト」が届きます。お礼メールのテンプレ送信、誕生日・契約更新前の連絡まで全部自動です。</p>
+        </div>
+        <div class="work-result">
+          <div class="work-result-side">
+            <span class="lbl">これまで</span>
+            <span class="val">漏れ <strong>月3〜5</strong>件<br><small style="font-size:12px;opacity:0.78;letter-spacing:0.1em">失注の機会損失</small></span>
+          </div>
+          <div class="work-result-arrow">→</div>
+          <div class="work-result-side">
+            <span class="lbl">これから</span>
+            <span class="val">漏れ <strong>ゼロ</strong><br><small style="font-size:12px;opacity:0.78;letter-spacing:0.1em">リピート率が上がる</small></span>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- ========== 解決3: 経理 — 請求書発行 ========== -->
+      <div class="work-item fade" id="solution-3">
+        <div class="work-preview">
+          <div class="work-preview-bar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div class="url">invoice-batch / 自社運用</div>
+          </div>
+          <span class="work-preview-badge green">LIVE / 自社運用</span>
+          <img src="assets/portfolio/lune-line.png" alt="月末請求書一括発行実画面" loading="lazy"/>
+          <div class="work-preview-foot">▼ 詳しくは下記をご覧ください</div>
+        </div>
+        <div class="work-body">
+        <div class="work-head">
+          <div class="work-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+          </div>
+          <div class="work-head-body">
+            <div class="work-cat">▶ 経理担当のお悩み</div>
+            <div class="work-title">月末請求書 一括発行＆送付</div>
+          </div>
+        </div>
+        <div class="work-quote">
+          「月末の請求書発行、毎月まる1日仕事…」
+        </div>
+        <div class="work-aruru">
+          <h4>こんな瞬間、ありませんか？</h4>
+          <ul>
+            <li>取引先20社分の請求書を、Wordで1社ずつコピペ作成</li>
+            <li>金額・適用税率・宛先住所、入力ミスが毎月どれか発生</li>
+            <li>PDF化して、メールで1社ずつ送信、押印が必要な所は郵送</li>
+            <li>入金確認は通帳と照合、未入金の催促メモが机に貼ってある</li>
+            <li>月初2日間、経理さんが本来の仕事に入れない</li>
+          </ul>
+        </div>
+        <div class="work-solve">
+          <h4>そのモヤモヤ、全部終わりにできます</h4>
+          <p>取引先マスタと月次の取引データから、請求書PDFを全社分一括自動生成。インボイス対応・送付状・宛先メールまで自動で組み立て、月末25日にワンクリックで全社送信。入金確認も口座データと自動照合、未入金は自動でリマインドが飛びます。</p>
+        </div>
+        <div class="work-result">
+          <div class="work-result-side">
+            <span class="lbl">これまで</span>
+            <span class="val">月末 <strong>1日</strong>仕事<br><small style="font-size:12px;opacity:0.78;letter-spacing:0.1em">入力ミス＆催促漏れ</small></span>
+          </div>
+          <div class="work-result-arrow">→</div>
+          <div class="work-result-side">
+            <span class="lbl">これから</span>
+            <span class="val"><strong>1クリック</strong>で全社<br><small style="font-size:12px;opacity:0.78;letter-spacing:0.1em">催促も自動で進む</small></span>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- ========== 解決4: 倉庫 — 在庫管理 ========== -->
+      <div class="work-item fade" id="solution-4">
+        <div class="work-preview">
+          <div class="work-preview-bar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div class="url">inventory-track / 自社運用</div>
+          </div>
+          <span class="work-preview-badge">LIVE / 自社運用</span>
+          <img src="assets/portfolio/makuake-list.png" alt="在庫管理＋アラート実画面" loading="lazy"/>
+          <div class="work-preview-foot">▼ 詳しくは下記をご覧ください</div>
+        </div>
+        <div class="work-body">
+        <div class="work-head">
+          <div class="work-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7l9-4 9 4M3 7v10l9 4 9-4V7M3 7l9 4 9-4M12 11v10"/></svg>
+          </div>
+          <div class="work-head-body">
+            <div class="work-cat">▶ 倉庫・在庫担当のお悩み</div>
+            <div class="work-title">在庫リアルタイム把握＆発注アラート</div>
+          </div>
+        </div>
+        <div class="work-quote">
+          「棚卸し、また数字が帳簿と合わない…」
+        </div>
+        <div class="work-aruru">
+          <h4>こんな瞬間、ありませんか？</h4>
+          <ul>
+            <li>月末の棚卸しで、実数と帳簿が毎回ズレる</li>
+            <li>営業から「あれ、在庫まだある?」と聞かれて、倉庫まで走る</li>
+            <li>気づいたら欠品。お客様への納期回答が後手</li>
+            <li>逆に動かない在庫が倉庫の奥で眠っている</li>
+            <li>発注タイミングが完全に属人化、休まれると詰む</li>
+          </ul>
+        </div>
+        <div class="work-solve">
+          <h4>そのモヤモヤ、全部終わりにできます</h4>
+          <p>入出庫データを販売管理・倉庫システムから自動連携、リアルタイム在庫がスマホでいつでも確認可能に。発注点を下回ったら自動でアラート、デッドストックも毎月レポート。棚卸しは、画面の数字とスキャンで30分で終わります。</p>
+        </div>
+        <div class="work-result">
+          <div class="work-result-side">
+            <span class="lbl">これまで</span>
+            <span class="val">棚卸し <strong>半日</strong><br><small style="font-size:12px;opacity:0.78;letter-spacing:0.1em">欠品・過剰が常態化</small></span>
+          </div>
+          <div class="work-result-arrow">→</div>
+          <div class="work-result-side">
+            <span class="lbl">これから</span>
+            <span class="val">棚卸し <strong>30分</strong><br><small style="font-size:12px;opacity:0.78;letter-spacing:0.1em">欠品ゼロ・在庫適正化</small></span>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- ========== 解決5: 受付・事務 — 問い合わせ対応 ========== -->
+      <div class="work-item fade" id="solution-5">
+        <div class="work-preview">
+          <div class="work-preview-bar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div class="url">ai-firstreply / 販売中</div>
+          </div>
+          <span class="work-preview-badge green">LIVE / 販売中</span>
+          <img src="assets/portfolio/hotpepper-demo.png" alt="問い合わせAI一次対応実画面" loading="lazy"/>
+          <div class="work-preview-foot">▼ 詳しくは下記をご覧ください</div>
+        </div>
+        <div class="work-body">
+        <div class="work-head">
+          <div class="work-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg>
+          </div>
+          <div class="work-head-body">
+            <div class="work-cat">▶ 受付・事務のお悩み</div>
+            <div class="work-title">問い合わせ AI一次対応＆振り分け</div>
+          </div>
+        </div>
+        <div class="work-quote">
+          「同じ問い合わせに、毎回手で返してる…」
+        </div>
+        <div class="work-aruru">
+          <h4>こんな瞬間、ありませんか？</h4>
+          <ul>
+            <li>「営業時間は?」「住所は?」と、毎日同じ質問が来る</li>
+            <li>問い合わせメールの仕分けに、朝の30分が消える</li>
+            <li>電話を受けて、メモして、担当者に伝言する繰り返し</li>
+            <li>担当が外出中で、お客様を待たせてしまうことがある</li>
+            <li>金曜の夜・土日の問い合わせが、月曜の朝に山積み</li>
+          </ul>
+        </div>
+        <div class="work-solve">
+          <h4>そのモヤモヤ、全部終わりにできます</h4>
+          <p>問い合わせフォーム・LINE・メールに来た質問を、AIが24時間一次対応。よくある質問は即答、複雑な案件は担当者に自動振り分け＋LINE通知。回答テンプレは御社の過去のやり取りから自動学習します。</p>
+        </div>
+        <div class="work-result">
+          <div class="work-result-side">
+            <span class="lbl">これまで</span>
+            <span class="val">対応 <strong>3時間</strong>/日<br><small style="font-size:12px;opacity:0.78;letter-spacing:0.1em">夜間・休日は待機</small></span>
+          </div>
+          <div class="work-result-arrow">→</div>
+          <div class="work-result-side">
+            <span class="lbl">これから</span>
+            <span class="val">AIが <strong>24h</strong> 対応<br><small style="font-size:12px;opacity:0.78;letter-spacing:0.1em">人は判断だけに集中</small></span>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- ========== 解決6: 人事 — 採用日程調整 ========== -->
+      <div class="work-item fade" id="solution-6">
+        <div class="work-preview">
+          <div class="work-preview-bar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div class="url">hiring-schedule / 顧客運用</div>
+          </div>
+          <span class="work-preview-badge">LIVE / 顧客運用</span>
+          <img src="assets/portfolio/pricer-browser.png" alt="採用日程調整自動化実画面" loading="lazy"/>
+          <div class="work-preview-foot">▼ 詳しくは下記をご覧ください</div>
+        </div>
+        <div class="work-body">
+        <div class="work-head">
+          <div class="work-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><circle cx="12" cy="16" r="2"/></svg>
+          </div>
+          <div class="work-head-body">
+            <div class="work-cat">▶ 人事・採用のお悩み</div>
+            <div class="work-title">採用候補者 日程調整＆書類郵送 自動化</div>
+          </div>
+        </div>
+        <div class="work-quote">
+          「候補者との日程調整、もう5往復目…」
+        </div>
+        <div class="work-aruru">
+          <h4>こんな瞬間、ありませんか？</h4>
+          <ul>
+            <li>面接候補者と、メールで日程の往復が5回以上続く</li>
+            <li>面接官3人のスケジュール調整が、半日仕事になる</li>
+            <li>応募者リストがExcelで、ステータス更新が手作業</li>
+            <li>内定後の入社書類を、何度も印刷・封入・郵送している</li>
+            <li>選考結果の通知メールも、1人ずつテンプレ手打ち</li>
+          </ul>
+        </div>
+        <div class="work-solve">
+          <h4>そのモヤモヤ、全部終わりにできます</h4>
+          <p>候補者には日程候補URLを送って自動予約、面接官カレンダーと同期。応募者ステータスは台帳で一元管理、合否通知メールはステータス変更で自動送信。入社書類は電子契約に切替えれば、郵送ゼロになります。</p>
+        </div>
+        <div class="work-result">
+          <div class="work-result-side">
+            <span class="lbl">これまで</span>
+            <span class="val">1人 <strong>90分</strong>調整<br><small style="font-size:12px;opacity:0.78;letter-spacing:0.1em">採用1件で20時間</small></span>
+          </div>
+          <div class="work-result-arrow">→</div>
+          <div class="work-result-side">
+            <span class="lbl">これから</span>
+            <span class="val">1人 <strong>5分</strong><br><small style="font-size:12px;opacity:0.78;letter-spacing:0.1em">採用1件で4時間</small></span>
+          </div>
+        </div>
+        </div>
+      </div>
+
+    </div>
+    <p style="text-align:center;margin-top:48px;font-size:13px;color:var(--ink-soft);letter-spacing:0.1em" class="fade">
+      ※ 上の6つは、よくある例です。「これは違うけど…」という方は、次の家へどうぞ ▼
+    </p>
+  </div>
+</section>
+
+<!-- ========== Anything / 看板のない家 ========== -->
+<div class="wave-divider" style="margin:40px auto"></div>
+<section class="anything" id="anything">
+  <div class="anything-inner">
+    <div class="anything-door fade">
+      <!-- 看板のない家＋光の漏れる扉 SVG -->
+      <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" aria-label="看板のない家">
+        <defs>
+          <linearGradient id="doorLight" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#d4a900"/>
+            <stop offset="100%" stop-color="#f4d3a8"/>
+          </linearGradient>
+          <linearGradient id="houseFace" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#2a4d3a"/>
+            <stop offset="100%" stop-color="#1a3a2a"/>
+          </linearGradient>
+        </defs>
+        <!-- 月 -->
+        <circle cx="60" cy="60" r="22" fill="#fdfcf8" opacity="0.9"/>
+        <circle cx="68" cy="56" r="20" fill="#1a3a2a"/>
+        <!-- 星 -->
+        <circle cx="220" cy="40" r="1.5" fill="#fff" opacity="0.8"/>
+        <circle cx="250" cy="80" r="1" fill="#fff" opacity="0.6"/>
+        <circle cx="200" cy="100" r="1.2" fill="#fff" opacity="0.7"/>
+        <circle cx="40" cy="120" r="1" fill="#fff" opacity="0.6"/>
+        <circle cx="270" cy="140" r="1.5" fill="#fff" opacity="0.7"/>
+
+        <!-- 屋根 -->
+        <path d="M 40 200 L 150 110 L 260 200 Z" fill="#d4a900"/>
+        <path d="M 50 200 L 150 122 L 250 200 Z" fill="#2a4d3a"/>
+
+        <!-- 家本体 -->
+        <rect x="60" y="200" width="180" height="180" fill="url(#houseFace)"/>
+
+        <!-- 窓（明かり漏れ） -->
+        <rect x="84" y="226" width="34" height="34" fill="url(#doorLight)" opacity="0.85"/>
+        <rect x="182" y="226" width="34" height="34" fill="url(#doorLight)" opacity="0.4"/>
+        <line x1="101" y1="226" x2="101" y2="260" stroke="#1a3a2a" stroke-width="1"/>
+        <line x1="84" y1="243" x2="118" y2="243" stroke="#1a3a2a" stroke-width="1"/>
+        <line x1="199" y1="226" x2="199" y2="260" stroke="#1a3a2a" stroke-width="1"/>
+        <line x1="182" y1="243" x2="216" y2="243" stroke="#1a3a2a" stroke-width="1"/>
+
+        <!-- ドア（金の光が中央に漏れる） -->
+        <rect x="120" y="280" width="60" height="100" fill="#0d1f15" stroke="#d4a900" stroke-width="1.5"/>
+        <!-- 光の隙間（ドアが少し開いている） -->
+        <rect x="146" y="282" width="8" height="96" fill="url(#doorLight)"/>
+        <!-- 手前に漏れる光 -->
+        <path d="M 146 380 L 130 400 L 170 400 L 154 380 Z" fill="url(#doorLight)" opacity="0.5"/>
+        <!-- ノブ -->
+        <circle cx="138" cy="334" r="2" fill="#d4a900"/>
+
+        <!-- 看板（空白） -->
+        <rect x="80" y="148" width="140" height="36" fill="#0d1f15" stroke="#d4a900" stroke-width="1"/>
+        <text x="150" y="170" text-anchor="middle" font-family="Hiragino Mincho ProN, serif" font-size="14" fill="#d4a900" letter-spacing="6" opacity="0.6">？</text>
+
+        <!-- 看板を吊る紐 -->
+        <line x1="100" y1="148" x2="100" y2="138" stroke="#d4a900" stroke-width="0.8"/>
+        <line x1="200" y1="148" x2="200" y2="138" stroke="#d4a900" stroke-width="0.8"/>
+      </svg>
+    </div>
+
+    <div class="fade">
+      <div class="section-label">ANYTHING ELSE?</div>
+      <div class="ornament" style="margin:14px 0 24px;justify-content:flex-start"><span style="background:var(--gold)"></span></div>
+      <h2>
+        村のいちばん奥に、<br>
+        <span class="accent">看板のない家</span>があります。
+      </h2>
+      <p class="lead">
+        さっきの6つは、よくある "あるある" の例にすぎません。<br>
+        御社の現場には、もっと地味で、もっと特殊で、<br>
+        「これは、自動化なんて無理だろう」と諦めている業務が、<br>
+        まだまだ埋もれているはずです。<br><br>
+        <strong>市販のツールに無い。業界が特殊すぎる。社員のITリテラシーが低い。</strong><br>
+        ──そういう、<u style="text-decoration:none;background:linear-gradient(180deg,transparent 60%,rgba(212,169,0,0.35) 60%,rgba(212,169,0,0.35) 92%,transparent 92%);padding:0 4px">他社が首を振った業務</u>こそ、私たちの本領です。
+      </p>
+
+      <div class="anything-examples">
+        <h4>こんなご相談も、大歓迎です</h4>
+        <ul>
+          <li>FAX で来る注文書を、AIで読み取って自動でデータ化したい</li>
+          <li>業界専用の古い販売管理ソフトと、Excel・Google を繋ぎたい</li>
+          <li>手書きの伝票・カルテ・点検票を、AIで整理・検索可能にしたい</li>
+          <li>「ベテラン社員が頭の中でやってる判断」を、仕組みに落とし込みたい</li>
+          <li>毎日10サイトに手でログインしている情報収集を、無人化したい</li>
+          <li>「これ自動化できる?」と社内で誰も答えられない、独自オペレーション</li>
+          <li>競合がやっていない、御社だけの "面倒くさい仕事" の改善</li>
+        </ul>
+      </div>
+
+      <div class="anything-outro">
+        「うちのこんな業務、できますか？」<br>
+        その "？" を、いっしょに解いていきます。
+      </div>
+
+      <div class="anything-cta">
+        <a href="#contact">
+          まずは何でも、話してみる<span class="arr">→</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== News ========== -->
+<div class="wave-divider" style="margin:40px auto"></div>
+<section class="news" id="news">
+  <div class="container">
+    <div class="section-label fade">TOPICS</div>
+    <h2 class="section-title fade">
+      最近のお知らせ
+      <small>News & Updates</small>
+    </h2>
+    <div class="news-list">
+      <div class="news-item fade">
+        <div class="news-date">2026.05.10</div>
+        <div class="news-body"><span class="news-tag">SERVICE</span>業務自動化サービス「Skeleton 自動化ラボ」を本格開始しました。</div>
+      </div>
+      <div class="news-item fade">
+        <div class="news-date">2026.05.09</div>
+        <div class="news-body"><span class="news-tag">WORKS</span>せどりすと→プライスター連携ツール 自動運転を開始しました。</div>
+      </div>
+      <div class="news-item fade">
+        <div class="news-date">2026.04.27</div>
+        <div class="news-body"><span class="news-tag">CORPORATE</span>スケルトン株式会社を設立しました。福井から、業務効率化のパートナーとして歩み始めます。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Company ========== -->
+<div class="wave-divider" style="margin:40px auto"></div>
+<section class="company" id="company">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px" class="fade">
+      <div class="section-label">COMPANY</div>
+      <h2 class="section-title" style="margin-bottom:0">
+        会社概要
+        <small>Company Profile</small>
+      </h2>
+    </div>
+    <div class="company-table fade">
+      <div class="company-row">
+        <div class="company-key">商号</div>
+        <div class="company-val">スケルトン株式会社<small>Skeleton Inc.</small></div>
+      </div>
+      <div class="company-row">
+        <div class="company-key">代表取締役</div>
+        <div class="company-val">吉田 恭聡（よしだ つかさ）</div>
+      </div>
+      <div class="company-row">
+        <div class="company-key">設立</div>
+        <div class="company-val">2026年4月27日</div>
+      </div>
+      <div class="company-row">
+        <div class="company-key">所在地</div>
+        <div class="company-val">〒910-0833　福井県福井市新保 1-1406</div>
+      </div>
+      <div class="company-row">
+        <div class="company-key">事業内容</div>
+        <div class="company-val">
+          AI を活用した業務自動化サービスの提供<small>Skeleton 自動化ラボ／中小事業者向け自動化ツールの企画・開発・販売・運用支援</small>
+        </div>
+      </div>
+      <div class="company-row">
+        <div class="company-key">取引銀行</div>
+        <div class="company-val">北陸銀行 大野支店</div>
+      </div>
+      <div class="company-row">
+        <div class="company-key">連絡先</div>
+        <div class="company-val">E-mail：t3.5ty6@gmail.com</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Contact ========== -->
+<div class="wave-divider" style="margin:40px auto"></div>
+
+<!-- ========== サービスの流れ STEP ========== -->
+<section class="flow" id="flow">
+  <div class="flow-inner">
+    <div class="flow-pill-wrap fade">
+      <span class="pill-label green">ご相談から運用開始まで！</span>
+    </div>
+    <div class="section-label fade">SERVICE FLOW</div>
+    <h2 class="section-title fade">サービスの流れ <small>SKELETON SERVICE</small></h2>
+
+    <div class="flow-steps section-after-title">
+      <div class="flow-step fade">
+        <div class="flow-step-num"><span class="lbl">STEP</span><span class="n">1</span></div>
+        <div class="flow-step-title">ヒアリング</div>
+        <p class="flow-step-desc">まずは現状の業務内容や、お困りの作業をお聞かせください。「これって自動化できる?」というレベルの相談でも大歓迎です。オンライン or 福井オフィスにて、初回 30〜60分。</p>
+      </div>
+
+      <div class="flow-step fade">
+        <div class="flow-step-num"><span class="lbl">STEP</span><span class="n">2</span></div>
+        <div class="flow-step-title">診断・お見積もり</div>
+        <p class="flow-step-desc">ヒアリング内容から「どの作業を、どの範囲で自動化できるか」を診断し、費用感とスケジュールをご提示します。複数案を比較してから決められる形でお返し。</p>
+      </div>
+
+      <div class="flow-step fade">
+        <div class="flow-step-num"><span class="lbl">STEP</span><span class="n">3</span></div>
+        <div class="flow-step-title">設計・開発</div>
+        <p class="flow-step-desc">ご要望と現場の使い勝手に合わせて、ツールを構築します。途中で動くプロトタイプをお見せしながら、認識ズレなく進めます。期間は規模により2〜8週間。</p>
+      </div>
+
+      <div class="flow-step fade">
+        <div class="flow-step-num"><span class="lbl">STEP</span><span class="n">4</span></div>
+        <div class="flow-step-title">導入・テスト</div>
+        <p class="flow-step-desc">実環境で動作確認しながら、現場で実際に使ってみる期間です。「もうちょっとこうしたい」を反映しながら、本番運用に耐える状態まで仕上げます。</p>
+      </div>
+
+      <div class="flow-step fade">
+        <div class="flow-step-num"><span class="lbl">STEP</span><span class="n">5</span></div>
+        <div class="flow-step-title">運用開始＆継続サポート</div>
+        <p class="flow-step-desc">本番稼働スタート後も、毎月の動作確認・改善提案・トラブル対応をサポート。ツールは作って終わりではなく、業務の変化に合わせて育てていきます。</p>
+      </div>
+    </div>
+
+    <div class="flow-cta fade">
+      <a href="#contact" class="btn">無料で相談する<span class="btn-arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider" style="margin:40px auto"></div>
+<section class="contact" id="contact">
+  <div class="contact-inner fade">
+    <div class="section-label">CONTACT</div>
+    <h2 class="section-title">お問い合わせ <small>SKELETON CONTACT</small></h2>
+    <p>
+      「うちの業務、何から自動化できる？」というご質問だけでも歓迎です。<br>
+      まずは無料の業務お悩み診断（30分）からご相談ください。
+    </p>
+
+    <form class="contact-form" action="mailto:t3.5ty6@gmail.com" method="post" enctype="text/plain" onsubmit="return window.skeletonContactSubmit && skeletonContactSubmit(event)">
+      <div class="cf-row split">
+        <div>
+          <label class="cf-label" for="cf-name">お名前 <span class="req">REQUIRED</span></label>
+          <input type="text" id="cf-name" name="name" placeholder="山田 太郎" required/>
+        </div>
+        <div>
+          <label class="cf-label" for="cf-company">会社名 <span class="opt">OPTIONAL</span></label>
+          <input type="text" id="cf-company" name="company" placeholder="株式会社○○"/>
+        </div>
+      </div>
+
+      <div class="cf-row split">
+        <div>
+          <label class="cf-label" for="cf-email">メールアドレス <span class="req">REQUIRED</span></label>
+          <input type="email" id="cf-email" name="email" placeholder="taro@example.jp" required/>
+        </div>
+        <div>
+          <label class="cf-label" for="cf-tel">電話番号 <span class="opt">OPTIONAL</span></label>
+          <input type="tel" id="cf-tel" name="tel" placeholder="090-1234-5678"/>
+        </div>
+      </div>
+
+      <div class="cf-row">
+        <label class="cf-label" for="cf-topic">ご相談カテゴリ <span class="req">REQUIRED</span></label>
+        <select id="cf-topic" name="topic" required>
+          <option value="">▼ 選んでください</option>
+          <option value="ceo">月次ダッシュボード自動生成 (社長向け)</option>
+          <option value="sales">顧客フォロー自動リマインド (営業向け)</option>
+          <option value="finance">月末請求書 一括発行＆送付 (経理向け)</option>
+          <option value="warehouse">在庫リアルタイム把握＆発注アラート (倉庫向け)</option>
+          <option value="reception">問い合わせ AI一次対応 (受付向け)</option>
+          <option value="hr">採用候補者 日程調整自動化 (人事向け)</option>
+          <option value="custom">それ以外 (特殊な業務・新規ご相談)</option>
+        </select>
+      </div>
+
+      <div class="cf-row">
+        <label class="cf-label" for="cf-message">ご相談内容 <span class="req">REQUIRED</span></label>
+        <textarea id="cf-message" name="message" placeholder="例: 経営会議の数字を出すのに毎月10日かかってます。会計ソフトと販売管理が分かれていて、Excelでつなげる作業を月3日やってます…" required></textarea>
+      </div>
+
+      <div class="cf-checkbox-row">
+        <input type="checkbox" id="cf-agree" name="agree" required/>
+        <label for="cf-agree">
+          <a href="#" onclick="return false">プライバシーポリシー</a> に同意し、業務内容についての初回ヒアリングに進みます。
+        </label>
+      </div>
+
+      <div class="cf-submit">
+        <button type="submit">無料で相談する<span class="arr">→</span></button>
+      </div>
+
+      <div class="cf-altnote">
+        フォーム送信が動かない時は、直接メールでも受付けます<br>
+        <a href="mailto:t3.5ty6@gmail.com?subject=スケルトン株式会社へのお問い合わせ">t3.5ty6@gmail.com</a>
+      </div>
+    </form>
+
+    <div class="contact-note">
+      営業時間：平日 10:00 - 18:00 ／ 土日祝も急ぎは随時対応
+    </div>
+  </div>
+</section>
+
+<!-- ========== Footer ========== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">
+        SKELETON
+        <small>SKELETON INC.</small>
+      </div>
+      <p>
+        中小事業者の業務を、AIと自動化のちからで、ボタンひとつで回る仕組みに。<br>
+        福井から、現場で使える自動化を。
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4>SITEMAP</h4>
+      <ul>
+        <li><a href="#about">私たちについて</a></li>
+        <li><a href="#mission">ミッション</a></li>
+        <li><a href="#service">サービス</a></li>
+        <li><a href="#works">実装例</a></li>
+        <li><a href="#company">会社概要</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>CONTACT</h4>
+      <ul>
+        <li>〒910-0833</li>
+        <li>福井県福井市新保 1-1406</li>
+        <li><a href="mailto:t3.5ty6@gmail.com">t3.5ty6@gmail.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 SKELETON INC. ALL RIGHTS RESERVED.</div>
+    <div>BUSINESS AUTOMATION FROM FUKUI</div>
+  </div>
+</footer>
+
+<script>
+  // ハンバーガー
+  const menuBtn = document.getElementById('menuBtn');
+  const navList = document.getElementById('navList');
+  menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('open');
+    navList.classList.toggle('open');
+  });
+  navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menuBtn.classList.remove('open');
+    navList.classList.remove('open');
+  }));
+
+  // 村の住人クリック → 該当ソリューションへスクロール＋フラッシュ
+  const jumpToSolution = (id) => {
+    const target = document.getElementById(id);
+    if (!target) return;
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    target.classList.remove('flash');
+    void target.offsetWidth;
+    target.classList.add('flash');
+    setTimeout(() => target.classList.remove('flash'), 2000);
+  };
+  document.querySelectorAll('.villager').forEach(v => {
+    v.addEventListener('click', () => {
+      jumpToSolution(v.getAttribute('data-solution'));
+    });
+  });
+  // problem-card は通常のアンカーで動くが、jumpToSolutionでflash付きの動きにする
+  document.querySelectorAll('.problem-card').forEach(c => {
+    c.addEventListener('click', (e) => {
+      const id = c.getAttribute('data-solution');
+      if (!id) return;
+      e.preventDefault();
+      jumpToSolution(id);
+    });
+  });
+
+  // フェードイン
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('show');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+  // contact form 送信 → Google Apps Script Web App に POST → Sheets に記録
+  // 失敗時のみ mailto フォールバック
+  const SKELETON_CONTACT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyn1vejBLsvc8PKLtmDSml-uuV8per7vWhKpg3q2yuKdHxiZG7P2HeNs4W4ATajLm0VIQ/exec';
+
+  window.skeletonContactSubmit = (e) => {
+    e.preventDefault();
+    const f = e.target;
+    const btn = f.querySelector('button[type=submit]');
+    const get = (k) => (f.querySelector(`[name="${k}"]`) || {}).value || '';
+
+    const fd = new FormData();
+    fd.append('name',    get('name'));
+    fd.append('company', get('company'));
+    fd.append('email',   get('email'));
+    fd.append('tel',     get('tel'));
+    fd.append('topic',   get('topic'));
+    fd.append('message', get('message'));
+    fd.append('agree',   f.querySelector('[name="agree"]').checked ? 'on' : '');
+    fd.append('ua',      navigator.userAgent || '');
+    fd.append('ref',     document.referrer || location.href);
+
+    const origBtn = btn ? btn.innerHTML : '';
+    if (btn) { btn.disabled = true; btn.innerHTML = '送信中…'; }
+
+    fetch(SKELETON_CONTACT_ENDPOINT, { method: 'POST', body: fd })
+      .then(r => r.text())
+      .then(txt => {
+        if (txt && txt.indexOf('OK') === 0) {
+          // 成功画面に切り替え
+          const inner = f.parentElement;
+          inner.innerHTML =
+            '<div class="section-label">CONTACT</div>' +
+            '<h2 class="section-title">お問い合わせ <small>SKELETON CONTACT</small></h2>' +
+            '<div style="background:#fff;border:2px solid #2a2a2a;border-radius:18px;padding:48px 32px;text-align:center;max-width:680px;margin:32px auto 0;box-shadow:6px 6px 0 var(--ink,#2a2a2a);">' +
+              '<div style="font-size:48px;line-height:1;margin-bottom:16px;">✅</div>' +
+              '<h3 style="font-size:22px;font-weight:700;margin-bottom:12px;">送信ありがとうございました</h3>' +
+              '<p style="line-height:1.8;color:#555;">担当者より <strong>1営業日以内</strong> にメールでご返信いたします。<br>急ぎのご相談は <a href="mailto:t3.5ty6@gmail.com" style="color:#1f3a5f;text-decoration:underline;font-weight:700;">t3.5ty6@gmail.com</a> までお気軽に。</p>' +
+            '</div>';
+          inner.scrollIntoView({behavior:'smooth', block:'start'});
+        } else {
+          throw new Error('GAS returned: ' + (txt || 'empty'));
+        }
+      })
+      .catch(err => {
+        // フォールバック: mailto を開く（フォーム入力は失わない）
+        if (btn) { btn.disabled = false; btn.innerHTML = origBtn; }
+        const topicMap = {
+          ceo: '月次ダッシュボード自動生成 (社長向け)',
+          sales: '顧客フォロー自動リマインド (営業向け)',
+          finance: '月末請求書 一括発行＆送付 (経理向け)',
+          warehouse: '在庫リアルタイム把握＆発注アラート (倉庫向け)',
+          reception: '問い合わせ AI一次対応 (受付向け)',
+          hr: '採用候補者 日程調整自動化 (人事向け)',
+          custom: 'それ以外 (特殊な業務・新規ご相談)'
+        };
+        const g = (k) => get(k) || '(未記入)';
+        const body = [
+          'スケルトン株式会社 お問い合わせ',
+          '─────────────────',
+          'お名前: ' + g('name'),
+          '会社名: ' + g('company'),
+          'メール: ' + g('email'),
+          '電話: ' + g('tel'),
+          'カテゴリ: ' + (topicMap[g('topic')] || g('topic')),
+          '',
+          '【ご相談内容】',
+          g('message'),
+          '',
+          '─────────────────',
+          '※ サイトフォーム送信に失敗したためメーラーで送信しています'
+        ].join('\n');
+        const url = 'mailto:t3.5ty6@gmail.com?subject=' +
+          encodeURIComponent('【お問い合わせ】' + g('name') + ' 様') +
+          '&body=' + encodeURIComponent(body);
+        alert('一時的に送信できませんでした。代わりにメールアプリを開きます。');
+        window.location.href = url;
+      });
+
+    return false;
+  };
+
+  // hero を過ぎたら 右stickside + 左sticknav を表示 + sticknav の現在地ハイライト
+  const stickside = document.querySelector('.stickside');
+  const sticknav = document.querySelector('.sticknav');
+  const hero = document.querySelector('section.hero');
+  const navLinks = sticknav ? sticknav.querySelectorAll('a') : [];
+  if ((stickside || sticknav) && hero) {
+    const toggleStick = () => {
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      const winH = window.innerHeight;
+      const past = heroBottom < winH * 0.4;
+      if (stickside) stickside.classList.toggle('show', past);
+      if (sticknav)  sticknav.classList.toggle('show', past);
+      // active 判定: 各 a の href の section が画面の上1/3 にあるものを active
+      if (sticknav && past) {
+        let activeId = null;
+        navLinks.forEach(a => {
+          const id = a.getAttribute('href').replace('#','');
+          const sec = document.getElementById(id);
+          if (!sec) return;
+          const r = sec.getBoundingClientRect();
+          if (r.top < winH * 0.4 && r.bottom > winH * 0.2) activeId = id;
+        });
+        navLinks.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + activeId);
+        });
+      }
+    };
+    window.addEventListener('scroll', toggleStick, { passive: true });
+    toggleStick();
+  }
+</script>
+
+</body>
+</html>
