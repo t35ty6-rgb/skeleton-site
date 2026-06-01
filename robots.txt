@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://t35ty6-rgb.github.io/skeleton-site/sitemap.xml
+Sitemap: https://skeleton-inc.jp/sitemap.xml
