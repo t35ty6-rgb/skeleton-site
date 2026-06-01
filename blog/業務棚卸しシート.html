@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>業務棚卸しシート | スケルトン株式会社 福井の業務効率化パートナー</title>
+<meta name="description" content="福井の中小企業向け業務棚卸しシート。業務名・頻度・所要時間・難易度を入力するだけで、自動化候補と年間削減コストを自動計算。スケルトン株式会社が無料提供。">
+<link rel="canonical" href="https://skeleton-inc.jp/blog/業務棚卸しシート.html">
+<meta property="og:title" content="業務棚卸しシート — 福井の中小企業向け">
+<meta property="og:description" content="入力するだけで自動化候補と年間削減コストが分かる無料ツール。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://skeleton-inc.jp/blog/業務棚卸しシート.html">
+<meta property="og:image" content="https://skeleton-inc.jp/assets/og-card.jpg">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Raleway:wght@500;700;800&display=swap">
+<style>
+:root{
+  --bg:#fdf6d8;
+  --bg-paper:#fffbe5;
+  --ink:#1a1a1a;
+  --ink-soft:#555;
+  --green-1:#1a3a2a;
+  --green-2:#2a4d3a;
+  --green-pill:#4abf91;
+  --gold:#d4a900;
+  --yellow:#f9d748;
+  --red:#c44569;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Zen Kaku Gothic New',-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;font-size:15px}
+
+header{background:var(--bg-paper);border-bottom:1.5px solid var(--ink);padding:14px 28px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);background:rgba(255,251,229,0.92)}
+header .logo{font-family:'Raleway';font-weight:800;font-size:20px;letter-spacing:0.1em;color:var(--ink);text-decoration:none}
+header nav a{color:var(--ink);text-decoration:none;font-size:12px;margin-left:18px;font-weight:700;letter-spacing:0.05em}
+header nav a:hover{color:var(--gold)}
+@media(max-width:600px){header{padding:10px 18px}header .logo{font-size:16px}header nav a{margin-left:10px;font-size:10px}}
+
+.container{max-width:1240px;margin:24px auto 80px;padding:0 24px}
+
+h1{font-size:28px;font-weight:900;line-height:1.4;margin-bottom:10px}
+h1 .eyebrow{display:inline-block;background:var(--green-1);color:#fff;padding:4px 10px;font-size:10px;letter-spacing:0.15em;font-weight:700;border-radius:3px;margin-bottom:10px;font-family:'Raleway'}
+.lead{color:var(--ink-soft);font-size:14px;margin-bottom:24px;line-height:1.85}
+@media(max-width:700px){h1{font-size:22px}}
+
+/* サマリーパネル */
+.summary-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0;
+}
+.sum-card{
+  background:#fff;border:2px solid var(--ink);border-radius:10px;padding:18px 20px;
+  box-shadow:4px 4px 0 var(--ink);
+}
+.sum-card .lbl{font-size:11px;letter-spacing:0.1em;font-weight:800;color:var(--green-1);margin-bottom:6px;font-family:'Raleway'}
+.sum-card .val{font-family:'Raleway';font-weight:900;font-size:24px;color:var(--ink);line-height:1.1}
+.sum-card .val.gold{color:var(--gold)}
+.sum-card .val.green{color:var(--green-pill)}
+.sum-card .sub{font-size:11px;color:var(--ink-soft);margin-top:4px}
+@media(max-width:700px){.summary-grid{grid-template-columns:1fr 1fr}.sum-card .val{font-size:20px}}
+
+/* ツールバー */
+.toolbar{
+  display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+  background:#fff;border:1.5px solid var(--ink);border-radius:8px;
+  padding:12px 14px;margin-bottom:16px;
+}
+.toolbar button{
+  background:var(--green-1);color:#fff;border:1.5px solid var(--ink);
+  padding:8px 16px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700;
+  box-shadow:2px 2px 0 var(--ink);transition:transform 0.1s, box-shadow 0.1s;
+}
+.toolbar button:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink)}
+.toolbar button.gold{background:var(--gold);color:var(--ink)}
+.toolbar button.danger{background:var(--red)}
+.toolbar .spacer{flex:1}
+.toolbar .help{font-size:11px;color:var(--ink-soft)}
+
+/* メインテーブル */
+.sheet-wrap{
+  background:#fff;border:2px solid var(--ink);border-radius:10px;
+  overflow:auto;box-shadow:5px 5px 0 var(--ink);
+}
+table.sheet{
+  width:100%;border-collapse:collapse;min-width:920px;
+}
+table.sheet thead th{
+  background:var(--green-1);color:#fff;padding:11px 10px;
+  font-size:11px;letter-spacing:0.05em;font-weight:700;text-align:left;
+  border-bottom:2px solid var(--ink);position:sticky;top:0;z-index:5;
+}
+table.sheet thead th .req{color:var(--yellow);font-size:9px;margin-left:4px}
+table.sheet tbody tr{transition:background 0.1s}
+table.sheet tbody tr:hover{background:#fff5b8}
+table.sheet td{padding:7px 8px;border-bottom:1px solid #eee;vertical-align:middle}
+table.sheet td input[type=text],
+table.sheet td select,
+table.sheet td input[type=number]{
+  width:100%;border:1px solid #ccc;border-radius:5px;padding:6px 8px;font-size:13px;
+  font-family:inherit;background:#fff;
+}
+table.sheet td input[type=text]:focus,
+table.sheet td select:focus,
+table.sheet td input[type=number]:focus{border-color:var(--green-1);outline:0;background:#fffbe5}
+table.sheet td.center{text-align:center}
+table.sheet td.score{
+  text-align:center;font-family:'Raleway';font-weight:900;font-size:16px;
+}
+table.sheet td.score.high{color:var(--red);background:#ffe9e9}
+table.sheet td.score.mid{color:var(--gold);background:#fff5b8}
+table.sheet td.score.low{color:var(--green-pill);background:#e9f5ec}
+table.sheet td.score.none{color:#999}
+table.sheet .row-num{
+  width:38px;text-align:center;font-family:'Raleway';font-weight:800;
+  color:var(--ink-soft);background:#fafafa;
+}
+table.sheet .col-action{width:50px;text-align:center}
+table.sheet .col-action button{
+  background:none;border:1px solid #ccc;color:var(--ink-soft);padding:3px 8px;
+  border-radius:4px;font-size:11px;cursor:pointer;
+}
+table.sheet .col-action button:hover{background:var(--red);color:#fff;border-color:var(--red)}
+table.sheet tbody tr.cand-high{background:#fffbe5}
+table.sheet tbody tr.cand-high:hover{background:#fff5b8}
+
+/* スコア凡例 */
+.legend{
+  display:flex;gap:14px;flex-wrap:wrap;align-items:center;
+  font-size:11px;color:var(--ink-soft);margin:12px 4px 0;
+}
+.legend .badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 10px;border-radius:4px;font-weight:700;
+}
+.legend .badge.high{background:#ffe9e9;color:var(--red)}
+.legend .badge.mid{background:#fff5b8;color:var(--gold)}
+.legend .badge.low{background:#e9f5ec;color:var(--green-pill)}
+
+/* ガイダンス */
+.guide{
+  background:var(--bg-paper);border:1.5px dashed var(--ink);
+  border-radius:8px;padding:18px 22px;margin:24px 0;
+  font-size:13px;line-height:1.85;
+}
+.guide h3{font-size:14px;font-weight:800;color:var(--green-1);margin-bottom:8px}
+.guide ol{padding-left:22px}
+.guide ol li{margin-bottom:4px}
+
+/* CTA */
+.cta-box{
+  background:linear-gradient(135deg, var(--green-1), var(--green-2));color:#fff;
+  border-radius:10px;padding:32px 28px;margin:40px 0 0;text-align:center;
+  box-shadow:6px 6px 0 var(--ink);border:2px solid var(--ink);
+}
+.cta-box h2{color:#fff;font-size:20px;margin-bottom:10px;font-weight:900}
+.cta-box p{color:rgba(255,255,255,0.92);font-size:13px;margin-bottom:20px;line-height:1.8}
+.cta-box a.btn{
+  display:inline-block;background:var(--gold);color:var(--ink);
+  padding:12px 32px;border-radius:6px;text-decoration:none;font-weight:800;font-size:14px;
+  border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);transition:transform 0.15s;
+}
+.cta-box a.btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
+
+footer{text-align:center;padding:24px;background:var(--green-1);color:#fff;font-size:11px}
+footer a{color:var(--gold);text-decoration:underline}
+
+/* 印刷用 */
+@media print{
+  header,.toolbar,.col-action,.cta-box,footer{display:none!important}
+  body{background:#fff;font-size:11px}
+  .sheet-wrap{box-shadow:none;border:1px solid #000}
+  table.sheet thead th{background:#000;color:#fff;position:static}
+  .sum-card{box-shadow:none;border:1px solid #000}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">SKELETON</a>
+  <nav>
+    <a href="/blog/">ブログ</a>
+    <a href="/#service">サービス</a>
+    <a href="/#contact">無料相談</a>
+  </nav>
+</header>
+
+<div class="container">
+
+<div class="eyebrow">FREE TOOL</div>
+<h1>業務棚卸しシート — 福井の中小企業向け</h1>
+<p class="lead">
+  業務名・頻度・所要時間・難易度を入力するだけで、<strong>自動化候補スコア</strong>と<strong>年間削減コスト見込み</strong>を自動計算します。
+  入力内容はお使いのブラウザに自動保存されるので、続きはいつでも再開できます。スマホ・PCどちらでも入力可。
+</p>
+
+<!-- サマリーパネル -->
+<div class="summary-grid">
+  <div class="sum-card">
+    <div class="lbl">登録業務数</div>
+    <div class="val" id="sumCount">0</div>
+    <div class="sub">行</div>
+  </div>
+  <div class="sum-card">
+    <div class="lbl">月間 合計時間</div>
+    <div class="val" id="sumHours">0</div>
+    <div class="sub">時間 / 月</div>
+  </div>
+  <div class="sum-card">
+    <div class="lbl">自動化候補</div>
+    <div class="val gold" id="sumCand">0</div>
+    <div class="sub">件 (スコア★★以上)</div>
+  </div>
+  <div class="sum-card">
+    <div class="lbl">年間 削減見込み</div>
+    <div class="val green" id="sumSaving">¥0</div>
+    <div class="sub">候補業務90%削減・時給¥2,000換算</div>
+  </div>
+</div>
+
+<!-- ツールバー -->
+<div class="toolbar">
+  <button onclick="addRow()">＋ 業務を追加</button>
+  <button class="gold" onclick="addSampleRows()">サンプル投入</button>
+  <button onclick="exportCSV()">CSV出力</button>
+  <button onclick="window.print()">印刷 / PDF保存</button>
+  <div class="spacer"></div>
+  <span class="help">入力は自動保存されます</span>
+  <button class="danger" onclick="if(confirm('全行を削除しますか?')){rows=[];save();render()}">全クリア</button>
+</div>
+
+<!-- メインテーブル -->
+<div class="sheet-wrap">
+<table class="sheet">
+<thead>
+<tr>
+  <th>#</th>
+  <th>業務名 <span class="req">必須</span></th>
+  <th width="100">頻度</th>
+  <th width="100">月間時間</th>
+  <th width="120">担当部署</th>
+  <th width="100">難易度</th>
+  <th width="110">判断要素</th>
+  <th width="80">候補度</th>
+  <th width="110">年間時間</th>
+  <th width="120">削減見込み</th>
+  <th class="col-action">削除</th>
+</tr>
+</thead>
+<tbody id="tbody"></tbody>
+</table>
+</div>
+
+<div class="legend">
+<span>候補度の見方:</span>
+<span class="badge high">★★★ 最優先</span>
+<span class="badge mid">★★ 候補</span>
+<span class="badge low">★ 様子見</span>
+<span style="font-size:10px">※ 月10時間以上 × 定型業務(難易度★1) ほど自動化効果が高い</span>
+</div>
+
+<!-- ガイダンス -->
+<div class="guide">
+<h3>使い方</h3>
+<ol>
+  <li><strong>「＋業務を追加」</strong> で行を追加し、業務名と頻度を入力</li>
+  <li>月間時間を入力 (毎日30分の業務なら 30分×20営業日=600分=10時間)</li>
+  <li>難易度を選ぶ (定型=単純な転記/集計、判断あり=ケースバイケース、人間判断必須=創造的業務)</li>
+  <li>候補度が★★★になった業務から、自動化を検討しましょう</li>
+  <li>入力が終わったら<strong>「CSV出力」</strong>でダウンロード or <strong>「印刷/PDF保存」</strong>で保存</li>
+</ol>
+<p style="margin-top:10px;font-size:11px;color:var(--ink-soft)">
+※ 自動化候補スコアは「月間時間 × 難易度の逆数」で算出。月10時間以上の定型業務が最も効果が大きいという経験則に基づきます。
+</p>
+</div>
+
+<!-- CTA -->
+<div class="cta-box">
+<h2>このシートを見ながら30分だけ無料相談</h2>
+<p>
+  入力したシートを画面共有しながら、福井の業務効率化パートナー「スケルトン株式会社」が<br>
+  「どの業務から自動化すれば最も効果が大きいか」を一緒に整理します。<br>
+  その場での契約は一切ありません。
+</p>
+<a href="/#contact" class="btn">無料相談を申し込む →</a>
+</div>
+
+</div>
+
+<footer>
+  © 2026 スケルトン株式会社 (Skeleton Inc.) ・ 〒910-0833 福井県福井市新保1-1406 ・ <a href="/">公式サイトへ戻る</a>
+</footer>
+
+<script>
+const STORAGE_KEY = 'skeleton_tana_oroshi_v1';
+const FREQ_OPTIONS = [
+  ['毎日','毎日'],['週次','週次'],['月次','月次'],['四半期','四半期'],['不定期','不定期']
+];
+const DIFF_OPTIONS = [
+  ['easy','★1 定型 (転記/集計など)'],
+  ['mid','★2 判断あり (ケース別対応)'],
+  ['hard','★3 人間判断必須']
+];
+const JUDGE_OPTIONS = [
+  ['','—'],['nashi','判断不要'],['rule','明確なルール'],['expert','属人化']
+];
+
+let rows = [];
+try { rows = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+catch { rows = []; }
+
+function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(rows)); }
+
+function calcScore(row) {
+  const hours = parseFloat(row.hours) || 0;
+  if (!row.name || hours <= 0 || !row.diff) return 0;
+  const diffWeight = { easy:3, mid:2, hard:1 }[row.diff] || 1;
+  // hours per month × diff weight (1-3)
+  const raw = hours * diffWeight;
+  if (raw >= 30) return 3;   // ★★★ 最優先
+  if (raw >= 12) return 2;   // ★★ 候補
+  if (raw >= 4)  return 1;   // ★ 様子見
+  return 0;
+}
+function calcAnnualHours(row) {
+  return (parseFloat(row.hours) || 0) * 12;
+}
+function calcSaving(row) {
+  const score = calcScore(row);
+  if (score < 2) return 0; // 候補のみ算定
+  // 候補業務の90%を削減できると想定、時給¥2,000
+  return Math.round(calcAnnualHours(row) * 0.9 * 2000);
+}
+function fmt(n) { return '¥' + n.toLocaleString('ja-JP'); }
+
+function addRow(preset) {
+  rows.push(preset || { name:'', freq:'毎日', hours:'', dept:'', diff:'', judge:'' });
+  save();
+  render();
+}
+
+function addSampleRows() {
+  if (rows.length > 0 && !confirm('現在の入力をクリアしてサンプルを投入しますか?')) return;
+  rows = [
+    { name:'請求書発行・PDF化・メール送付', freq:'月次', hours:10, dept:'経理', diff:'easy', judge:'rule' },
+    { name:'顧客フォローメール (誕生日/契約更新)', freq:'毎日', hours:8, dept:'営業', diff:'easy', judge:'rule' },
+    { name:'採用候補者の日程調整・連絡', freq:'週次', hours:6, dept:'人事', diff:'easy', judge:'rule' },
+    { name:'月次売上レポート集計', freq:'月次', hours:4, dept:'経営企画', diff:'easy', judge:'rule' },
+    { name:'問い合わせフォーム返信 (一次対応)', freq:'毎日', hours:3, dept:'受付', diff:'mid', judge:'rule' },
+    { name:'クレーム対応', freq:'不定期', hours:5, dept:'営業', diff:'hard', judge:'expert' },
+    { name:'経営判断会議', freq:'月次', hours:8, dept:'役員', diff:'hard', judge:'expert' },
+  ];
+  save();
+  render();
+}
+
+function delRow(idx) {
+  rows.splice(idx, 1);
+  save();
+  render();
+}
+
+function updateRow(idx, field, value) {
+  rows[idx][field] = value;
+  save();
+  renderSummary();
+  renderRow(idx); // re-render just this row to update score
+}
+
+function render() {
+  const tb = document.getElementById('tbody');
+  tb.innerHTML = '';
+  if (rows.length === 0) {
+    tb.innerHTML = `<tr><td colspan="11" style="text-align:center;padding:40px 20px;color:#888">
+      まだ業務が登録されていません。<br><br>
+      <button onclick="addRow()" style="background:var(--green-1);color:#fff;border:1.5px solid var(--ink);padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:700">＋ 1件目の業務を追加</button>
+      &nbsp;または&nbsp;
+      <button onclick="addSampleRows()" style="background:var(--gold);color:var(--ink);border:1.5px solid var(--ink);padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:700">サンプルで試す</button>
+    </td></tr>`;
+  } else {
+    rows.forEach((_, idx) => tb.appendChild(buildRow(idx)));
+  }
+  renderSummary();
+}
+
+function buildRow(idx) {
+  const row = rows[idx];
+  const tr = document.createElement('tr');
+  tr.dataset.idx = idx;
+  tr.innerHTML = makeRowHTML(idx, row);
+  return tr;
+}
+
+function renderRow(idx) {
+  const tr = document.querySelector(`tr[data-idx="${idx}"]`);
+  if (tr) tr.outerHTML = `<tr data-idx="${idx}">${makeRowHTML(idx, rows[idx])}</tr>`;
+  attachHandlers();
+}
+
+function makeRowHTML(idx, row) {
+  const score = calcScore(row);
+  const annual = calcAnnualHours(row);
+  const saving = calcSaving(row);
+  const scoreCls = score === 3 ? 'high' : score === 2 ? 'mid' : score === 1 ? 'low' : 'none';
+  const scoreText = score === 3 ? '★★★' : score === 2 ? '★★' : score === 1 ? '★' : '—';
+  const trCls = score >= 2 ? 'cand-high' : '';
+
+  return `
+    <td class="row-num">${idx + 1}</td>
+    <td><input type="text" placeholder="例: 請求書発行・PDF化・メール送付" value="${esc(row.name)}" data-field="name" data-idx="${idx}"></td>
+    <td>${makeSelect('freq', idx, row.freq, FREQ_OPTIONS)}</td>
+    <td><input type="number" min="0" step="0.5" placeholder="0" value="${row.hours||''}" data-field="hours" data-idx="${idx}"></td>
+    <td><input type="text" placeholder="経理 / 営業 等" value="${esc(row.dept||'')}" data-field="dept" data-idx="${idx}"></td>
+    <td>${makeSelect('diff', idx, row.diff, DIFF_OPTIONS, true)}</td>
+    <td>${makeSelect('judge', idx, row.judge, JUDGE_OPTIONS)}</td>
+    <td class="score ${scoreCls}">${scoreText}</td>
+    <td class="center" style="font-family:Raleway;font-weight:700">${annual}h</td>
+    <td class="center" style="font-family:Raleway;font-weight:700;color:${saving > 0 ? 'var(--green-pill)' : '#999'}">${saving > 0 ? fmt(saving) : '—'}</td>
+    <td class="col-action"><button onclick="delRow(${idx})" title="この行を削除">✕</button></td>
+  `;
+}
+
+function makeSelect(field, idx, current, opts, includeEmpty) {
+  const items = (includeEmpty ? [['','—']] : []).concat(opts);
+  const options = items.map(([v, label]) =>
+    `<option value="${v}" ${current === v ? 'selected' : ''}>${label}</option>`
+  ).join('');
+  return `<select data-field="${field}" data-idx="${idx}">${options}</select>`;
+}
+
+function attachHandlers() {
+  document.querySelectorAll('[data-field][data-idx]').forEach(el => {
+    el.oninput = el.onchange = () => {
+      const idx = parseInt(el.dataset.idx);
+      updateRow(idx, el.dataset.field, el.value);
+    };
+  });
+}
+
+function esc(s) { return String(s||'').replace(/"/g, '&quot;').replace(/</g, '&lt;') }
+
+function renderSummary() {
+  const count = rows.length;
+  const hours = rows.reduce((s, r) => s + (parseFloat(r.hours) || 0), 0);
+  const cand = rows.filter(r => calcScore(r) >= 2).length;
+  const saving = rows.reduce((s, r) => s + calcSaving(r), 0);
+  document.getElementById('sumCount').textContent = count;
+  document.getElementById('sumHours').textContent = hours.toFixed(1).replace(/\.0$/, '');
+  document.getElementById('sumCand').textContent = cand;
+  document.getElementById('sumSaving').textContent = fmt(saving);
+}
+
+function exportCSV() {
+  if (rows.length === 0) { alert('行を追加してから出力してください'); return; }
+  const headers = ['#','業務名','頻度','月間時間','担当部署','難易度','判断要素','候補度','年間時間','削減見込み(年)'];
+  const lines = [headers.join(',')];
+  rows.forEach((r, i) => {
+    const score = calcScore(r);
+    const scoreText = ['—','★','★★','★★★'][score];
+    const diffLabel = (DIFF_OPTIONS.find(o => o[0] === r.diff) || ['','—'])[1];
+    const judgeLabel = (JUDGE_OPTIONS.find(o => o[0] === r.judge) || ['','—'])[1];
+    const row = [
+      i + 1,
+      r.name || '',
+      r.freq || '',
+      r.hours || 0,
+      r.dept || '',
+      diffLabel,
+      judgeLabel,
+      scoreText,
+      calcAnnualHours(r) + 'h',
+      calcSaving(r) > 0 ? '¥' + calcSaving(r) : '—'
+    ];
+    lines.push(row.map(c => `"${String(c).replace(/"/g, '""')}"`).join(','));
+  });
+  // Summary
+  const totalHours = rows.reduce((s, r) => s + (parseFloat(r.hours) || 0), 0);
+  const totalSaving = rows.reduce((s, r) => s + calcSaving(r), 0);
+  lines.push('');
+  lines.push(`合計,業務数,${rows.length},月間時間,${totalHours}時間,,候補業務,${rows.filter(r => calcScore(r) >= 2).length}件,年間削減見込み,¥${totalSaving}`);
+
+  const csv = '﻿' + lines.join('\n');
+  const blob = new Blob([csv], { type:'text/csv;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `業務棚卸しシート_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+
+render();
+attachHandlers();
+</script>
+
+</body>
+</html>
