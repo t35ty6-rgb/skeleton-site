@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Skeleton SEO ダッシュボード</title>
+<meta name="robots" content="noindex">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,'Hiragino Sans','Yu Gothic',sans-serif;background:#fdf6d8;color:#1a1a1a;padding:24px;line-height:1.7}
+h1{font-size:26px;font-weight:900;margin-bottom:6px}
+.sub{color:#555;font-size:13px;margin-bottom:24px}
+.sub a{color:#1a3a2a;text-decoration:underline;font-weight:700}
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.card{background:#fff;border:2px solid #1a1a1a;border-radius:10px;padding:16px 20px;box-shadow:4px 4px 0 #1a1a1a}
+.card .lbl{font-size:11px;font-weight:800;color:#1a3a2a;letter-spacing:0.08em;margin-bottom:6px}
+.card .val{font-family:'Raleway',sans-serif;font-weight:900;font-size:26px;line-height:1.1}
+.card .val.gold{color:#d4a900}
+.card .val.green{color:#4abf91}
+.card .val.red{color:#c44569}
+section{background:#fff;border:2px solid #1a1a1a;border-radius:10px;margin-bottom:24px;overflow:hidden;box-shadow:5px 5px 0 #1a1a1a}
+section h2{background:#1a3a2a;color:#fff;padding:10px 16px;font-size:14px;letter-spacing:0.05em}
+table{width:100%;border-collapse:collapse;font-size:13px}
+table th{background:#f9d748;padding:8px 10px;text-align:left;font-size:11px;font-weight:700}
+table td{padding:7px 10px;border-top:1px solid #eee;vertical-align:top}
+table tr:hover td{background:#fff5b8}
+.rank-1{color:#c44569;font-weight:900}
+.rank-mid{color:#d4a900;font-weight:700}
+.rank-out{color:#999}
+.diff-up{color:#4abf91;font-weight:700}
+.diff-down{color:#c44569;font-weight:700}
+.diff-flat{color:#999}
+.empty{padding:32px;text-align:center;color:#888;font-size:13px}
+.loader{display:inline-block;width:14px;height:14px;border:2px solid #ddd;border-top-color:#1a3a2a;border-radius:50%;animation:spin 0.8s linear infinite;vertical-align:middle;margin-right:8px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:700px){.summary{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<h1>Skeleton SEO ダッシュボード</h1>
+<p class="sub">15KWのGoogle検索順位を毎晩20時に自動取得。データは <a href="https://docs.google.com/spreadsheets/d/1RkwnwSHmRyQruNUYAGkbKLQuqsJJtYRfaliGvIM3xUA/edit" target="_blank">Sheets</a> 経由でJobsが管理。<span class="loader" id="loader"></span><span id="loadMsg">読込中…</span></p>
+
+<div class="summary">
+  <div class="card"><div class="lbl">監視KW</div><div class="val" id="sumKw">—</div></div>
+  <div class="card"><div class="lbl">TOP10内</div><div class="val green" id="sumTop">—</div></div>
+  <div class="card"><div class="lbl">圏外</div><div class="val red" id="sumOut">—</div></div>
+  <div class="card"><div class="lbl">今週の異常</div><div class="val gold" id="sumAnom">—</div></div>
+</div>
+
+<section>
+<h2>📊 最新順位 (本日)</h2>
+<table id="tblRanks"><thead><tr><th width="40">#</th><th>KW</th><th width="80">優先度</th><th width="80">順位</th><th width="80">前日比</th><th>TOP1 競合</th></tr></thead><tbody><tr><td colspan="6" class="empty">読込中</td></tr></tbody></table>
+</section>
+
+<section>
+<h2>📈 戦略レポート (週次・Claude生成)</h2>
+<table id="tblStrategy"><thead><tr><th width="100">週開始</th><th>上昇TOP</th><th>下落TOP</th><th>行動指針</th></tr></thead><tbody><tr><td colspan="4" class="empty">まだ生成されていません</td></tr></tbody></table>
+</section>
+
+<section>
+<h2>⚠️ 異常検知ログ</h2>
+<table id="tblAnom"><thead><tr><th width="140">検知日時</th><th width="80">種類</th><th>KW</th><th>詳細</th></tr></thead><tbody><tr><td colspan="4" class="empty">異常なし</td></tr></tbody></table>
+</section>
+
+<script>
+const WEBAPP = 'https://script.google.com/macros/s/AKfycbyQbo4VPnmAlVzfudAWg7kMrvLm4aByyYGAgvwwvVRZIXt97rOYc4n_hcfdjK31Fqz2MA/exec';
+
+async function fetchTab(tab) {
+  const r = await fetch(WEBAPP + '?tab=' + encodeURIComponent(tab));
+  return r.json();
+}
+
+function todayJST() {
+  const d = new Date(Date.now() + 9*3600*1000);
+  return d.toISOString().slice(0,10);
+}
+
+function renderRank(rank) {
+  if (rank == null || rank === '圏外' || rank === '') return '<span class="rank-out">圏外</span>';
+  const n = typeof rank === 'number' ? rank : parseInt(rank, 10);
+  if (n <= 3) return `<span class="rank-1">${n}位</span>`;
+  if (n <= 10) return `<span class="rank-mid">${n}位</span>`;
+  return `${n}位`;
+}
+
+function renderDiff(diff) {
+  if (diff === '' || diff == null) return '—';
+  const n = typeof diff === 'number' ? diff : parseInt(diff, 10);
+  if (isNaN(n) || n === 0) return '<span class="diff-flat">±0</span>';
+  if (n > 0) return `<span class="diff-up">▲${n}</span>`;
+  return `<span class="diff-down">▼${Math.abs(n)}</span>`;
+}
+
+(async () => {
+  try {
+    const [watchlist, ranks, strategy, anom] = await Promise.all([
+      fetchTab('watchlist'),
+      fetchTab('ranks'),
+      fetchTab('strategy_weekly'),
+      fetchTab('anomalies'),
+    ]);
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('loadMsg').textContent = '最終更新: ' + new Date().toLocaleString('ja-JP');
+
+    // 本日の rank だけ + KWでmap
+    const today = todayJST();
+    const todayRanks = ranks.filter(r => {
+      const d = String(r['日付(JST)'] || '').slice(0, 10);
+      return d === today;
+    });
+    const rankByKw = {};
+    for (const r of todayRanks) rankByKw[r['KW']] = r;
+
+    // サマリー
+    let inTop = 0, out = 0;
+    const rows = watchlist.map((wl, i) => {
+      const r = rankByKw[wl['kw']];
+      let rankCell = '<span class="rank-out">未測定</span>';
+      let diffCell = '—';
+      let top1 = '';
+      if (r) {
+        rankCell = renderRank(r['順位']);
+        diffCell = renderDiff(r['前日比']);
+        const num = typeof r['順位'] === 'number' ? r['順位'] : parseInt(r['順位'], 10);
+        if (!isNaN(num) && num <= 10) inTop++;
+        else if (r['順位'] === '圏外') out++;
+        top1 = r['TOP1 タイトル'] ? `<small>${r['TOP1 タイトル']}</small>` : '';
+      } else {
+        out++;
+      }
+      return `<tr><td>${i+1}</td><td>${wl['kw']}</td><td>${wl['優先度']}</td><td>${rankCell}</td><td>${diffCell}</td><td>${top1}</td></tr>`;
+    });
+    document.querySelector('#tblRanks tbody').innerHTML = rows.length ? rows.join('') : `<tr><td colspan="6" class="empty">watchlistなし</td></tr>`;
+    document.getElementById('sumKw').textContent = watchlist.length;
+    document.getElementById('sumTop').textContent = inTop;
+    document.getElementById('sumOut').textContent = out;
+
+    // 異常
+    const recentAnom = anom.slice(-20).reverse();
+    if (recentAnom.length) {
+      document.querySelector('#tblAnom tbody').innerHTML = recentAnom.map(a =>
+        `<tr><td>${new Date(a['検知日時']).toLocaleString('ja-JP')}</td><td>${a['種類']}</td><td>${a['KW']}</td><td>${a['詳細']}</td></tr>`
+      ).join('');
+    }
+    document.getElementById('sumAnom').textContent = recentAnom.length;
+
+    // 戦略
+    if (strategy.length) {
+      document.querySelector('#tblStrategy tbody').innerHTML = strategy.slice(-4).reverse().map(s =>
+        `<tr><td>${String(s['週開始']||'').slice(0,10)}</td><td>${s['上昇TOP']||''}</td><td>${s['下落TOP']||''}</td><td>${s['行動指針']||''}</td></tr>`
+      ).join('');
+    }
+  } catch (e) {
+    document.getElementById('loadMsg').textContent = 'エラー: ' + e.message;
+  }
+})();
+</script>
+</body>
+</html>
